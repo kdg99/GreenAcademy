@@ -1,0 +1,26 @@
+package sub1;
+/*
+ * 
+ * 날짜 : 2022/08/16
+ * 이름 : 김동근
+ * 내용 : Java 변수 실습하기
+ * 
+ * */
+public class OperatorTest {
+	
+	public static void main(String[] args) {
+		
+		//변수
+		
+		String hello = "Hello World!";
+		System.out.println(hello);
+		hello = "Hello Busan!";
+		System.out.println(hello);
+		
+		
+		//상수
+		
+		
+	}
+	
+}

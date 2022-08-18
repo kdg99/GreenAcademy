@@ -1,0 +1,23 @@
+package sub1;
+/*
+ * 날짜 : 2022/08/17
+ * 이름 : 김동근
+ * 내용 : 
+ */
+public class IfTest {
+	public static void main(String[] args) {
+		// if
+		int num1 = 1;
+		int num2 = 2;
+		
+		if (num1 < num2) {
+			System.out.println("num1은 num2보다 작다.");
+		}
+		if (num1 > 1) {
+			System.out.println("num1은 1보다 크다.");
+		}
+		
+		// if ~ else
+		// if ~ else if ~ else
+	}
+}

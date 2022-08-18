@@ -1,0 +1,19 @@
+package ch02;
+
+public class P57 {
+
+	public static void main(String[] args) {
+
+		float fnum1 = 3.14;
+		float fnum2 = 3.14f;
+		double dnum1 = 3.14;
+		double dnum2 = 3.14f;
+		
+		System.out.println(fnum1);
+		System.out.println(fnum2);
+		System.out.println(dnum1);
+		System.out.println(dnum2);
+		
+	}
+
+}
