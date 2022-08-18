@@ -1,0 +1,80 @@
+package sub1;
+/*
+ * 
+ * 날짜 : 2022/08/17
+ * 이름 : 김동근
+ * 내용 : Java 변수 실습하기
+ * 
+ * */
+public class OperatorTest {
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		//산술연산자
+		int num1 = 1;
+		int num2 = 2;
+		int num3 = 3;
+		int num4 = 4;
+		
+		int r1 = num1 + num2;
+		int r2 = num1 - num2;
+		int r3 = num3 * num2;
+		int r4 = num4 / num2;
+		int r5 = num4 % num3;
+		
+		System.out.println("r1 : " + r1);
+		System.out.println("r2 : " + r2);
+		System.out.println("r3 : " + r3);
+		System.out.println("r4 : " + r4);
+		System.out.println("r5 : " + r5);
+		
+		//증감연산자
+		int num = 1;
+		
+		num++;
+		++num;
+		System.out.println("num : " + num);
+		num--;
+		--num;
+		System.out.println("num : " + num);
+		
+		//복합대입연산자
+		int n1 = 1, n2 = 2, n3 = 3, n4 = 4;
+
+		n1 += 1;
+		n2 -= 2;
+		n3 *= 3;
+		n4 /= 4;
+
+		System.out.println("n1 : "+n1);
+		System.out.println("n2 : "+n2);
+		System.out.println("n3 : "+n3);
+		System.out.println("n4 : "+n4);
+		
+		//비교연산자
+		int var1 = 1;
+		int var2 = 2;
+		
+		boolean rs1 = var1 > var2;
+		boolean rs2 = var1 < var2;
+		boolean rs3 = var1 >= var2;
+		boolean rs4 = var1 <= var2;
+		boolean rs5 = var1 == var2;
+		boolean rs6 = var1 != var2;
+		
+		System.out.println("rs1 : "+rs1);
+		System.out.println("rs2 : "+rs2);
+		System.out.println("rs3 : "+rs3);
+		System.out.println("rs4 : "+rs4);
+		System.out.println("rs5 : "+rs5);
+		System.out.println("rs6 : "+rs6);
+		
+		
+		//논리연산자
+		
+	}
+	
+}

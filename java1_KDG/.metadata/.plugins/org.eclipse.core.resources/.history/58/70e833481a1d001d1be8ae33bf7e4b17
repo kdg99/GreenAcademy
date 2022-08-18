@@ -1,0 +1,23 @@
+package sub1;
+/*
+ * 
+ * 날짜 : 2022/08/16
+ * 이름 : 김동근
+ * 내용 : Java 변수 실습하기
+ * 
+ * Ctrl + Alt + Arrow - 한줄복사
+ * Ctrl + D - 한줄삭제
+ * 
+ * */
+public class DataTypeTest {
+
+	public static void main(String[] args) {
+		
+		//정수형
+		//정수형
+		//정수형
+		
+		
+	}
+	
+}
