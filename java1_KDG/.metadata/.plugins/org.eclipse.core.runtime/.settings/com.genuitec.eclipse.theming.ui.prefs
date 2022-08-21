@@ -1,11 +1,8 @@
 applyBackground=false
-approved.defs.file.last.changed.time=1649720987000
-configurationInstallLocation=/C\:/Users/java1/Documents/java1-kdg/eclipse-jee-2022-06-R-win32-x86_64/eclipse/
-ct.upsell.display.after=1660880989170
+configurationInstallLocation=/C\:/Users/java1/Documents/eclipse-jee-2022-06-R-win32-x86_64/eclipse/
 eclipse.preferences.version=1
 iconcolormode=primary
-last.download.attempt.time=1660881348605
-lastConfiguration=1660866410243
-newinstall=false
-showWelcomeDialog=false
+last.download.attempt.time=1661125173759
+lastConfiguration=1660621782248
+newinstall=true
 workbench.theme=Dark Gray
