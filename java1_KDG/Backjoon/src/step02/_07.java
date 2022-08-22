@@ -5,7 +5,7 @@ import java.util.Scanner;
 /*
  * 날짜 : 2022/08/19
  * 이름 : 김동근
- * 내용 : 백준 난이도2 문제1번
+ * 내용 : 백준 난이도3 문제1번
  */
 public class _07 {
 	public static void main(String[] args) {
