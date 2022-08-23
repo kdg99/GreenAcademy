@@ -3,7 +3,7 @@ package step03;
 import java.util.Scanner;
 
 /*
- * 날짜 : 2022/08/19
+ * 날짜 : 2022/08/22
  * 이름 : 김동근
  * 내용 : 백준 난이도3 문제1번
  */
