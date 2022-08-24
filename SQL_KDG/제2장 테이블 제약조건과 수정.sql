@@ -75,12 +75,23 @@ INSERT INTO `User5` SET
                         `gender` = 1,
                         `addr` = '부산진구';
                         
-
-
-
 #실습 2-11
+ALTER TABLE `User5` ADD `hp` VARCHAR(20);
+ALTER TABLE `User5` ADD `birth` CHAR(10) DEFAULT '0000-00-00' AFTER `name`;
+ALTER TABLE `User5` ADD `uid` VARCHAR(10) first; 
+
 #실습 2-12
+ALTER TABLE `User5` MODIFY `hp` CHAR(13);
+ALTER TABLE `User5` MODIFY `age` TINYINT;
+
 #실습 2-13
+ALTER TABLE `User5` CHANGE COLUMN `addr` `address` VARCHAR(100);
+
 #실습 2-14
+ALTER TABLE `User5` DROP `gender`;
+
 #실습 2-15
+CREATE TABLE `User6` LIKE `User5`;
+
 #실습 2-16
+INSERT INTO `User6` SELECT * FROM `User5`;

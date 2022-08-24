@@ -22,7 +22,7 @@ public class ArrayTest {
 		double[] arr4;
 		arr4 = new double[5];
 		
-		
+		System.out.println(arr4);
 		//배열 원소 출력
 		System.out.println("arr1[0] : " + arr1[0]);
 		System.out.println("arr1[2] : " + arr1[2]);
