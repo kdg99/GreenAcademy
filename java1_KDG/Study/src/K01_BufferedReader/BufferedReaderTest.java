@@ -23,6 +23,9 @@ public class BufferedReaderTest {
 		StringTokenizer st_2way = new StringTokenizer(s_2way); 
 		String array[] = s_2way.split(" ");
 		
+		// 한글자씩 불러오기
+		for(byte value : br.readLine().getBytes()) { System.out.println(value); }
+		
 		
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); //할당된 버퍼에 값 넣어주기
 		String sW = "출력할 문자열";
