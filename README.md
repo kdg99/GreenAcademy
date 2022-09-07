@@ -28,7 +28,25 @@
  - sub3.정적 변수, 메소드 실습하기
  - sub4.메모리 할당 순서 이해하기
  - sub5.클래스 상속 실습하기
+ - sub6.오버라이드 실습하기
+ - sub7.다형성 실습하기
 
+### Ch06. Java 객체지향 ++
+ - sub1.추상 클래스 실습하기
+ - sub2.인터페이스 이해하기
+ - sub3.인터페이스 실습하기
+ 
+### Ch07. Java 예외 처리
+ - sub1. try문 실습하기
+ - sub2. 예외 던지기 실습하기
+ 
+### Ch08. Java API
+ - sub1.Object 클래스 실습하기
+ - sub2.String 클래스 실습하기
+ - sub3.Wrapper 클래스 실습하기
+ - sub4.Math 클래스 실습하기
+ - sub5.DATE 클래스 실습하기
+ 
 ## Backjoon
 
 ### 난이도1
