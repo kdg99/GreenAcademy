@@ -6,7 +6,7 @@ public class Truck extends Car {
 	
 	public Truck(String name, String color, int speed, int capacity) {
 		super(name, color, speed);
-		this.capacity = capacity;
+		this.setCapacity(capacity);
 	}
 
 	@Override
@@ -17,6 +17,14 @@ public class Truck extends Car {
 	@Override
 	public void speedDown(int speed) {
 		this.speed -= speed - 10;		
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 }

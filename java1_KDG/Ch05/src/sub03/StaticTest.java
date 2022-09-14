@@ -17,8 +17,8 @@ public class StaticTest {
 	public static void main(String[] args) {
 		
 		Car car1 = new Car("소나타", "흰색", 0);
-		Car car2 = new Car("소렌토", "남색", 0);
-		Car car3 = new Car("아반떼", "은색", 0);
+		//Car car2 = new Car("소렌토", "남색", 0);
+		//Car car3 = new Car("아반떼", "은색", 0);
 	
 		car1.show();
 		

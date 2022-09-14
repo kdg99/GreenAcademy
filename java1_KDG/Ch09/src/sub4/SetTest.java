@@ -31,11 +31,7 @@ public class SetTest {
 			System.out.print(n+" ");
 		}
 		System.out.println();
-		
-		//집합 연산
-		Set<Integer> set1 = new HashSet<>();
-		Set<Integer> set2 = new HashSet<>();
-	
+
 		
 	}
 

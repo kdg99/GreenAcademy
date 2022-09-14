@@ -6,6 +6,7 @@ package sub01;
  */
 public class TryTest {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 		//예외상황1 : 어떤 수를 0으로 나눌때
 		int num1 = 1;

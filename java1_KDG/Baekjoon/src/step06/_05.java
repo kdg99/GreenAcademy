@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * 날짜 : 2022/09/07
+ * 날짜 : 2022/09/13
  * 이름 : 김동근
  * 내용 : 백준 난이도6 5번 문제
  */

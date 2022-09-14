@@ -18,7 +18,8 @@ class Adder{
 	}
 	
 	public static void add(Adder a1) {
-		a1.x += 20;
+		//a1.x += 20;
+		Adder.x += 20;
 	}
 	
 	public static Adder add(Adder a2, int value) {
