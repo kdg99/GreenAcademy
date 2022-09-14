@@ -59,9 +59,13 @@
  - sub1.파일 입출력 실습하기
  - sub2.버퍼 입출력 실습하기
  - sub3.직렬화/역직렬화 실습하기
+ - sub4.프로퍼티 실습하기
 
 ### Ch11. JDBC
  - sub1.JDBC 실습하기
+ - sub2.JDBC SQL문 실습하기
+ - sub3.JDBC SQL Select문 실습하기
+ - sub4.JDBC PreparedStatement 실습하기
  
 ## Backjoon
 
