@@ -3,8 +3,6 @@ package step06;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 
 /*
  * 날짜 : 2022/09/14
