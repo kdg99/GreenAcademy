@@ -12,33 +12,32 @@ public class _10 {
 
 	public static void main(String[] args) throws IOException {
 		
-		int n = System.in.read();
+		int n = System.in.read()-48;
 		int answer = n;
 		Set<Integer> alpList = new HashSet<>();
 		
 		System.in.read();
+		System.in.read();
+		
 		for(int i=0 ; i<n ; i++) {
 			
 			int now = 0;
-			int save = 0;
 			int before = 0;
 			alpList.clear();
 			
-			while(now != 10) {
+			while(true) {
 				 now = System.in.read();
-				 save = now;
-				 System.out.println(save);
-				 System.in.read();
-				 if(before != 0 && before != save) {
+				 if(now == 13) break;
+				 if(before != 0 && before != now) {
 					 if(alpList.contains(before)) {answer--; break;}
 					 alpList.add(before);
 				 }	 
-				 before = save;
+				 before = now;
 			}
 			
 		} //for문-end
 		
-		//System.out.println(answer);
+		System.out.println(answer);
 		
 	} //main-end
 
