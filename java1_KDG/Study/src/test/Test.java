@@ -1,8 +1,8 @@
 package test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * 날짜 : 2022/08/26
@@ -12,13 +12,13 @@ import java.io.InputStreamReader;
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-        String s;
-		while((s = br.readLine()) != null) {
-			sb.append(s+"\n");
-		}
-		System.out.println(sb.toString());
-		br.close();
+
+		Set<String> alpList = new HashSet<>();
+		
+		String b = "h";
+		alpList.add(b);
+		String c = "he";
+		System.out.println(c == b);
+		
 	} // main-end
 }
