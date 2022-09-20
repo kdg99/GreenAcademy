@@ -29,15 +29,18 @@ public class _10another {
 			
 			for(String s : st) {
 				now = s;
-				System.out.println(alpList);
-				if( !before.equals("") && !before.equals(now)) {
-					if(alpList.contains(before)) {
+				
+				if(before.equals("")) {
+					alpList.add(now);
+				}else if(!before.equals(now)) {
+					if(alpList.contains(now)) {
 						answer--;
 						break;
 					}else {
-						alpList.add(before);		//해쉬에 추가하는 순서를 바꿀 것 > now를 추가해본다.
+						alpList.add(now);
 					}
 				}
+				
 				before = now;
 				
 			} //for-end
