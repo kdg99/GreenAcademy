@@ -1,5 +1,6 @@
 package sub01;
 
+
 public abstract class Car {
 	
 	protected String name;
@@ -22,3 +23,4 @@ public abstract class Car {
 		System.out.println("차량속도 : "+speed);
 	}
 }
+
