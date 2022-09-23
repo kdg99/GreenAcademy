@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web1</title>
+    <style>
+        /*-----------init-------------*/
+        * {
+            margin: 0;
+            padding: 0;
+            font: normal 12px '고딕';
+        }
+        a{
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #wrapper{
+            width: 800px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /*-----------init-end-------------*/
+
+        /*-----------header-------------*/
+        header{
+            width: 100%;
+            height: 95px;
+            background: #2d3a4b;
+            position: relative;
+        }
+
+        header > a {}
+        header .logo {
+            margin-top: 26px;
+            margin-left: 20px;
+        }
+        header > a > img {}
+
+        header > p {
+            float:right;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        header > p > a {
+            font-size: 12px;
+        }
+        header > p > a:hover{
+            color: #555555;
+        }
+
+        header > ul {
+            list-style: none;
+            width: 500px;
+            height: 26px;
+            position: absolute;
+            right: 44px;
+            bottom: 21px;
+        }
+        header > ul > li { 
+            float: left;
+            width: 20%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        header > ul > li > a {
+            font-size: 16px;
+        }
+
+        header > ul > li:nth-child(4) > a {
+            padding-left: 10px;
+        }
+        header > ul a:hover{
+            color: #555555;
+        }
+        
+        /*-----------header-end-------------*/
+
+        /*-----------main-------------*/
+
+        main{
+            width: 100%;
+            height: 419px;
+        }
+
+        main > section{
+            width: 100%;
+            height: auto;
+        }
+
+        main > section:nth-child(1){
+            clear: both;
+        }
+        main > section:nth-child(2) > article:nth-child(1){
+            width: 50%;
+            height: auto;
+            float: left;  
+        }
+
+        main > section:nth-child(2) > article:nth-child(2){
+            width: 50%;
+            float: right;
+        }
+
+        main > section:nth-child(2) > article > img{
+            display: block;
+            margin: 10px auto;
+        }
+        
+
+        /*-----------main-end-------------*/
+        /*-----------footer-------------*/
+        footer{
+            width: 100%;
+            height: 90px;
+            background-color: #f1f1f1;
+        }
+
+        footer > img {
+            float: left;
+            margin: 24px 10px;
+        }
+        
+        footer > section{
+            float: right;
+            margin-top: 10px;
+            margin-right: 120px;
+        }
+
+        footer > section > p{
+            color: #585858;
+            line-height: 20px;
+        }
+        footer > section > p:nth-child(2){
+            font-weight: bold;
+        }
+
+        /*-----------footer-end-------------*/
+    </style>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <header>
+            <a href="#"><img src="./images/logo.png" alt="로고" class="logo"/></a>
+            <p>
+                <a href="#">HOME |</a>
+                <a href="#">LOGIN |</a>
+                <a href="#">JOIN |</a>
+                <a href="#">NOTICE</a>
+            </p>
+            <ul>
+                <li><a href="#">COMPANY</a></li>
+                <li><a href="#">PRODUCT</a></li>
+                <li><a href="#">CUSTOMER</a></li>
+                <li><a href="#">SERVICE</a></li>
+                <li><a href="#">RECRUIT</a></li>
+            </ul>
+        </header>
+
+        <main>
+            <section>
+                <img src="./images/main_img.png" alt="메인"/>
+            </section>
+            <section>
+                <article>
+                    <img src="./images/banner1.png" alt="배너1"/>
+                </article>
+                <article>
+                    <img src="./images/banner2.png" alt="배너2"/>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <img src="./images/footer_logo.png" alt="footer로고"/>
+            <section>
+                <p>
+                    (주)포폴리오 / 부산시 부산진구 서면로 121 / 대표 : 홍길동 <br/>
+                    사업자번호 : 123-4567-890 / 전화 : 1588-0000 / 이메일 : master@pofolio.com
+                </p>
+                <p>
+                    ⓒPofolio All rights reserved.
+                </p>
+            </section>
+        </footer>
+    </div>
+
+</body>
+</html>
