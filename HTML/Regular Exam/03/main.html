@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour</title>
+    <link rel="stylesheet" href="./css/init.css">
+    <style>
+        #wrapper {
+            width: 100%;
+            height: auto;
+        }
+
+        #wrapper > header {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 28px;
+        }
+
+        /* header_top */
+        #wrapper > header > .header_top {
+            width: 1000px;
+            height: 72px;
+            margin: 0 auto;
+        }
+        #wrapper > header > .header_top > a {
+            float: left;
+        }
+        #wrapper > header > .header_top > ul:nth-child(2){
+            float: right;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+        #wrapper > header > .header_top > ul:nth-child(2) > li{
+            display: inline-block;
+        }
+        /* header_top-end*/
+        /* header_bot */
+        #wrapper > header > .header_bot {
+            width: 100%;
+            height: auto;
+            background: #9eafbd;
+        }
+        #wrapper > header > .header_bot > ul {
+            width: 1000px;
+            height: 28px;
+            margin: 0 auto;
+            background: #becedb;
+            border: 1px solid #fff;
+            border-bottom: 0;
+        }
+        #wrapper > header > .header_bot > ul > li {
+            float: left;
+            width: 20%;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-right: 1px solid #fff;
+            box-sizing: border-box;
+        }
+
+        #wrapper > header > .header_bot > ul > li > a {
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #wrapper > header > .header_bot > ul > li > a:hover{
+            color: #9eafbd;
+            
+        }
+        /* header_bot */
+
+        
+        #wrapper > main {
+            width: 1000px;
+            height: 620px;
+            margin: 0 auto;
+            
+        }
+        /* main section */
+        #wrapper > main > section {
+            width: 100%;
+            height: 100%;
+            background-image: url('img/main_bg.png');
+            background-size: cover;
+            float: left;
+        }
+        
+        #wrapper > main > section > div{
+            width: 200px;
+            height: 200px;
+            float: left;
+            font-size: 14px;
+            position: relative;
+        }
+        /* main section first */
+        #wrapper > main > section > .first > .bg{
+            position: absolute;
+            z-index: 1;
+        }
+        #wrapper > main > section > .first > .img{
+            position: absolute;
+            top: -28px;
+            z-index: 2;
+        }
+        #wrapper > main > section > .first > .txt{
+            position: absolute;
+            z-index: 3;
+        }
+        /* main section second */
+        #wrapper > main > section > .second > .bg{
+            position: absolute;
+            z-index: 1;
+        }
+        #wrapper > main > section > .second > .img{
+            position: absolute;
+            bottom: 2px;
+            left: 12px;
+            z-index: 2;
+        }
+        #wrapper > main > section > .second > .txt{
+            position: absolute;
+            z-index: 3;
+            top: 65px;
+            left: 25px;
+        }
+        #wrapper > main > section > .second > .tit{
+            position: absolute;
+            z-index: 4;
+            top: 30px;
+            left: 25px;
+        }
+        #wrapper > main > section > .second > .hot{
+            position: absolute;
+            z-index: 4;
+            left: 25px;
+        }
+        /* main section third */
+        #wrapper > main > section > .third > .img{
+            position: absolute;
+            z-index: 4;
+            right: 0;
+        }
+        #wrapper > main > section > .third > .bg{
+            position: absolute;
+            z-index: 3;
+            bottom: 0;
+        }
+
+
+        #wrapper > main > section > div:nth-child(5){
+            clear: left;
+        }
+        #wrapper > main > section > div:nth-child(7){
+            clear: left;
+            margin-left: 200px;
+        }
+
+        /* main section-end */
+        /* main article */
+
+        #wrapper > main > article{
+            width: 100%;
+            height: 150px;
+            border-top: 1px solid #becedb;
+            border-bottom: 1px solid #becedb;
+            clear: both;
+        }
+        #wrapper > main > article > div{
+            width: 25%;
+            height: 100%;
+            float: left;
+        }
+
+        #wrapper > main > article > div > img{
+            margin-top: 20px;
+        }
+        
+        #wrapper > main > article > div > ul > li {
+            margin: 5px;
+            color: #555555;
+        }
+        #wrapper > main > article > div > ul > li:before{
+            content: ">";
+        }
+        #wrapper > main > article > div > ul > li > p {
+            float: right;
+            color: #808080;
+        }
+
+        #wrapper > main > article > .information > img:nth-child(1){
+            display: block;
+            margin-top: 20px;
+        }
+        
+        #wrapper > main > article > .information > img:nth-child(2){
+            display: block;
+            margin-top: 10px;
+        }
+        #wrapper > main > article > .reservation {
+            
+        }
+        
+        #wrapper > main > article > .reservation > ul{
+            width: 88%;
+            height: 100%;
+        }
+
+        #wrapper > main > article > .notice {
+            
+        }
+
+        #wrapper > main > article > .notice > ul{
+            width: 84%;
+            height: 100%;
+        }
+
+        #wrapper > main > article > .gallery {
+            
+        }
+        #wrapper > main > article > .gallery > table {
+            margin-top: 10px;
+        }
+        #wrapper > main > article > .gallery > table td {
+            width: 75px;
+            height: 55px;
+        }
+
+        #wrapper > main > article > .gallery > table td img{
+            width: 100%;
+            height: 100%;
+        }
+
+        /* main article-end*/
+        
+        #wrapper > footer{
+            width: 1000px;
+            height: 100px;
+            margin: 0 auto;
+            clear: both;
+        }
+        #wrapper > footer > div > img {
+            float: left;
+            margin-top: 15px;
+        }
+        #wrapper > footer > div > p {
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 20px;
+            padding-left: 20px;
+            color: #555;
+            line-height: 20px;
+        }
+        footer > div > p > #copy {
+        display: inline-block;
+        font-family: Verdana;
+        color: rgb(153, 153, 153);
+        padding-top: 4px;
+        }
+        footer > div > p #resort {
+        color: #5d99b5;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+        <header>
+            <div class="header_top">
+                <a href="#"><img src="./img/header_logo.png" alt="헤더로고"/></a>
+                <ul>
+                    <li><a href="#">회원가입 |</a></li>
+                    <li><a href="#">로그인 |</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+            </div>
+            <div class="header_bot">
+                <ul>
+                    <li><a href="#">INTRODUCTION</a></li>
+                    <li><a href="#">ROOM</a></li>
+                    <li><a href="#">TRAVEL</a></li>
+                    <li><a href="#">INFORMATION</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <div class="first">
+                    <img src="./img/main_box1_img.png" class="img"/>
+                    <img src="./img/main_box1_bg.png" class="bg"/>
+                    <img src="./img/main_box1_txt.png" class="txt"/>
+                </div>
+                <div class="second">
+                    <img src="./img/main_box2_img.png" class="img"/>
+                    <img src="./img/main_box2_bg.png" class="bg"/>
+                    <img src="./img/main_box2_txt.png" class="txt"/>
+                    <img src="./img/main_box2_tit.png" class="tit">
+                </div>
+                <div class="second">
+                    <img src="./img/main_box3_img.png" class="img"/>
+                    <img src="./img/main_box3_bg.png" class="bg"/>
+                    <img src="./img/main_box3_txt.png" class="txt"/>
+                    <img src="./img/main_box3_tit.png" class="tit">
+                    <img src="./img/main_box3_hot.png" class="hot">
+                </div>
+                <div class="second">
+                    <img src="./img/main_box4_img.png" class="img"/>
+                    <img src="./img/main_box4_bg.png" class="bg"/>
+                    <img src="./img/main_box4_txt.png" class="txt"/>
+                    <img src="./img/main_box4_tit.png" class="tit">
+                </div>
+                <div class="third">
+                    <img src="./img/main_box5_go.png" class="img"/>
+                    <img src="./img/main_box5_bg.jpg" class="bg"/>
+                </div>
+                <div class="third">
+                    <img src="./img/main_box6_go.png" class="img"/>
+                    <img src="./img/main_box6_bg.jpg" class="bg"/>
+                </div>
+                <div class="second">
+                    <img src="./img/main_box7_img.png" class="img"/>
+                    <img src="./img/main_box7_bg.png" class="bg"/>
+                    <img src="./img/main_box7_txt.png" class="txt"/>
+                    <img src="./img/main_box7_tit.png" class="tit">
+                </div>
+                
+            </section>
+            <article>
+                <div class="information">
+                    <img src="./img/info.png" alt="#"/>
+                    <img src="./img/happy.png" alt="#"/>
+                </div>
+                <div class="reservation">
+                    <img src="./img/reser.png" alt="#">
+                    <ul>
+                        <li>
+                            <a href="#">이번주말 예약될까요?ㅠㅠ</a>
+                            <p>02-19</p>
+                        </li>
+                        <li>
+                            <a href="#">예약문의합니다.</a>
+                            <p>02-19</p>
+                        </li>
+                        <li>
+                            <a href="#">회사 워크샵 문의</a>
+                            <p>02-19</p>
+                        </li>
+                        <li>
+                            <a href="#">29일~ 31일까지 자스민방 예…	</a>
+                            <p>02-19</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="notice">
+                    <img src="./img/notice.png" alt="#">
+                    <ul>
+                        <li>
+                            <a href="#">1111</a>
+                            <p>04-11</p>
+                        </li>
+                        <li>
+                            <a href="#">풀장을오픈했어요.</a>
+                            <p>04-19</p>
+                        </li>
+                        <li>
+                            <a href="#">실내 금연 꼭 지켜주세요</a>
+                            <p>04-29</p>
+                        </li>
+                        <li>
+                            <a href="#">복층에는 8세 이하의 아동 …</a>
+                            <p>05-01</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gallery">
+                    <img src="./img/gallery.png" alt="#">
+                    <table>
+                        <tr>
+                            <td><a href="#"><img src="./img/main_latest_gallery1.jpg" alt="#"></a></td>
+                            <td><a href="#"><img src="./img/main_latest_gallery2.jpg" alt="#"></a></td>
+                            <td><a href="#"><img src="./img/main_latest_gallery3.jpg" alt="#"></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div>
+                <img src="./img/footer_logo.png" alt="#">
+                <p>(주)리조트 | 대표이사: 홍길동 | 소재지: 부산시 금정구 따듯한동 123-1 <br/>
+                Tel: 070-000-0000/ Fax: 051-000-0000/ 사업자등록번호: 123-12-12345 <br/>
+                    <span id="copy">
+                        Copyright ⓒ (c) Since 2013
+                            <span id="resort">Resort</span>. All rights reserved
+                    </span>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
