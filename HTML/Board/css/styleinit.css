@@ -29,6 +29,19 @@ header > h3{
     margin-left: 10px;
 }
 
+#wrapper > header > p {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+#wrapper > header > p > .nick{
+    font-weight: bold;
+}
+
+#wrapper > header > p > .logout:hover{
+    text-decoration: underline;
+}
+
 /* 메인 */
 main {
     width: 100%;

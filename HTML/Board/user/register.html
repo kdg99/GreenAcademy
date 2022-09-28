@@ -12,68 +12,86 @@
             margin: 60px auto;
             overflow: hidden;
         }
+
+        #user.register table button{
+            border: none;
+            background: none;
+            vertical-align: middle;
+        }
+
         
-        #user.register > table {
+        
+        #user.register > form > table {
             width: 100%;
             height: auto;
             border-spacing: 0;
             border-top: 2px solid #111;
+            margin-bottom: 10px;
         }
-        #user.register > table caption {
+        #user.register > form > table caption {
             text-align: left;
             font-weight: bold;
             padding: 10px 0;
         }
-        #user.register > table tr {}
-        #user.register > table tr > td:first-child {
+        #user.register > form > table tr {}
+        #user.register > form > table tr > td {
+            width: auto;
+            height: 36px;
+        }
+        #user.register > form > table tr > td:first-child {
             width: 100px;
-            height: 38px;
             background: #f5f8f9;
             border: 1px solid #e9e9e9;
             border-top: none;
-            padding: 8px;
             box-sizing: border-box;
+            text-align: center;
         }
-        #user.register > table tr > td:last-child{
-            width: auto;
-            height: 38px;
+        #user.register > form > table tr > td:last-child{
             border: 1px solid #e9e9e9;
             border-top: none;
             border-left: none;
-            padding: 8px;
             box-sizing: border-box;
         }
-        #user.register > table tr > td > input{
+        #user.register > form > table tr > td > input{
             width: 164px;
             height: 24px;
             border: 1px solid #e4eaec;
             background: #f7f7f7;
-            margin-left: 1px;
+            margin: 4px;
+            padding-left: 5px;
         }
 
-
-
-        #user.register > .privacy tr > td > input{
+        #user.register > form > .privacy tr > td > input{
             display: inline-block;
+            
         }
-        #user.register > .privacy tr > td > input[name=uAddrNum]{
+        #user.register > form > .privacy tr > td > input[name=uAddrNum]{
             width: 80px;
         }
-        #user.register > .privacy tr > td > input[name=uAddr]{
+        #user.register > form > .privacy tr > td > input[name=uAddr]{
             display: block;
+            width: 300px;
         }
 
-        #user.register p {
+        #user.register div {
             float: right;
+            
         }
-        #user.register p > a{
+        #user.register div > a{
             display: inline-block;
-            width: 50px;
+            width: 40px;
             height: 30px;
             border: 1px solid black;
             box-sizing: border-box;
-            padding: 5px;
+            text-align: center;
+            line-height: 30px;
         }
+
+        #user.register div > .next{
+            width: 60px;
+            background: #bebebe;
+        }
+        
     </style>
 </head>
 <body>
@@ -84,13 +102,14 @@
         </header>
         <main id="user" class="register">
             
+            <form action="" method="get">
             <table border="0" class="user">
                 <caption>사이트 이용정보 입력</caption>
                 <tr>
                     <td>아이디</td>
                     <td>
                         <input type="text" name="uID" placeholder="아이디 입력" />
-                        <button><a href="#">중복확인</a></button>
+                        <button type="button"><a href="#"><img src="../images/chk_id.gif" alt="#"></a></button>
                     </td>
                 </tr>
                 <tr>
@@ -137,7 +156,7 @@
                     <td>주소</td>
                     <td>
                         <input type="text" name="uAddrNum" placeholder="우편번호" readonly/>
-                        <button><a href="#">우편번호찾기</a></button>
+                        <button type="button"><a href="#"><img src="../images/chk_post.gif" alt="#"></a></button>
                         <input type="text" name="uAddr" placeholder="주소를 검색하세요." readonly/>
                         <input type="text" name="uAddr" placeholder="상세주소를 입력하세요." />
                     </td>
@@ -145,12 +164,12 @@
                 
             </table>
 
-            <p>
+            <div>
                 <a href="#" class="cancel">취소</a>
-                <a href="#" class="next">회원가입</a>
-            </p>
+                <input type="submit" class="next" value="회원가입"/>
+            </div>
 
-
+        </form>
         </main>
         <footer>
             <p>ⓒCopyleft by chhak.or.kr</p>
