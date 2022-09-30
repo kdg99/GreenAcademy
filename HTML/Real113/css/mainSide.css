@@ -1,0 +1,116 @@
+#Real113.main > section {
+    overflow: hidden;
+}
+#Real113.main > section > aside {
+    float: left;
+    width: 195px;
+    height: 760px;
+    margin-top: 5px;
+    border: 1px solid #d7d7d7;
+    box-sizing: border-box;
+}
+
+#Real113.main > section > aside > article {
+    width: 100%;
+    height: 204px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#Real113.main > section > aside > .notice {
+}
+#Real113.main > section > aside > .notice > h3 {
+    font-weight: bold;
+    font-size: 14px;
+}
+#Real113.main > section > aside > .notice > ul {
+    margin-top: 6px;
+}
+#Real113.main > section > aside > .notice > ul > li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 20px;
+}
+#Real113.main > section > aside > .notice > ul > li > a {
+    color: #111;
+}
+#Real113.main > section > aside > .notice > ul > li > a::before {
+    content: url(../img/ico_latest.gif);
+}
+
+#Real113.main > section > aside > .quick {}
+#Real113.main > section > aside > .quick > h3 {
+    font-weight: bold;
+    font-size: 14px;
+}
+#Real113.main > section > aside > .quick > a {
+    display: block;
+    width: 100%;
+    height: 34px;
+    border: 1px solid #d9d9d9;
+    margin-top: 6px;
+    font-size: 0;
+    background-color: #f6f6f6;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+#Real113.main > section > aside > .quick > a:nth-of-type(1){
+    background-image: url(../img/aside_quick_court.png);
+}
+#Real113.main > section > aside > .quick > a:nth-of-type(2){
+    background-image: url(../img/aside_quick_google.png);
+}
+#Real113.main > section > aside > .quick > a:nth-of-type(3){
+    background-image: url(../img/aside_quick_naver_map.png);
+}
+#Real113.main > section > aside > .quick > a:nth-of-type(4){
+    background-image: url(../img/aside_quick_naver_subway.png);
+}
+
+#Real113.main > section > aside > a {
+    display: block;
+    width: 195px;
+    height: 83px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    margin-top: 6px;
+    position: relative;
+    left: -1px;
+    overflow: hidden;
+}
+#Real113.main > section > aside > a > img {}
+#Real113.main > section > aside > a > img:nth-child(1) {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+#Real113.main > section > aside > a > img:nth-child(2) {
+    float: right;
+}
+#Real113.main > section > aside > .banner {
+    width: 195px;
+    height: 167px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    margin-top: 6px;
+    background-image: url(../img/aside_banner_bg.jpg);
+    overflow: hidden;
+    position: relative;
+    left: -1px;
+}
+#Real113.main > section > aside > .banner > img:nth-child(1) {
+    float: right;
+}
+#Real113.main > section > aside > .banner > img:nth-child(2) {
+    margin-left: 10px;
+    margin-top: 30px;
+}
+#Real113.main > section > aside > .banner > a {
+    color: #111;
+}
+    
+#Real113.main > section > aside > .banner > a > img {
+    margin-left: 10px;
+    margin-top: 10px;
+}

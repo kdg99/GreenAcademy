@@ -17,7 +17,30 @@ public class _07 {
 		int n = Integer.parseInt(br.readLine());
 		br.close();
 		
-		
+		int a=0;
+		if (n==4 || n==7) {
+			System.out.println(-1);
+		}else {
+			switch(n%5){
+			
+				case 0:
+					a = n/5;
+					break;
+				case 1:
+					a = n/5 + 1;
+					break;
+				case 2:
+					a = n/5 + 2;
+					break;
+				case 3:
+					a = n/5 + 1;
+					break;
+				case 4:
+					a = n/5 + 2;
+					break;
+			}
+			System.out.println(a);
+		}
 	} //main-end
 
 }

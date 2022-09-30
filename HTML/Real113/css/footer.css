@@ -1,0 +1,23 @@
+.wrapper > footer {
+    width: 1000px;
+    height: 130px;
+    border: 1px solid #d7d7d7;
+    border-top: 2px solid #777777;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.wrapper > footer > img {}
+.wrapper > footer > p {
+    font-size: 11.5px;
+    color: #585858;
+    line-height: 20px;
+    margin-left: 10px;
+}
+.wrapper > footer > p > span {
+    display: block;
+    margin-top: 6px;
+    font-weight: bold;
+}
