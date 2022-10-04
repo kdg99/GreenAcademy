@@ -30,8 +30,8 @@
 		</p>
 		
 		<h4>include 지시자</h4>
-		<%@ include file="../inc/_header.jsp" %>
-		<%@ include file="../inc/_footer.jsp" %>
+		<%@ include file="/inc/_header.jsp" %>
+		<%@ include file="/inc/_footer.jsp" %>
 		
 	</body>
 </html>
