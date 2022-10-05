@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /*
- * 날짜 : 2022/09/21
+ * 날짜 : 2022/10/05
  * 이름 : 김동근
  * 내용 : 백준 난이도7 1번 문제
  */
@@ -17,6 +17,7 @@ public class _08 {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		br.close();
 		
 		char[] num1 = st.nextToken().toCharArray();
 		char[] num2 = st.nextToken().toCharArray();
@@ -41,32 +42,26 @@ public class _08 {
 		
 		//계산
 		for(int i=length ; i>0 ; i--) {			//뒤부터 계산
-			System.out.printf("answer[0][%d] = %c\n",i, answer[0][i]);
 			answer[0][i] = (char) (answer[0][i] + answer[1][i] - 48);	//같은 자릿수 더하기
-			System.out.printf("answer[0][%d] = %c\n",i, answer[0][i]);
 			if(answer[0][i] > '9') {			//10 넘어갔으면
-				if(answer[0][i-1] == '0')		//앞자리 0인지 체크 후
+				if(answer[0][i-1] >= '0')		//앞자리 숫자인지 체크 후
 					answer[0][i-1] += 1;			
 				else
 					answer[0][i-1] += '1';		//'1' 또는 1 추가
 				answer[0][i] -= 10;
 			}
-			System.out.printf("answer[0][%d] = %c\n",i, answer[0][i]);
 		}
+		
+		boolean isFirst = false;
 		
 		//출력
 		for(int i=0 ; i<=length ; i++) {
-			System.out.printf("[%c]", answer[0][i]);
+			
+			if(answer[0][i] != '0') 
+				isFirst = true;
+			if(isFirst)
+				System.out.printf("%c", answer[0][i]);
 		}
-		System.out.println();
-		
-		/*for(int j=0 ; j<=1 ; j++) {
-			for(int i=0 ; i<=length ; i++) {
-				System.out.printf("[%c]", answer[j][i]);
-			}
-			System.out.print("\n");
-		}*/
-		
 	} //main-end
 
 }

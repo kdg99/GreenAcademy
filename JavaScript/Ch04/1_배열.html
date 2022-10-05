@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_배열</title>
+    <!--
+        날짜 : 2022/10/05
+        이름 : 김동근
+        내용 : JS 배열 실습하기
+    	-->
+</head>
+<body>
+    <h3>배열</h3>
+    <script>
+        let arr = [1,2,3,4,5];
+
+        for(let i=0 ; i<arr.length ; i++){
+            document.write('arr['+i+'] : '+arr[i]+'<br/>');
+        }
+        for(let idx in arr){
+            document.write('arr['+idx+'] : '+arr[idx]+'<br/>');
+        }
+        for(let num of arr){
+            document.write(num + '<br/>');
+        }
+
+        //2차원 배열
+        let arr2d = [[1,2,3],
+                     [4,5,6],
+                     [7,8,9]];
+        
+        document.write('arr2d[0][0] : ' + arr2d[0][0] + '<br/>');
+        document.write('arr2d[1][1] : ' + arr2d[1][1] + '<br/>');
+        document.write('arr2d[2][1] : ' + arr2d[2][1] + '<br/>');
+
+    </script>
+
+   
+
+</body>
+</html> 
