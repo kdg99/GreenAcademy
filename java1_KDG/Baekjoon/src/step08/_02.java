@@ -10,7 +10,7 @@ import java.util.List;
 /*
  * 날짜 : 2022/10/05
  * 이름 : 김동근
- * 내용 : 백준 난이도8 1번 문제
+ * 내용 : 백준 난이도8 2번 문제
  */
 public class _02 {
 
@@ -38,10 +38,12 @@ public class _02 {
 		for(int i : list) {
 			total += i;
 		}
-		
-		System.out.println(total);
-		System.out.println(Collections.min(list));
-		
+		if(total != 0) {
+			System.out.println(total);
+			System.out.println(Collections.min(list));
+		}else {
+			System.out.println(-1);
+		}
 		
 	} //main-end
 

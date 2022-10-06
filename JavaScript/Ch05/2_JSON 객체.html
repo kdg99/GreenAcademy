@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_JSON 객체</title>
+    <!--
+        날짜 : 2022/10/04
+        이름 : 김동근
+        내용 : JS JSON 객체 실습하기
+
+        JSON 객체
+         - JavaScript Object Notation 자바스크립트 객체 표기방식
+         - 키-값 쌍으로 이루어지며 키는 반드시 큰따옴표 처리
+         - JSON은 이기종간의 데이터 교환을 위한 표준 데이터 포맷
+    	-->
+</head>
+<body>
+    <h3>JSON 객체</h3>
+    <script>
+        let user = {
+            "uid": "a101",
+            "name": "김유신",
+            "hp": "010-1234-1111",
+            "age": 25
+        };
+
+        document.write('user1 : '+ user + '<br/>');
+        document.write('uid : '+ user.uid + '<br/>');
+        document.write('name : '+ user.name + '<br/>');
+        document.write('hp : '+ user.hp + '<br/>');
+        document.write('age : '+ user.age + '<br/>');
+
+
+        //JSON 객체 배열
+        let jsonData = {'users':[
+            {"uid": "a101", "name": "김유신", "age": 25, "addr": "서울"},
+            {"uid": "a102", "name": "김춘추", "age": 30, "addr": "대구"},
+            {"uid": "a103", "name": "강감찬", "age": 25, "addr": "대전"},
+            {"uid": "a104", "name": "장보고", "age": 43, "addr": "부산"},
+            {"uid": "a105", "name": "이순신", "age": 34, "addr": "광주"}
+        ]};
+
+        //JSON 객체 반복문
+        for(let user of jsonData.users){
+            document.write('<p>');
+            document.write('uid : '+user.uid+'<br/>');
+            document.write('name : '+user.name+'<br/>');
+            document.write('age : '+user.age+'<br/>');
+            document.write('addr : '+user.addr+'<br/>');
+            document.write('</p>');
+        }
+
+        //JSON 문자열 변환
+        let strJson = JSON.stringify(jsonData);
+        document.write('strJson : ' + strJson + '<br/>');
+
+        let json = JSON.parse(strJson);
+        document.write('json : ' + json + '<br/>');
+
+    </script>
+
+</body>
+</html>
