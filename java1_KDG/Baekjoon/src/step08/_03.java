@@ -28,10 +28,12 @@ public class _03 {
 		int n = Integer.parseInt(br.readLine());			//입력받은 수
 		br.close();
 		
-		
-		int length = (int) Math.ceil(Math.sqrt(10000000));	//제곱근으로 소수 범위 구하기
+		/*
+		 * //제곱근으로 소수 범위 구하기가 문제 있음, 4649 반례
+		int length = (int) Math.ceil(Math.sqrt(10000000));	
+		*/
 		List<Integer> listPrime = new ArrayList<Integer>();	//소수 리스트
-		for(int i=2 ; i<=length ; i++) {
+		for(int i=2 ; i<=10000 ; i++) {
 			if(isPrime(i)) listPrime.add(i);
 		}
 		
