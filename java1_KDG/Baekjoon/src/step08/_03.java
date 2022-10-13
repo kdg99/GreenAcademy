@@ -7,19 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- * 날짜 : 2022/10/07
+ * 날짜 : 2022/10/13
  * 이름 : 김동근
  * 내용 : 백준 난이도8 3번 문제
  */
 public class _03 {
 	
-	public static boolean isPrime(int num){
-        if(num < 2) return false;
-        for(int i=2; i*i<=num; i++){
-            if(num % i == 0) return false;            
-        }
-        return true;
-    }
+	
 
 	public static void main(String[] args) throws IOException {
 
@@ -28,12 +22,13 @@ public class _03 {
 		int n = Integer.parseInt(br.readLine());			//입력받은 수
 		br.close();
 		
-		/*
-		 * //제곱근으로 소수 범위 구하기가 문제 있음, 4649 반례
+		
+		
+		//제곱근으로 소수 범위 구하기가 문제 있음, 4649 반례
 		int length = (int) Math.ceil(Math.sqrt(10000000));	
-		*/
+		
 		List<Integer> listPrime = new ArrayList<Integer>();	//소수 리스트
-		for(int i=2 ; i<=10000 ; i++) {
+		for(int i=2 ; i<=length ; i++) {
 			if(isPrime(i)) listPrime.add(i);
 		}
 		
@@ -52,6 +47,8 @@ public class _03 {
 					break;
 				}
 			}
+			if(k>1 && end)
+				listAnswer.add(k); // ☆만약 제곱근한 범위까지의 소수로 나누어지지 않으면 마지막은 약수 판정
 		}
 		
 		for(int i : listAnswer) {
@@ -61,4 +58,12 @@ public class _03 {
 		br.close();
 	} //main-end
 
+	public static boolean isPrime(int num){
+        if(num < 2) return false;
+        for(int i=2; i*i<=num; i++){
+            if(num % i == 0) return false;            
+        }
+        return true;
+    }
+	
 }
