@@ -1,0 +1,56 @@
+ /* 푸터 */
+ #wrapper > footer {
+    width: 100%;
+    height: auto;
+}
+#wrapper > footer > div {
+    width: 100%;
+}
+#wrapper > footer > div:nth-of-type(1) {
+    height: 50px;
+    background-color: #626262;
+}
+#wrapper > footer > div:nth-of-type(1) > div {
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+#wrapper > footer > div:nth-of-type(1) > div > p.terms {
+    float: left;
+    margin-top: 14px;
+    color: #eee;
+    font-size: 15px;
+    font-weight: bold;
+}
+#wrapper > footer > div:nth-of-type(1) > div > p.terms > a {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+#wrapper > footer > div:nth-of-type(1) > div > p.terms > a:nth-child(1) {
+    color: #ff6a00;
+}
+#wrapper > footer > div:nth-of-type(1) > div > p.terms > a:nth-child(2) {}
+#wrapper > footer > div:nth-of-type(1) > div > p.terms > a:nth-child(3) {}
+
+#wrapper > footer > div:nth-of-type(2) {
+    height: 156px;
+    background-color: #434343;
+}
+#wrapper > footer > div:nth-of-type(2) > div {
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+#wrapper > footer > div:nth-of-type(2) > div > p.info {
+    float: left;
+    margin-top: 16px;
+    color: #aca9a9;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 26px;
+}
+#wrapper > footer > div:nth-of-type(2) > div > img.tel {
+    float: right;
+    margin-top: 16px;
+}

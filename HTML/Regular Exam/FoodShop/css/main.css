@@ -1,0 +1,199 @@
+/* 메인 */
+#wrapper > main {
+    width: 100%;
+    height: auto;
+}
+#wrapper > main > section {
+    width: 100%;
+    height: auto;
+}
+#wrapper > main > section > article {
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+#wrapper > main > .slider {
+    height: 352px;
+    background: #ffeed4;
+}
+#wrapper > main > .slider > article {}
+#wrapper > main > .slider > article > ul {}
+#wrapper > main > .slider > article > ul > li {}
+#wrapper > main > .slider > article > ul > li > img {}
+
+
+#wrapper > main > .go {
+    height: 520px;
+}
+#wrapper > main > .go > article {
+    padding: 30px 10px;
+    box-sizing: border-box;
+}
+#wrapper > main > .go > article > div {
+    float: left;
+}
+#wrapper > main > .go > article > div > a {}
+#wrapper > main > .go > article > div > a  > img {}
+#wrapper > main > .go > article > div:nth-child(1) {
+    width: 412px;
+    height: 450px;
+}
+#wrapper > main > .go > article > div:nth-child(2) {
+    width: 322px;
+    height: 220px;
+    margin-left: 11px;
+}
+#wrapper > main > .go > article > div:nth-child(3) {
+    float: right;
+    width: 322px;
+    height: 220px;
+}
+#wrapper > main > .go > article > div:nth-child(4) {
+    width: 322px;
+    height: 220px;
+    margin-left: 11px;
+    margin-top: 10px;
+}
+#wrapper > main > .go > article > div:nth-child(5) {
+    float: right;
+    width: 322px;
+    height: 220px;
+    margin-top: 10px;
+}
+
+
+#wrapper > main > .oneday {
+    height: 190px;
+    background-image: url(../img/oneday_bg.png);
+    background-size: cover;
+    background-position: 50% center;
+}
+#wrapper > main > .oneday > article {}
+#wrapper > main > .oneday > article > a {}
+#wrapper > main > .oneday > article > a > img {
+    margin-top: 50px;
+}
+
+
+#wrapper > main  .thumb_rolling {
+    width: 100%;
+    height: 312px;
+    margin-top: 36px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#wrapper > main .thumb_rolling > li {
+    float: left;
+    top: 0px;
+    width: 25%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#wrapper > main .thumb_rolling > li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#wrapper > main .thumb_rolling > li > a > img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+#wrapper > main .thumb_rolling > li > a > h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #41392f;
+    margin-top: 12px;
+}
+#wrapper > main .thumb_rolling > li > a > p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #959595;
+    margin: 12px 0 26px;
+}
+#wrapper > main .thumb_rolling > li > a > h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6a00;
+}
+#wrapper > main .all {
+    display: block;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #efefef;
+    box-shadow: 0px 2px 2px #999;
+    text-align: center;
+    line-height: 50px;
+    margin: 56px auto 0;
+    color: #626262;
+    font-size: 15px;
+    font-weight: bold;
+}
+#wrapper > main .all:hover {
+    border-color: #999;
+}
+
+
+#wrapper > main > .vegetable {
+    height: 660px;
+}
+#wrapper > main > .vegetable > article{
+    padding: 60px 0px 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+#wrapper > main > .vegetable > article > img {}
+#wrapper > main > .vegetable > article > a {}
+#wrapper > main > .vegetable > article > ul {}
+#wrapper > main > .vegetable > article > ul > li {}
+#wrapper > main > .vegetable > article > ul > li > a {}
+#wrapper > main > .vegetable > article > ul > li > a > img {}
+#wrapper > main > .vegetable > article > ul > li > a > h1 {}
+#wrapper > main > .vegetable > article > ul > li > a > p {}
+#wrapper > main > .vegetable > article > ul > li > a > h2 {}
+
+
+#wrapper > main > .premium {
+    height: 200px;
+    background-image: url(../img/premium_bg.png);
+    background-size: cover;
+    background-position: 50% center;
+}
+#wrapper > main > .premium > article {
+    text-align: center;
+}
+#wrapper > main > .premium > article > a {}
+#wrapper > main > .premium > article > a > img {
+    margin-top: 52px;
+}
+
+
+#wrapper > main > .seafood {
+    height: 660px;
+}
+#wrapper > main > .seafood > img {}
+#wrapper > main > .seafood > a {}
+#wrapper > main > .seafood > article {
+    padding: 60px 0px 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+#wrapper > main > .seafood > article > ul {
+    width: 100%;
+    height: 312px;
+    overflow: hidden;
+}
+#wrapper > main > .seafood > article > ul > li {
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+#wrapper > main > .seafood > article > ul > li > a {}
+#wrapper > main > .seafood > article > ul > li > a > img {}
+#wrapper > main > .seafood > article > ul > li > a > h1 {}
+#wrapper > main > .seafood > article > ul > li > a > p {}
+#wrapper > main > .seafood > article > ul > li > a > h2 {}
