@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_jQuery 조작함수</title>
+    <!--
+	        날짜 : 2022/10/14
+	        이름 : 김동근
+	        내용 : JS jQuery 조작함수 실습하기
+	-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            //attr()
+            $('#flower1').attr('src', './img/flower1.jpg').attr('alt', '벚꽃');
+            $('#flower2').attr({
+                'src':'./img/flower2.jpg',
+                'alt':'코스모스'
+            });
+
+            //css()
+            $('.box1').css({
+                'display':'inline-block',
+                'width':'100px',
+                'height':'100px',
+                'border':'1px solid black'
+            });
+
+            $('.box2').css({
+                'display':'inline-block',
+                'width':'100px',
+                'height':'100px',
+                'border':'1px solid black',
+                'background':'orange'
+            });
+
+            //text(), html()
+            let rs1 = $('.korea').text();
+            let rs2 = $('.korea').html();
+
+            console.log(rs1);
+            console.log(rs2);
+
+            $('p:eq(0)').text('<i>text 내용입니다.</i>')
+            $('p').eq(1).html('<i>text 내용입니다.</i>')
+
+            //추가, 이동 함수
+            let city = $('.city');
+            
+            city.append('<li><i>제주도</i></li>')
+            city.prepend('<li><i>서울특별시</i></li>')
+            
+            city.find('.gs > li:eq(1)').appendTo('.city > li:eq(1) > ol');
+            city.find('.gs > li:eq(1)').appendTo('.city > li:eq(5) > ol');
+            city.find('.gs > li:eq(1)').appendTo('.city > li:eq(2) > ol');
+            city.find('.gs > li:eq(1)').appendTo('.city > li:eq(3) > ol');
+            city.find('.gs > li:eq(1)').appendTo('.city > li:eq(1) > ol');
+            
+            //클래스 함수
+            $('.box:eq(0)').addClass('red');
+            $('.box:eq(1)').removeClass('green');
+            $('.box:eq(2)').toggleClass('blue');
+            $('.box:eq(2)').toggleClass('blue');
+            $('.box:eq(2)').toggleClass('blue');
+
+        });
+
+    </script>
+</head>
+<body>
+    <h3>jQuery 조작함수</h3>
+
+    <h4>attr 함수</h4>
+    <img src="" alt="" id="flower1">
+    <img src="" alt="" id="flower2">
+
+    <h4>css 함수</h4>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+
+    <h4>text, html 함수</h4>
+    <ul class="korea">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+    </ul>
+    <p></p>
+    <p></p>
+
+    <h4>추가, 이동 함수</h4>
+    <article>
+        <ul class="city">
+            <li><i>경기도</i><ol></ol></li>
+            <li><i>충청도</i><ol></ol></li>
+            <li><i>강원도</i><ol></ol></li>
+            <li>
+                <i>경상도</i>
+                <ol class="gs">
+                    <li>창원</li>
+                    <li>수원</li>
+                    <li>목포</li>
+                    <li>부여</li>
+                    <li>원주</li>
+                    <li>파주</li>
+                </ol>
+            </li>
+            <li><i>전라도</i><ol></ol></li>
+        </ul>
+    </article>
+
+
+    <h4>class 함수</h4>
+    <style>
+        .box{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+
+        }
+        .red {background-color: red;}
+        .green {background-color: green;}
+        .blue {background-color: blue;}
+        
+    </style>
+
+    <div class="box">box1</div>
+    <div class="box green">box2</div>
+    <div class="box">box3</div>
+
+
+</body>
+</html>
