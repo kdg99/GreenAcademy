@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_애니메이션</title>
+    <style>
+        .box{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: orange;
+        }
+
+        .box1{left: 20px; top:700px}
+        .box2{left: 230px; top:700px}
+        .box3{left: 440px; top:700px}
+        section{
+            position: relative;
+            width: 800px;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+        section > div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: orange;
+        }
+
+        section > div:nth-child(1) { left: 0; top:0px;}
+        section > div:nth-child(2) { left: 0; top:100px;}
+        section > div:nth-child(3) { left: 0; top:200px;}
+        section > div:nth-child(4) { left: 0; top:300px;}
+
+    </style>
+    <!--
+	        날짜 : 2022/10/18
+	        이름 : 김동근
+	        내용 : JS jQuery 애니 실습하기
+	-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+
+        $(function(){
+            
+            $('button:eq(0)').click(function(){
+                $('.box1').animate({
+                    'width':'200px',
+                    'height':'200px',
+                    'opacity':'1'
+                }, 1000);
+            });
+
+            $('button:eq(1)').click(function(){
+                $('.box1').animate({
+                    'width':'0px',
+                    'height':'0px',
+                    'opacity':'0'
+                }, 1000);
+            });
+           
+            $('button:eq(2)').click(function(){
+                $('.box2').animate({
+                    'opacity':'1'
+                }, 1000);
+            });
+            
+            $('button:eq(3)').click(function(){
+                $('.box2').animate({
+                    'opacity':'0'
+                }, 1000);
+            });
+            
+            $('button:eq(4)').click(function(){
+                $('.box3').animate({
+                    'height':'0'
+                }, 1000);
+            });
+        
+            $('button:eq(5)').click(function(){
+                $('.box3').animate({
+                    'height':'200'
+                }, 1000);
+            });
+            
+            $('section > div:eq(0)').click(function(){
+                $(this).animate({'left':'700'},1000);
+            });
+            $('section > div:eq(1)').click(function(){
+                $(this).animate({'left':'700'},1000, function(){
+                    $(this).animate({'left':'0'},1000);
+                });
+            });
+            $('section > div:eq(0)').click(function(){});
+            $('section > div:eq(0)').click(function(){});
+            
+        });
+
+        
+
+    </script>
+</head>
+<body>
+    <h3>1_애니메이션 기본</h3>
+    
+    <h4>기본 효과 애니메이션</h4>
+    <div>
+        <button>show</button>
+        <button>hide</button>
+        <button>fadeIn</button>
+        <button>fadeOut</button>
+        <button>slideUp</button>
+        <button>slideDown</button>
+    </div>
+
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+
+    <h4>이동 애니메이션</h4>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4                                                                                                                                                                                                                       </div>
+    </section>
+
+</body>
+</html>

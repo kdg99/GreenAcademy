@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_효과함수</title>
+    <!--
+	        날짜 : 2022/10/18
+	        이름 : 김동근
+	        내용 : JS jQuery 애니메이션 효과 함수 실습하기
+	-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        .box{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: orange;
+        }
+
+        .box1{left: 20px; top:100px}
+        .box2{left: 230px; top:100px}
+        .box3{left: 440px; top:100px}
+    </style>
+
+    <script>
+        $(function(){
+            $('button:eq(0)').click(function(){
+                $('.box1').show(1000);
+            });
+            $('button:eq(1)').click(function(){
+                $('.box1').hide(1000);
+            });
+
+            $('button:eq(2)').click(function(){
+                $('.box2').fadeIn(1000);
+            });
+            $('button:eq(3)').click(function(){
+                $('.box2').fadeOut(1000);
+            });
+
+            $('button:eq(4)').click(function(){
+                $('.box3').slideUp(1000);
+            });
+            $('button:eq(5)').click(function(){
+                $('.box3').slideDown(1000);
+            });
+            
+        });
+    </script>
+
+</head>
+<body>
+    <h3>2_효과함수</h3>
+    <div>
+        <button>show</button>
+        <button>hide</button>
+        <button>fadeIn</button>
+        <button>fadeOut</button>
+        <button>slideUp</button>
+        <button>slideDown</button>
+    </div>
+
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+
+
+</body>
+</html>

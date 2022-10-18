@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>글수정</title>
-    <link rel="stylesheet" href="/JBoard1/css/styleinit.css">    
+    <link rel="stylesheet" href="/JBoard1/css/styleinit.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>   
     <style>
 
 
