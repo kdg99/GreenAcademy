@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3_Ajax XML 데이터 처리</title>
+    <!--
+        날짜 : 2022/10/19
+        이름 : 김동근
+        내용 : JS Ajax XML 데이터 처리 실습하기
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $('button').click(function(){
+                //데이터 요청
+                $.ajax({
+                    url:'http://chhak.or.kr/data/user.xml',
+                    type:'GET',
+                    dataType:'xml',
+                    success:function(data){
+                        console.log(data);
+                        //XML 파싱하기
+                        let xml = $(data);
+                        $('p > span:eq(0)').text(xml.find('uid').text());
+                        $('p > span:eq(1)').text(xml.find('name').text());
+                        $('p > span:eq(2)').text(xml.find('hp').text());
+                        $('p > span:eq(3)').text(xml.find('age').text());
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h3>Ajax XML 데이터 처리</h3>
+
+    <button>데이터 요청하기</button>
+
+    <p>
+        아이디 : <span></span><br/>
+        이름 : <span></span><br/>
+        휴대폰 : <span></span><br/>
+        나이 : <span></span><br/>
+    </p>
+</body>
+</html>

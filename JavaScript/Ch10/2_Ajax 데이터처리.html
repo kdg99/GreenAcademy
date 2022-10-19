@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_Ajax 데이터 처리</title>
+    <!--
+        날짜 : 2022/10/19
+        이름 : 김동근
+        내용 : JS Ajax 데이터 처리 실습하기
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $('button').click(function(){
+                //데이터 요청
+                $.ajax({
+                    url:'http://chhak.or.kr/data/users.json',
+                    type:'GET',
+                    datatype:'json',
+                    success:function(data){
+                        console.log(data);
+                        for(let user of data.users){
+                            $('table').append('<tr></tr>')
+                            $('table tr:last-child').append('<td>'+user.uid+'</td>');
+                            $('table tr:last-child').append('<td>'+user.name+'</td>');
+                            $('table tr:last-child').append('<td>'+user.hp+'</td>');
+                            $('table tr:last-child').append('<td>'+user.age+'</td>');
+                        
+                        }
+                       
+                    }
+                });
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+    <h3>Ajax 데이터 처리</h3>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
+    <button>데이터 요청하기</button>
+
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>휴대폰</td>
+            <td>나이</td>
+        </tr>
+    </table>
+</body>
+</html>
