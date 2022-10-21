@@ -61,7 +61,7 @@ public class _06 {
             }
         }
     }
-    
+     
     // 소수 리스트 메소드
     public static void get_primeList() {
     	int i = 0;

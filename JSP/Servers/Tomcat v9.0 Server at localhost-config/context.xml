@@ -73,4 +73,18 @@
     	maxWaitMillis="3000"
     />
     
+    //Java1_BookStore
+    <Resource
+    	name="regularExam_java1_bookstore"
+    	auth="Container"
+    	type="javax.sql.DataSource"
+    	driverClassName="com.mysql.cj.jdbc.Driver"
+    	url="jdbc:mysql://127.0.0.1:3306/java1_bookstore"
+    	username="java1_book"
+    	password="1234"
+    	maxTotal="8"
+    	maxIdle="8"
+    	maxWaitMillis="3000"
+    />
+    
 </Context>
