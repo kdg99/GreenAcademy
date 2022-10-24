@@ -10,18 +10,24 @@
 	String uName 	= request.getParameter("uName");
 	String uNick 	= request.getParameter("uNick");
 	String uMail 	= request.getParameter("uMail");
-	String uPh 		= request.getParameter("uPh");
+	String uHp 		= request.getParameter("uHp");
+	String zip		= request.getParameter("zip");
+	String uAddr1	= request.getParameter("uAddr1");
+	String uAddr2	= request.getParameter("uAddr2");
 	String uRegip 	= request.getRemoteAddr(); //클라이언트 IP주소
 
 	try{
 		Connection conn = DBCP.getConnection();
 		String sql = "INSERT INTO `board_user` set ";
 			   sql += "`uid`=?,";
-			   sql += "`pass`=?,";
+			   sql += "`pass`=SHA2(?,256),";
 			   sql += "`name`=?,";
 			   sql += "`nick`=?,";
 			   sql += "`email`=?,";
 			   sql += "`hp`=?,";
+			   sql += "`zip`=?,";
+			   sql += "`addr1`=?,";
+			   sql += "`addr2`=?,";
 			   sql += "`regip`=?,";
 			   sql += "`rdate`=NOW()";
 		PreparedStatement psmt = conn.prepareStatement(sql);
@@ -31,8 +37,11 @@
 		psmt.setString(3, uName);
 		psmt.setString(4, uNick);
 		psmt.setString(5, uMail);
-		psmt.setString(6, uPh);
-		psmt.setString(7, uRegip);
+		psmt.setString(6, uHp);
+		psmt.setString(7, zip);
+		psmt.setString(8, uAddr1);
+		psmt.setString(9, uAddr2);
+		psmt.setString(10, uRegip);
 		
 		psmt.executeUpdate();
 		

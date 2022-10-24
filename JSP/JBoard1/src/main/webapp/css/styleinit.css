@@ -238,10 +238,14 @@ main{}
     display: inline-block;
     
 }
-#user.register > form > .privacy tr > td > input[name=uAddrNum]{
+#user.register > form > .privacy tr > td > input[name=zip]{
     width: 80px;
 }
-#user.register > form > .privacy tr > td > input[name=uAddr]{
+#user.register > form > .privacy tr > td > input[name=uAddr1]{
+    display: block;
+    width: 300px;
+}
+#user.register > form > .privacy tr > td > input[name=uAddr2]{
     display: block;
     width: 300px;
 }
