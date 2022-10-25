@@ -1,23 +1,24 @@
-<%@page import="bean.TermsBean"%>
+<%@page import="kr.co.jboard1.config.Sql"%>
+<%@page import="kr.co.jboard1.bean.TermsBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="config.DBCP"%>
+<%@page import="kr.co.jboard1.config.DBCP"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
 <%
-	String terms = null;
+String terms = null;
 	String privacy = null;
 	TermsBean tb = null;
 	try{
 		Connection conn = DBCP.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from `board_terms`");
+		ResultSet rs = stmt.executeQuery(Sql.SELECT_TERMS);
 		
 		if(rs.next()){
-			tb = new TermsBean();
-			tb.setTerms(rs.getString(1));
-			tb.setPrivacy(rs.getString(2));
+	tb = new TermsBean();
+	tb.setTerms(rs.getString(1));
+	tb.setPrivacy(rs.getString(2));
 		}
 		
 		rs.close();
@@ -26,11 +27,6 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-
-
-	
-
-
 %>
 <script>
 	$(function(){

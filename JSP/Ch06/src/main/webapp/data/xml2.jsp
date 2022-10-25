@@ -2,7 +2,7 @@
 <%@page import="org.jdom2.output.XMLOutputter"%>
 <%@page import="org.jdom2.Element"%>
 <%@page import="org.jdom2.Document"%>
-<%@page import="config.DB"%>
+<%@page import="kr.co.jboard1.config.DB"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Connection"%>
