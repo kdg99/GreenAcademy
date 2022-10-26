@@ -26,7 +26,7 @@
     
     <div id="wrapper">
         <header>
-            <h3>Board System v1.0</h3>
+            <h3> <a href="/JBoard1"> Board System v1.0</a></h3>
             
             <p>
                 <span class="nick"><%= sessUser.getNick() %></span>님 반갑습니다.

@@ -18,4 +18,23 @@ public class Sql {
 	public static final String SELECT_COUNT_UID	=  "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";
 	public static final String SELECT_TERMS		= "select * from `board_terms`";
+
+	
+	// write.jsp
+	public static final String INSERT_ARTICLE		= "INSERT INTO `board_article` set "
+													+ "`title`=?,"
+													+ "`content`=?,"
+													+ "`file`=?,"
+													+ "`uid`=?,"
+													+ "`regip`=?,"
+													+ "`rdate`=NOW()";
+	
+	public static final String INSERT_FILE 	= "INSERT INTO `board_file` set "
+											+ "`parent`=?,"
+											+ "`newName`=?,"
+											+ "`oriName`=?,"
+											+ "`rdate`=NOW()";
+	
+	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) from `board_article`";
+	
 }
