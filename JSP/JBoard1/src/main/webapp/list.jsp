@@ -68,7 +68,7 @@
                 %>
 			<tr>
 				<td><%= pageStartNum-- %></td>
-				<td><a href="#"><%= article.getTitle() %> [<%= article.getComment() %>]</a></td>
+				<td><a href="/JBoard1/view.jsp?no=<%= article.getNo() %>"><%= article.getTitle() %> [<%= article.getComment() %>]</a></td>
 				<td><%= article.getNick() %></td>
 				<td><%= article.getRdate().substring(2, 10) %></td>
 				<td><%= article.getHit() %></td>

@@ -54,3 +54,10 @@ CREATE TABLE `board_file` (
 	`download`	INT DEFAULT 0,
 	`rdate`		DATETIME
 );
+
+
+SELECT a.*, b.`fno`, b.`oriName`, b.`download`
+FROM `board_article` AS a
+LEFT JOIN `board_file` AS b
+ON a.`no` = b.`parent`
+WHERE `no`=2;
