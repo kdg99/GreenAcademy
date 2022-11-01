@@ -61,3 +61,13 @@ FROM `board_article` AS a
 LEFT JOIN `board_file` AS b
 ON a.`no` = b.`parent`
 WHERE `no`=2;
+
+ALTER TABLE `board_article` AUTO_INCREMENT = 3; 
+
+SELECT a.*, b.`nick` FROM `board_article` AS a 
+JOIN `board_user` AS b USING(`uid`)
+WHERE `parent`=1 ORDER BY `no` DESC;
+
+SELECT a.*, b.nick FROM `board_article` AS a
+JOIN `board_user` AS b USING(`uid`)
+WHERE `parent` != 0 ORDER BY `no` DESC LIMIT 1;

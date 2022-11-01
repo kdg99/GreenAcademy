@@ -27,7 +27,7 @@
 	int pageGroupEnd = 0;
 	int pageStartNum = 0;
 	
-	if(pg!=null){ currentPage = Integer.parseInt(pg); }
+	if(pg !=null){ currentPage = Integer.parseInt(pg); }
 	start = (currentPage - 1) * 10;
 	currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 	pageGroupStart = (currentPageGroup - 1) * 10 + 1;
@@ -68,7 +68,7 @@
                 %>
 			<tr>
 				<td><%= pageStartNum-- %></td>
-				<td><a href="/JBoard1/view.jsp?no=<%= article.getNo() %>"><%= article.getTitle() %> [<%= article.getComment() %>]</a></td>
+				<td><a href="/JBoard1/view.jsp?no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %> [<%= article.getComment() %>]</a></td>
 				<td><%= article.getNick() %></td>
 				<td><%= article.getRdate().substring(2, 10) %></td>
 				<td><%= article.getHit() %></td>

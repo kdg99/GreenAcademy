@@ -40,10 +40,11 @@ public class Sql {
 	// list.jsp
 	public static final String SELECT_ARTICLES	= "select a.*, b.`nick` FROM `board_article` AS a "
 												+ "JOIN `board_user` AS b ON a.uid=b.uid "
+												+ "WHERE `parent`=0 "
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
 	
-	public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article`";
+	public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`=0";
 	
 	// view.jsp
 	public static final String SELECT_ARTICLE	="SELECT a.*, b.`fno`, b.`oriName`, b.`download` "
@@ -55,5 +56,20 @@ public class Sql {
 	
 	public static final String UPDATE_ARTICLE_HIT	= "UPDATE `board_article` SET `hit`=`hit` + 1 WHERE `no`=?";
 	public static final String UPDATE_FILE_DOWNLOAD = "UPDATE `board_file` SET `download`=`download` + 1 WHERE `fno`=?";
+	
+	public static final String INSERT_COMMENT 	= "INSERT INTO `board_article` set "
+												+ "`parent`=?,"
+												+ "`content`=?,"
+												+ "`uid`=?,"
+												+ "`regip`=?,"
+												+ "`rdate`=NOW()";
+	
+	public static final String SELECT_COMMENTS	= "SELECT a.*, b.`nick` FROM `board_article` AS a "
+												+ "JOIN `board_user` AS b USING(`uid`) "
+												+ "WHERE `parent`=? ORDER BY `no` ASC";
+	
+	public static final String SELECT_COMMENT_LATEST 	= "SELECT a.*, b.nick FROM `board_article` AS a "
+														+ "JOIN `board_user` AS b USING(`uid`) "
+														+ "WHERE `parent` != 0 ORDER BY `no` DESC LIMIT 1";
 	
 }

@@ -20,9 +20,10 @@ public class _01normalPack {
 		int c = Integer.parseInt(st.nextToken());
 		
 		for (int i=0 ; i<n ; i++) {
-			
+			//맵 > 가치
 		}
 		
 	}
 
 }
+
