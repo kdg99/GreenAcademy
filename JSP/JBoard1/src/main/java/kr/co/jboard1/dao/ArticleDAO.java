@@ -341,5 +341,42 @@ public List<ArticleBean> selectComments(String parent) {
 		}
 	}
 	
+	// 댓글 수정
+	public int updateComment(String no, String content) {
+		int result = 0;
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			result = psmt.executeUpdate();
+			
+			psmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+	}
+	
+	// 댓글 삭제
+	public int deleteComment(String no) {
+		int result = 0;
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			
+			psmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+	}
+	
 	
 }

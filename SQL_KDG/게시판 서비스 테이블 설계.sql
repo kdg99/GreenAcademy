@@ -71,3 +71,8 @@ WHERE `parent`=1 ORDER BY `no` DESC;
 SELECT a.*, b.nick FROM `board_article` AS a
 JOIN `board_user` AS b USING(`uid`)
 WHERE `parent` != 0 ORDER BY `no` DESC LIMIT 1;
+
+UPDATE `board_article` SET
+`content = '수정',
+`rdate`=NOW()
+WHERE `no`=?;
