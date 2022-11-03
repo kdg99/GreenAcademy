@@ -76,3 +76,5 @@ UPDATE `board_article` SET
 `content = '수정',
 `rdate`=NOW()
 WHERE `no`=?;
+
+DELETE FROM `board_article` WHERE `no`=26 or `parent`=26;

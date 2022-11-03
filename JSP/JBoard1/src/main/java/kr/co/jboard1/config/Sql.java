@@ -15,10 +15,12 @@ public class Sql {
 												+ "`rdate`=NOW()";
 	
 	public static final String SELECT_USER 		= "select * from `board_user` where `uid`=? and `pass`=SHA2(?,256)";
-	public static final String SELECT_COUNT_UID	=  "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
+	public static final String SELECT_COUNT_UID	= "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";
 	public static final String SELECT_TERMS		= "select * from `board_terms`";
 
+	
+	
 	
 	// write.jsp
 	public static final String INSERT_ARTICLE		= "INSERT INTO `board_article` set "
@@ -53,7 +55,11 @@ public class Sql {
 												+"ON a.`no` = b.`parent` "
 												+"WHERE `no`=?";
 	public static final String SELECT_FILE = "select * from `board_file` where `fno`=?";
+	public static final String SELECT_FILE_WITH_PARENT = "select * from `board_file` where `parent`=?";
 	
+	
+	public static final String UPDATE_ARTICLE	= "UPDATE `board_article` SET "
+												+ "`title`=?, `content`=?, `rdate`=NOW() WHERE `no`=?";
 	public static final String UPDATE_ARTICLE_HIT	= "UPDATE `board_article` SET `hit`=`hit` + 1 WHERE `no`=?";
 	public static final String UPDATE_FILE_DOWNLOAD = "UPDATE `board_file` SET `download`=`download` + 1 WHERE `fno`=?";
 	
@@ -76,5 +82,8 @@ public class Sql {
 												+ "`content`=?, `rdate`=NOW() WHERE `no`=?";
 	
 	public static final String DELETE_COMMENT	= "DELETE FROM `board_article` WHERE `no`=?";
+	public static final String DELETE_ARTICLE	= "DELETE FROM `board_article` WHERE `no`=? or `parent`=?";
+	public static final String DELETE_FILE		= "DELETE FROM `board_file` WHERE `parent`=?";
+	
 	
 }

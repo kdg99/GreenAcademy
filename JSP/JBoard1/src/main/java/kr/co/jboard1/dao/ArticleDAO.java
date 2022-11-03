@@ -61,6 +61,7 @@ public class ArticleDAO {
 		return parent;
 	}
 	
+	//파일업로드
 	public void insertFile(int parent, String newName, String fname) {
 		try{
 			Connection conn = DBCP.getConnection();
@@ -78,7 +79,8 @@ public class ArticleDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//댓글등록
 	public ArticleBean insertComment(ArticleBean comment) {
 		
 		ArticleBean article = null;
@@ -207,8 +209,75 @@ public class ArticleDAO {
 		return articles;
 		
 	}//select articles-end
-	public void updateArticle() {}
-	public void deleteArticle() {}
+	
+	//게시글 수정
+	public void updateArticle(String no, String title, String content) {
+		
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//게시글 삭제
+	public void deleteArticle(String no) {
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			
+			psmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	//파일 삭제
+	public String deleteFile(String parent) {
+		String newName= null;
+		try {
+			Connection conn = DBCP.getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.SELECT_FILE_WITH_PARENT);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.DELETE_FILE);
+			psmt1.setString(1, parent);
+			psmt2.setString(1, parent);
+			
+			ResultSet rs = psmt1.executeQuery();
+			psmt2.executeUpdate();
+			
+			conn.commit();
+			
+			if(rs.next()) {
+				newName = rs.getString(3);
+			}
+			
+			rs.close();
+			psmt1.close();
+			psmt2.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return newName;
+	}
 	
 	// 전체 게시물 카운트
 	public int selectCountTotal() {
@@ -267,7 +336,8 @@ public class ArticleDAO {
 		return fb;
 	}
 	
-public List<ArticleBean> selectComments(String parent) {
+	//댓글선택
+	public List<ArticleBean> selectComments(String parent) {
 		
 		List<ArticleBean> comments = null;
 		
@@ -310,6 +380,7 @@ public List<ArticleBean> selectComments(String parent) {
 		
 	}//select articles-end
 	
+	//조회수증가
 	public void updateArticleHit(String no) {
 		try{	
 			Connection conn = DBCP.getConnection();
