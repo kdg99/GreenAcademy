@@ -49,6 +49,9 @@
 	
 	List<ArticleBean> articles = dao.selectArticles(start);
 	
+	//댓글 개수 가져오기
+	//int countComments = dao.countComments(no);
+	
 %>
 <%@ include file="./_header.jsp" %>
         <main id="board" class="list">

@@ -7,12 +7,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.jboard1.bean.ArticleBean;
 import kr.co.jboard1.bean.FileBean;
 import kr.co.jboard1.config.DBCP;
 import kr.co.jboard1.config.Sql;
 
 public class ArticleDAO {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private static ArticleDAO instance = new ArticleDAO();
 	public static ArticleDAO getInstance() {
@@ -28,6 +33,7 @@ public class ArticleDAO {
 		int parent = 0;
 		
 		try{
+			logger.info("insertArticle start...");
 			Connection conn = DBCP.getConnection();
 			conn.setAutoCommit(false); //동시에 처리해주려고 멈춰둠
 			
@@ -56,6 +62,7 @@ public class ArticleDAO {
 					
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return parent;
@@ -64,6 +71,7 @@ public class ArticleDAO {
 	//파일업로드
 	public void insertFile(int parent, String newName, String fname) {
 		try{
+			logger.info("insertFile start...");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_FILE);
 			
@@ -77,6 +85,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -86,7 +95,7 @@ public class ArticleDAO {
 		ArticleBean article = null;
 		
 		try{
-			
+			logger.info("insertComment start...");
 			Connection conn = DBCP.getConnection();
 			//트랜잭션시작
 			conn.setAutoCommit(false);
@@ -122,12 +131,14 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return article;
 	}
 	
 	public ArticleBean selectArticle(String no) {
+		logger.info("selectArticle start...");
 		ArticleBean article = null;
 		try{
 			
@@ -162,13 +173,14 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return article;
 	}
 	
 	public List<ArticleBean> selectArticles(int start) {
-		
+		logger.info("selectArticles start...");
 		List<ArticleBean> articles = null;
 		
 		try{
@@ -204,6 +216,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return articles;
@@ -212,7 +225,7 @@ public class ArticleDAO {
 	
 	//게시글 수정
 	public void updateArticle(String no, String title, String content) {
-		
+		logger.info("updateArticle start...");
 		try {
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
@@ -226,11 +239,13 @@ public class ArticleDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
 	//게시글 삭제
 	public void deleteArticle(String no) {
+		logger.info("deleteArticle start...");
 		try {
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
@@ -243,11 +258,13 @@ public class ArticleDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
 	//파일 삭제
 	public String deleteFile(String parent) {
+		logger.info("deleteFile start...");
 		String newName= null;
 		try {
 			Connection conn = DBCP.getConnection();
@@ -275,13 +292,14 @@ public class ArticleDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return newName;
 	}
 	
 	// 전체 게시물 카운트
 	public int selectCountTotal() {
-		
+		logger.info("selectCountTotal start...");
 		int total = 0;
 		
 		try{
@@ -300,12 +318,14 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return total;
 	}
 	
 	public FileBean selectFile(String fno) {
+		logger.info("selectFile start...");
 		FileBean fb = null;
 		try{
 			
@@ -331,6 +351,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return fb;
@@ -338,7 +359,7 @@ public class ArticleDAO {
 	
 	//댓글선택
 	public List<ArticleBean> selectComments(String parent) {
-		
+		logger.info("selectComments start...");
 		List<ArticleBean> comments = null;
 		
 		try{
@@ -374,6 +395,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return comments;
@@ -382,6 +404,7 @@ public class ArticleDAO {
 	
 	//조회수증가
 	public void updateArticleHit(String no) {
+		logger.info("updateArticleHit start...");
 		try{	
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
@@ -393,12 +416,14 @@ public class ArticleDAO {
 			
 		} catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
 	
 	// 다운로드 카운트
 	public void updateFileDownload(String fno) {
+		logger.info("updateFileDownload start...");
 		try{
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);
@@ -409,11 +434,13 @@ public class ArticleDAO {
 			conn.close();
 		}catch(Exception e){
 			 e.printStackTrace();
+			 logger.error(e.getMessage());
 		}
 	}
 	
 	// 댓글 수정
 	public int updateComment(String no, String content) {
+		logger.info("updateComment start...");
 		int result = 0;
 		try {
 			Connection conn = DBCP.getConnection();
@@ -427,12 +454,14 @@ public class ArticleDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 	}
 	
 	// 댓글 삭제
 	public int deleteComment(String no) {
+		logger.info("deleteComment start...");
 		int result = 0;
 		try {
 			Connection conn = DBCP.getConnection();
@@ -445,9 +474,36 @@ public class ArticleDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 	}
-	
+	/*
+	public int countComments(String no) {
+		logger.info("countComments start...");
+		int result = 0;
+		
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_COMMENTS);
+			psmt.setString(1, no);
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			rs.close();
+			psmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+		
+	}*/
 	
 }

@@ -78,3 +78,5 @@ UPDATE `board_article` SET
 WHERE `no`=?;
 
 DELETE FROM `board_article` WHERE `no`=26 or `parent`=26;
+
+SELECT COUNT(`no`) FROM `board_article` WHERE `parent` = 2;

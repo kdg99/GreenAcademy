@@ -18,6 +18,7 @@ public class Sql {
 	public static final String SELECT_COUNT_UID	= "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";
 	public static final String SELECT_TERMS		= "select * from `board_terms`";
+	
 
 	
 	
@@ -85,5 +86,5 @@ public class Sql {
 	public static final String DELETE_ARTICLE	= "DELETE FROM `board_article` WHERE `no`=? or `parent`=?";
 	public static final String DELETE_FILE		= "DELETE FROM `board_file` WHERE `parent`=?";
 	
-	
+	//public static final String SELECT_COUNT_COMMENTS = "SELECT COUNT(`no`) FROM `board_article` WHERE `parent`=?";
 }
