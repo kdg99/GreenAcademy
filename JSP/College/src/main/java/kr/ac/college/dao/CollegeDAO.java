@@ -100,6 +100,37 @@ public class CollegeDAO {
 		return registers;
 	}
 	
+	public List<RegBean> selectSomeoneRegisters(String regStdNo) {
+		List<RegBean> registers = null;
+		try {
+			registers = new ArrayList<>();
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_REGISTERS_SOMEONE);
+			psmt.setString(1, regStdNo);
+			
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()) {
+				RegBean rb = new RegBean();	
+				rb.setRegStdNo(rs.getString(1));
+				rb.setRegLecNo(rs.getString(2));
+				rb.setRegMidScore(rs.getString(3));
+				rb.setRegFinalScore(rs.getString(4));
+				rb.setRegTotalScore(rs.getString(5));
+				rb.setRegGrade(rs.getString(6));
+				rb.setRegStdName(rs.getString(7));
+				rb.setRegLecName(rs.getString(8));
+				
+				registers.add(rb);
+			}
+			rs.close();
+			psmt.close();
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return registers;
+	}
+	
 	public int insertRegister(RegBean rb) {
 		int result = 0;
 		try {

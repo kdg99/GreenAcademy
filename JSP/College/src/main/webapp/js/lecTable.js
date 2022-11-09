@@ -1,26 +1,21 @@
 /*
  * 강좌등록 테이블 생성 코드
  */
-function init(lectures){
+function lecAdd(addedLec){
 
 	$(function(){
 		
-		$('.lecList').empty();
-				
-		$('.lecList').append("<h4>강좌현황</h4>");
-		$('.lecList').append("<button type='button' class='btnCreateLecTable'>등록</button>");
-		let tableTag 	=  "<table border='1'>"
-			tableTag	+= "<tr>";
-			tableTag	+= "<th>번호</th>";
-			tableTag	+= "<th>강좌명</th>";
-			tableTag	+= "<th>학점</th>";
-			tableTag	+= "<th>시간</th>";
-			tableTag	+= "<th>강의장</th>";
+		let lb = JSON.parse(addedLec);
+		
+		let	tableTag	 = "<tr>";
+			tableTag	+= "<td>"+lb.lecNo+"</td>";
+			tableTag	+= "<td>"+lb.lecName+"</td>";
+			tableTag	+= "<td>"+lb.lecCredit+"</td>";
+			tableTag	+= "<td>"+lb.lecTime+"</td>";
+			tableTag	+= "<td>"+lb.lecClass+"</td>";
 			tableTag	+= "</tr>";
-			for(let lb in lectures){}
-			tableTag	+= "</table>";
 			
-		$('.lecList').append(tableTag);
+		$('.lecList > table').append(tableTag);
 	});
 
 }

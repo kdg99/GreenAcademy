@@ -11,6 +11,13 @@ public class Sql {
 												+ "ON a.`regStdNo` = b.`stdNo` "
 												+ "JOIN `lecture` AS c "
 												+ "ON a.`regLecNo` = c.`lecNo`";
+public static final String SELECT_REGISTERS_SOMEONE = "SELECT a.*, b.`stdName`, c.`lecName` "
+													+ "FROM `register` AS a JOIN `student` AS b "
+													+ "ON a.`regStdNo` = b.`stdNo` "
+													+ "JOIN `lecture` AS c "
+													+ "ON a.`regLecNo` = c.`lecNo` "
+													+ "WHERE `regStdNo` = ?";
+												
 	public static final String INSERT_REGISTER 	= "INSERT INTO `register` SET "
 												+ "`regStdNo`=?, `regLecNo`=?";
 	//student

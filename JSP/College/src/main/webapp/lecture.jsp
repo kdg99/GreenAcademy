@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.JsonObject"%>
 <%@page import="kr.ac.college.bean.LecBean"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.ac.college.dao.CollegeDAO"%>
@@ -30,7 +31,28 @@
 				$(document).on('click', 'input[type=submit]', function(e){
 					e.preventDefault();
 					registerLecTable();
+					
+					//json 생성
+					let input = new Object();
+					input.lecNo = $('input[name=lecNo]').val();
+					input.lecName = $('input[name=lecName]').val();
+					input.lecCredit = $('input[name=lecCredit]').val();
+					input.lecTime = $('input[name=lecTime]').val();
+					input.lecClass = $('input[name=lecClass]').val();
+					let addedLec = JSON.stringify(input);
+					
 					createLecTable();
+					lecAdd(addedLec);
+					
+				});
+				
+				//test
+				$(document).on('click', 'input[type=submit]', function(e){
+					e.preventDefault();
+					
+					
+					
+					
 				});
 			});
 		</script>

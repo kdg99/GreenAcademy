@@ -30,7 +30,18 @@
 				$(document).on('click', 'input[type=submit]', function(e){
 					e.preventDefault();
 					registerStdTable();
-					createLecTable();
+					
+					//json 생성
+					let input = new Object();
+					input.stdNo = $('input[name=stdNo]').val();
+					input.stdName = $('input[name=stdName]').val();
+					input.stdHp = $('input[name=stdHp]').val();
+					input.stdYear = $('input[name=stdYear]').val();
+					input.stdAddress = $('input[name=stdAddress]').val();
+					let addedStd = JSON.stringify(input);
+					
+					createStdTable();
+					stdAdd(addedStd);
 				});
 			});
 		</script>

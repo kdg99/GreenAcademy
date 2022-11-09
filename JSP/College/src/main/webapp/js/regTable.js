@@ -20,33 +20,23 @@ function stdAdd(addedStd){
 
 }
 
-function createStdTable(){
+function createRegTable(){
 	
 	$(function(){
-		$('.stdTable').empty();
+		$('.regTable').empty();
 					
-		$('.stdTable').append("<h4>강좌등록</h4>");
-		$('.stdTable').append("<button type='button' class='btnCloseStdTable'>닫기</button>");
+		$('.regTable').append("<h4>강좌등록</h4>");
+		$('.regTable').append("<button type='button' class='btnCloseRegTable'>닫기</button>");
 		let tableTag 	=  "<table border='1'>"
 			tableTag	+= "<tr>";
 			tableTag	+= "<td>학번</td>";
-			tableTag	+= "<td><input type='text' name='stdNo'/></td>";
+			tableTag	+= "<td><input type='text' name='regStdNo'/></td>";
 			tableTag	+= "</tr>";
 			tableTag	+= "<tr>";
-			tableTag	+= "<td>이름</td>";
-			tableTag	+= "<td><input type='text' name='stdName'/></td>";
-			tableTag	+= "</tr>";
-			tableTag	+= "<tr>";
-			tableTag	+= "<td>휴대폰</td>";
-			tableTag	+= "<td><input type='text' name='stdHp'/></td>";
-			tableTag	+= "</tr>";
-			tableTag	+= "<tr>";
-			tableTag	+= "<td>학년</td>";
-			tableTag	+= "<td><input type='text' name='stdYear'/></td>";
-			tableTag	+= "</tr>";
-			tableTag	+= "<tr>";
-			tableTag	+= "<td>주소</td>";
-			tableTag	+= "<td><input type='text' name='stdAddress'/></td>";
+			tableTag	+= "<td>강좌명</td>";
+			tableTag	+= "<td><select name='regLecNo>";
+			tableTag	+= "<option value="+value+">"+value+"</option>";
+			tableTag	+= "</select></td>";
 			tableTag	+= "</tr>";
 			tableTag	+= "<tr>";
 			tableTag	+= "<td colspan='2' align='right'><input type='submit' value='추가'/></td>";
