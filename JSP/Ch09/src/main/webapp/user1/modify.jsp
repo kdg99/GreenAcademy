@@ -10,27 +10,23 @@
 		
 		<a href="/Ch09/user1//list.jsp">student 목록</a>
 		
-		<form action="/Ch09/user1/modifyProc.jsp" method="post">
+		<form action="/Ch09/user1/modify.do" method="post">
 			<table border="1">
 				<tr>
 					<td>번호</td>
-					<td> <input type="text" name="stdNo" readonly value=""/></td>
+					<td> <input type="text" name="uid" readonly value="${vo.getUid()}"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td> <input type="text" name="stdName" value=""/></td>
+					<td> <input type="text" name="name" value="${vo.getName()}"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td> <input type="text" name="stdHp" value=""/></td>
+					<td> <input type="text" name="hp" value="${vo.getHp()}"/></td>
 				</tr>
 				<tr>
-					<td>학년</td>
-					<td><input type="number" name="stdYear" value=""/></td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td> <input type="text" name="stdAddress" value=""/></td>
+					<td>나이</td>
+					<td><input type="number" name="age" value="${vo.getAge()}"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

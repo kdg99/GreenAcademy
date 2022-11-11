@@ -1,6 +1,7 @@
-package controller;
+package controller.user1;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,32 +10,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.user1.ModifyService;
+import dao.User1Dao;
+import vo.User1Vo;
 
-
-@WebServlet("/user1/modify.do")
-public class ModifyController extends HttpServlet{
+@WebServlet("/user1/list.do")
+public class ListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void init() throws ServletException {
 
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		requestProc(req, resp);
+		
+		List<User1Vo> users = User1Dao.getInstance().selectUsers();
+		
+		//view에서 데이터 출력을 위한 request Scope 데이터 설정
+		req.setAttribute("users", users);
+		
+		//forward
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/user1/list.jsp");
+		dispatcher.forward(req, resp);
+	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		requestProc(req, resp);
-	}
 	
-	private void requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ModifyService service = ModifyService.getInstance();
-		String view = service.requestProc(req, resp);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher(view);
-		dispatcher.forward(req, resp);
 	}
+
 }
