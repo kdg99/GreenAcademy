@@ -61,7 +61,7 @@
     
     //Java1_board
     <Resource
-    	name="dbcp_java1_board"
+    	name="dbcp_aws_java1_board"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"

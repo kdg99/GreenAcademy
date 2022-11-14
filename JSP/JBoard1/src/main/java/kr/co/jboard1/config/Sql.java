@@ -10,7 +10,7 @@ public class Sql {
 												+ "`hp`=?,"
 												+ "`zip`=?,"
 												+ "`addr1`=?,"
-												+ "`addr2`=?"
+												+ "`addr2`=?,"
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	

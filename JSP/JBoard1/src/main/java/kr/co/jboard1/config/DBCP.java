@@ -13,7 +13,7 @@ public class DBCP {
 	
 	public static Connection getConnection() throws NamingException, SQLException {
 		if(ds == null) {
-			ds = (DataSource) new InitialContext().lookup("java:comp/env/dbcp_java1_board");
+			ds = (DataSource) new InitialContext().lookup("java:comp/env/dbcp_aws_java1_board");
 		}
 		return ds.getConnection();
 	}
