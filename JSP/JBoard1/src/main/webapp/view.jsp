@@ -181,7 +181,7 @@
             <p class="content"><%= comment.getContent() %></p>
             <% if(sessUser.getUid().equals(comment.getUid())) { %>
             <div>
-                <a href="#" clsass="remove" data-no="<%=comment.getNo()%>">삭제</a>
+                <a href="#" class="remove" data-no="<%=comment.getNo()%>">삭제</a>
                 <a href="#" class="modify" data-no="<%=comment.getNo()%>">수정</a>
             </div>
             <% } %>

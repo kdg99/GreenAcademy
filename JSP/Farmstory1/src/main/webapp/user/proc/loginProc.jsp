@@ -1,3 +1,4 @@
+<%@page import="kr.co.farmstory1.dao.UserDAO"%>
 <%@page import="kr.co.farmstory1.config.Sql"%>
 <%@page import="kr.co.farmstory1.bean.UserBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -10,42 +11,7 @@ request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("uid");
 	String pass = request.getParameter("pass");
 	
-	UserBean ub = null;
-	
-	try{
-		
-		Connection conn = DBCP.getConnection();
-		
-		
-		PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_USER);
-		psmt.setString(1, uid);
-		psmt.setString(2, pass);
-		
-		ResultSet rs = psmt.executeQuery();
-		if(rs.next()){
-	ub = new UserBean();
-	
-	ub.setUid(rs.getString(1));
-	ub.setPass(rs.getString(2));
-	ub.setName(rs.getString(3));
-	ub.setNick(rs.getString(4));
-	ub.setEmail(rs.getString(5));
-	ub.setHp(rs.getString(6));
-	ub.setGrade(rs.getInt(7));
-	ub.setZip(rs.getString(8));
-	ub.setAddr1(rs.getString(9));
-	ub.setAddr2(rs.getString(10));
-	ub.setRegip(rs.getString(11));
-	ub.setRdate(rs.getString(12));
-		}
-		
-		rs.close();
-		psmt.close();
-		conn.close();
-		
-	} catch(Exception e){
-		e.printStackTrace();
-	}
+	UserBean ub = UserDAO.getInstance().selectUser(uid, pass);
 	
 	if(ub != null){
 		//로그인 정보가 맞는 경우

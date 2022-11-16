@@ -2,7 +2,7 @@
 <%@ include file="../_header.jsp"%>
         <main id="user" class="register">
 
-            <form action="#">
+            <form action="/Farmstory1/user/proc/registerProc.jsp">
                 <table border="1">
                     <caption>사이트 이용정보 입력</caption>
                     <tr>
@@ -69,7 +69,7 @@
                 </table>
 
                 <div>
-                    <a href="./login.jsp" class="btnCancel">취소</a>
+                    <a href="/Farmstory1/user/login.jsp" class="btnCancel">취소</a>
                     <input type="submit" class="btnRegister" value="회원가입"/>
                 </div>
             </form>            

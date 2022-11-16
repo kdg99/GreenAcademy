@@ -1,3 +1,5 @@
+<%@page import="kr.co.farmstory1.bean.UserBean"%>
+<%@page import="kr.co.farmstory1.dao.UserDAO"%>
 <%@page import="kr.co.farmstory1.config.Sql"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -6,43 +8,35 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String uId 		= request.getParameter("uId");
-	String uPass 		= request.getParameter("uPass1");
-	String uName 	= request.getParameter("uName");
-	String uNick 	= request.getParameter("uNick");
-	String uMail 	= request.getParameter("uMail");
-	String uHp 		= request.getParameter("uHp");
-	String zip		= request.getParameter("zip");
-	String uAddr1	= request.getParameter("uAddr1");
-	String uAddr2	= request.getParameter("uAddr2");
-	String uRegip 	= request.getRemoteAddr(); //클라이언트 IP주소
+	UserBean ub = new UserBean();
 
-	try{
-		Connection conn = DBCP.getConnection();
-		
-		PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_USER);
-		
-		psmt.setString(1, uId);
-		psmt.setString(2, uPass);
-		psmt.setString(3, uName);
-		psmt.setString(4, uNick);
-		psmt.setString(5, uMail);
-		psmt.setString(6, uHp);
-		psmt.setString(7, zip);
-		psmt.setString(8, uAddr1);
-		psmt.setString(9, uAddr2);
-		psmt.setString(10, uRegip);
-		
-		psmt.executeUpdate();
-		
-		
-		psmt.close();
-		conn.close();
-	}catch(Exception e){
-		e.printStackTrace();
-	}
+	/*
+	String uid 		= request.getParameter("uid");
+	String pass 	= request.getParameter("pass1");
+	String name 	= request.getParameter("name");
+	String nick 	= request.getParameter("nick");
+	String email 	= request.getParameter("email");
+	String hp 		= request.getParameter("hp");
+	String zip		= request.getParameter("zip");
+	String addr1	= request.getParameter("addr1");
+	String addr2	= request.getParameter("addr2");
+	String regip 	= request.getRemoteAddr(); //클라이언트 IP주소
+	*/
+	
+	ub.setUid(request.getParameter("uid"));
+	ub.setPass(request.getParameter("pass1"));
+	ub.setName(request.getParameter("name"));
+	ub.setNick(request.getParameter("nick"));
+	ub.setEmail( request.getParameter("email"));
+	ub.setHp(request.getParameter("hp"));
+	ub.setZip(request.getParameter("zip"));
+	ub.setAddr1(request.getParameter("addr1"));
+	ub.setAddr2(request.getParameter("addr2"));
+	ub.setRegip(request.getRemoteAddr());
+	
+	UserDAO.getInstance().insertUsers(ub);
 	
 	//리다이렉트
-	response.sendRedirect("/JBoard1/user/login.jsp");
+	response.sendRedirect("/Farmstory1/user/login.jsp");
 	
 %>

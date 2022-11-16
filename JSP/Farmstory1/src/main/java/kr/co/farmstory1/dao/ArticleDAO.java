@@ -23,28 +23,26 @@ public class ArticleDAO {
 	public static ArticleDAO getInstance() {
 		return instance;
 	}
-	private ArticleDAO() {
-
-		
-	};
+	private ArticleDAO() {};
 	
 	//기본 CRUD
 	public int insertArticle(ArticleBean article) {
 		int parent = 0;
 		
 		try{
-			logger.info("insertArticle start...");
+			logger.debug("insertArticle start...");
 			Connection conn = DBCP.getConnection();
 			conn.setAutoCommit(false); //동시에 처리해주려고 멈춰둠
 			
 			Statement stmt = conn.createStatement();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
 			
-			psmt.setString(1, article.getTitle());
-			psmt.setString(2, article.getContent());
-			psmt.setInt(3, article.getFname() == null ? 0 : 1);
-			psmt.setString(4, article.getUid());
-			psmt.setString(5, article.getRegip());
+			psmt.setString(1, article.getCate());
+			psmt.setString(2, article.getTitle());
+			psmt.setString(3, article.getContent());
+			psmt.setInt(4, article.getFname() == null ? 0 : 1);
+			psmt.setString(5, article.getUid());
+			psmt.setString(6, article.getRegip());
 			
 			psmt.executeUpdate();
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_MAX_NO);
@@ -61,17 +59,16 @@ public class ArticleDAO {
 			conn.close();
 					
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
-		
+		logger.debug("insertArticle end...");
 		return parent;
 	}
 	
 	//파일업로드
 	public void insertFile(int parent, String newName, String fname) {
 		try{
-			logger.info("insertFile start...");
+			logger.debug("insertFile start...");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_FILE);
 			
@@ -84,7 +81,6 @@ public class ArticleDAO {
 			conn.close();
 			
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 	}
@@ -95,7 +91,7 @@ public class ArticleDAO {
 		ArticleBean article = null;
 		
 		try{
-			logger.info("insertComment start...");
+			logger.debug("insertComment start...");
 			Connection conn = DBCP.getConnection();
 			//트랜잭션시작
 			conn.setAutoCommit(false);
@@ -138,10 +134,9 @@ public class ArticleDAO {
 	}
 	
 	public ArticleBean selectArticle(String no) {
-		logger.info("selectArticle start...");
+		logger.debug("selectArticle start...");
 		ArticleBean article = null;
 		try{
-			
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
 			psmt.setString(1, no);
@@ -160,7 +155,7 @@ public class ArticleDAO {
 				article.setHit(rs.getInt(8));
 				article.setUid(rs.getString(9));
 				article.setRegip(rs.getString(10));
-				article.setRdate(rs.getString(11));
+				article.setRdate(rs.getString(11).substring(2,10));
 				article.setFno(rs.getInt(12));
 				article.setOriName(rs.getString(13));
 				article.setDownload(rs.getInt(14));
@@ -175,12 +170,12 @@ public class ArticleDAO {
 			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
-		
+		logger.debug("selectArticle end...");
 		return article;
 	}
 	
-	public List<ArticleBean> selectArticles(int start) {
-		logger.info("selectArticles start...");
+	public List<ArticleBean> selectArticles(String cate, int start) {
+		logger.debug("selectArticles start...");
 		List<ArticleBean> articles = null;
 		
 		try{
@@ -189,7 +184,8 @@ public class ArticleDAO {
 			//게시글가져오기
 			articles = new ArrayList<>();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
-			psmt.setInt(1, start);
+			psmt.setString(1, cate);
+			psmt.setInt(2, start);
 			ResultSet rs = psmt.executeQuery();
 			
 			while(rs.next()){
@@ -204,7 +200,7 @@ public class ArticleDAO {
 				article.setHit(rs.getInt(8));
 				article.setUid(rs.getString(9));
 				article.setRegip(rs.getString(10));
-				article.setRdate(rs.getString(11));
+				article.setRdate(rs.getString(11).substring(2,10));
 				article.setNick(rs.getString(12));
 				
 				articles.add(article);
@@ -215,17 +211,16 @@ public class ArticleDAO {
 			conn.close();
 			
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
-		
+		logger.debug("selectArticles end...");
 		return articles;
 		
 	}//select articles-end
 	
 	//게시글 수정
 	public void updateArticle(String no, String title, String content) {
-		logger.info("updateArticle start...");
+		logger.debug("updateArticle start...");
 		try {
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
@@ -245,7 +240,7 @@ public class ArticleDAO {
 	
 	//게시글 삭제
 	public void deleteArticle(String no) {
-		logger.info("deleteArticle start...");
+		logger.debug("deleteArticle start...");
 		try {
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
@@ -264,7 +259,7 @@ public class ArticleDAO {
 
 	//파일 삭제
 	public String deleteFile(String parent) {
-		logger.info("deleteFile start...");
+		logger.debug("deleteFile start...");
 		String newName= null;
 		try {
 			Connection conn = DBCP.getConnection();
@@ -298,34 +293,30 @@ public class ArticleDAO {
 	}
 	
 	// 전체 게시물 카운트
-	public int selectCountTotal() {
-		logger.info("selectCountTotal start...");
+	public int selectCountTotal(String cate) {
+		logger.debug("selectCountTotal start...");
 		int total = 0;
-		
 		try{
 			Connection conn = DBCP.getConnection();
-			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL);
-			
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate);
+
+			ResultSet rs = psmt.executeQuery();
 			if(rs.next()){
 				total = rs.getInt(1);
 			}
-			
 			rs.close();
-			stmt.close();
+			psmt.close();
 			conn.close();
-			
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
-		
+		logger.debug("selectCountTotal end...");
 		return total;
 	}
 	
 	public FileBean selectFile(String fno) {
-		logger.info("selectFile start...");
+		logger.debug("selectFile start...");
 		FileBean fb = null;
 		try{
 			
@@ -359,7 +350,7 @@ public class ArticleDAO {
 	
 	//댓글선택
 	public List<ArticleBean> selectComments(String parent) {
-		logger.info("selectComments start...");
+		logger.debug("selectComments start...");
 		List<ArticleBean> comments = null;
 		
 		try{
@@ -404,7 +395,7 @@ public class ArticleDAO {
 	
 	//조회수증가
 	public void updateArticleHit(String no) {
-		logger.info("updateArticleHit start...");
+		logger.debug("updateArticleHit start...");
 		try{	
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
@@ -423,7 +414,7 @@ public class ArticleDAO {
 	
 	// 다운로드 카운트
 	public void updateFileDownload(String fno) {
-		logger.info("updateFileDownload start...");
+		logger.debug("updateFileDownload start...");
 		try{
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);
@@ -440,7 +431,7 @@ public class ArticleDAO {
 	
 	// 댓글 수정
 	public int updateComment(String no, String content) {
-		logger.info("updateComment start...");
+		logger.debug("updateComment start...");
 		int result = 0;
 		try {
 			Connection conn = DBCP.getConnection();
@@ -461,7 +452,7 @@ public class ArticleDAO {
 	
 	// 댓글 삭제
 	public int deleteComment(String no) {
-		logger.info("deleteComment start...");
+		logger.debug("deleteComment start...");
 		int result = 0;
 		try {
 			Connection conn = DBCP.getConnection();

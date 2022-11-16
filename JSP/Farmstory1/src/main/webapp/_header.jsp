@@ -30,19 +30,17 @@
     <div id="wrapper">
         <header>
             <a href="/Farmstory1/index.jsp" class="logo"><img src="/Farmstory1/img/logo.png" alt="로고"/></a>
+            <p>
+            	<a href="/Farmstory1/">HOME |</a>
             <% if(sessUser == null) { %>
-	            <p>
-	                <a href="/Farmstory1/">HOME |</a>
 	                <a href="/Farmstory1/user/login.jsp">로그인 |</a>
 	                <a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
-	                <a href="#">고객센터</a>
-	            </p>
             <% } else {%>
-	            <p>
-	                <span class="nick"><%= sessUser.getNick() %></span>님 반갑습니다.
-	                <a href="/Farmstory1/user/proc/logout.jsp" class="logout">[로그아웃]</a>
-	            </p>
+			        <span class="nick"><%= sessUser.getNick() %></span>님
+	                <a href="/Farmstory1/user/proc/logout.jsp" class="logout">[로그아웃] |</a>
             <% } %>
+            	<a href="#">고객센터</a>
+            </p>
             
             <img src="/Farmstory1/img/head_txt_img.png" alt="3만원 이상 무료배송"/>
 

@@ -4,7 +4,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String no = request.getParameter("no");
-	String pg = request.getParameter("pg");
 	
 	ArticleDAO dao = ArticleDAO.getInstance();
 	
@@ -15,7 +14,7 @@
 	
 	// 파일삭제 (디렉토리)
 	if(fileName != null) {
-		String path = application.getRealPath("/file");
+		String path = application.getRealPath("/board/file");
 		File file = new File(path+"/"+fileName);
 		if(file.exists()){
 			file.delete();
@@ -23,6 +22,6 @@
 	}
 	
 	
-	response.sendRedirect("/JBoard1/list.jsp?pg="+pg);
+	response.sendRedirect("/Farmstory1/board/list.jsp");
 	
 %>

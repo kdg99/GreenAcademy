@@ -25,6 +25,7 @@ public class Sql {
 	
 	// write.jsp
 	public static final String INSERT_ARTICLE		= "INSERT INTO `board_article` set "
+													+ "`cate`=?,"
 													+ "`title`=?,"
 													+ "`content`=?,"
 													+ "`file`=?,"
@@ -43,11 +44,11 @@ public class Sql {
 	// list.jsp
 	public static final String SELECT_ARTICLES	= "select a.*, b.`nick` FROM `board_article` AS a "
 												+ "JOIN `board_user` AS b ON a.uid=b.uid "
-												+ "WHERE `parent`=0 "
+												+ "WHERE `parent`=0 AND `cate`=?"
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
 	
-	public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`=0";
+	public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`= 0 AND `cate`=?";
 	
 	// view.jsp
 	public static final String SELECT_ARTICLE	="SELECT a.*, b.`fno`, b.`oriName`, b.`download` "
