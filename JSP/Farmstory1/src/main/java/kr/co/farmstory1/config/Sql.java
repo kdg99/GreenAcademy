@@ -46,7 +46,12 @@ public class Sql {
 												+ "JOIN `board_user` AS b ON a.uid=b.uid "
 												+ "WHERE `parent`=0 AND `cate`=?"
 												+ "ORDER BY `no` DESC "
-												+ "LIMIT ?, 10";
+												+ "LIMIT ?, ?";
+	
+	public static final String SELECT_LATESTS = "(SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`='grow' ORDER BY `no` DESC LIMIT 5) "
+											+ "UNION (SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`='school' ORDER BY `no` DESC LIMIT 5) "
+											+ "UNION (SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`='story' ORDER BY `no` DESC LIMIT 5)";
+	public static final String SELECT_LATEST = "SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`=? ORDER BY `no` DESC LIMIT 3";
 	
 	public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`= 0 AND `cate`=?";
 	

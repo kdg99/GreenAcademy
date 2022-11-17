@@ -1,6 +1,6 @@
 Index
  ● 슬라이더 구현
- ● 글 가져오는 Sql limit 5 구현
+ ● 글 가져오는 Sql limit 5 구현 √
  ● 배송조회 구현
 
 User
@@ -24,10 +24,7 @@ Board
   ○ 댓글삭제
   ○ 댓글수정
   ○ 댓글목록 페이지
-  ○ 수정
-  ○ 삭제
-  ○ 페이지 정보 구현
- ● modify
-  ○ modifyProc
- ● delete >> cate, group 넘겨줄것
- ● download
+  ○ 수정 
+  ○ 삭제	√
+  ○ 페이지 정보 구현 √
+ ● download √

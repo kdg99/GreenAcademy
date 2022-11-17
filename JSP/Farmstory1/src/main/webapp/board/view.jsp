@@ -3,9 +3,12 @@
 <%@page import="kr.co.farmstory1.bean.ArticleBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<%@ include file="../user/_loginCheck.jsp" %>
 <%
 	String no = request.getParameter("no");
 	String pg = request.getParameter("pg");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
 	ArticleDAO dao = ArticleDAO.getInstance();
 	
 	ArticleBean article = dao.selectArticle(no);
@@ -38,10 +41,10 @@
     <div>
     	<% if(sessUser == null) {
     		} else if(sessUser.getUid().equals(article.getUid())) { %>
-        <a href="/Farmstory1/board/proc/deleteProc.jsp?no=<%= no %>" class="btn btnRemove">삭제</a>
-        <a href="/Farmstory1/board/modify.jsp?no=<%= no %>&pg=" class="btn btnModify">수정</a>
+        <a href="/Farmstory1/board/proc/deleteProc.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= no %>" class="btn btnRemove">삭제</a>
+        <a href="/Farmstory1/board/modify.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= no %>&pg=<%= pg %>" class="btn btnModify">수정</a>
         <% } %>
-        <a href="/Farmstory1/board/list.jsp?pg=" class="btn btnList">목록</a>
+        <a href="/Farmstory1/board/list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= pg %>" class="btn btnList">목록</a>
     </div>
 
     <!--댓글목록-->

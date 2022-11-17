@@ -4,14 +4,51 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
 <%
-	//메인 글목록
-	//텃밭
-	List<ArticleBean> growArticles = ArticleDAO.getInstance().selectArticles("grow", 0);
-	//귀농
-	List<ArticleBean> schoolArticles = ArticleDAO.getInstance().selectArticles("school", 0);
-	//농작물
-	List<ArticleBean> storyArticles = ArticleDAO.getInstance().selectArticles("story", 0);
+	List<ArticleBean> latests = ArticleDAO.getInstance().selectLatest();
+	while(latests.size() < 15){
+		ArticleBean article = new ArticleBean();
+		article.setNo(0);
+		article.setTitle("제목");
+		article.setRdate("22-11-17");
+		
+		latests.add(article);
+	}
 %>
+<script>
+	$(function(){
+		$("#tabs").tabs();
+		
+		// 공지사항 최신글 가져오기
+		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=notice', function(data){			
+			
+			for(let latest of data){
+				let url = "/Farmstory1/board/view.jsp?group=community&cate=notice&pg=1&no="+latest.no;
+				$('#tabs-1 .txt').append("<li><a href='"+url+"'>· "+latest.title+"</a></li>");	
+			}
+		});
+		
+		// 고객문의 최신글 가져오기
+		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=qna', function(data){			
+			
+			for(let latest of data){
+				let url = "/Farmstory1/board/view.jsp?group=community&cate=qna&pg=1&no="+latest.no;
+				$('#tabs-2 .txt').append("<li><a href='"+url+"'>· "+latest.title+"</a></li>");	
+			}
+		});
+		
+		// 자주묻는질문 최신글 가져오기
+		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=faq', function(data){			
+			
+			for(let latest of data){
+				let url = "/Farmstory1/board/view.jsp?group=community&cate=faq&pg=1&no="+latest.no;
+				$('#tabs-3 .txt').append("<li><a href='"+url+"'>· "+latest.title+"</a></li>");	
+			}
+		});
+	});
+	
+	
+	
+</script>
 <main>
     <div class="slider">
         <ul>
@@ -39,11 +76,14 @@
             <a href="/Farmstory1/board/list.jsp?group=croptalk&cate=grow"><img src="/Farmstory1/img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="/Farmstory1/img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
-            	<% for (ArticleBean article : growArticles) {%>
+            	<% 
+            		for (int i=0 ; i<5 ; i++) {
+            			ArticleBean lt = latests.get(i);
+            	%>
                 <tr>
                     <td></td>
-                    <td><a href="/Farmstory1/board/view.jsp?no=<%= article.getNo()%>"><%= article.getTitle() %></a></td>
-                    <td><%= article.getRdate() %></td>
+                    <td><a href="/Farmstory1/board/view.jsp?group=croptalk&cate=grow&no=<%= lt.getNo() %>&pg=1"><%= lt.getTitle() %></a></td>
+                    <td><%= lt.getRdate() %></td>
                 </tr>
                 <% } %>
             </table>
@@ -52,11 +92,13 @@
             <a href="/Farmstory1/board/list.jsp?group=croptalk&cate=school"><img src="/Farmstory1/img/main_latest2_tit.png" alt="귀농학교"/></a>
             <img src="/Farmstory1/img/main_latest2_img.jpg" alt="이미지"/>
             <table border="0">
-                <% for (ArticleBean article : schoolArticles) {%>
+                <% for (int i=5 ; i<10 ; i++) {
+            			ArticleBean lt = latests.get(i);
+            	%>
                 <tr>
                     <td></td>
-                    <td><a href="/Farmstory1/board/view.jsp?no=<%= article.getNo()%>"><%= article.getTitle() %></a></td>
-                    <td><%= article.getRdate() %></td>
+                    <td><a href="/Farmstory1/board/view.jsp?group=croptalk&cate=school&no=<%= lt.getNo()%>&pg=1"><%= lt.getTitle() %></a></td>
+                    <td><%= lt.getRdate() %></td>
                 </tr>
                 <% } %>
             </table>
@@ -65,11 +107,13 @@
             <a href="/Farmstory1/board/list.jsp?group=croptalk&cate=story"><img src="/Farmstory1/img/main_latest3_tit.png" alt="농작물 이야기"/></a>
             <img src="/Farmstory1/img/main_latest3_img.jpg" alt="이미지"/>
             <table border="0">
-                <% for (ArticleBean article : storyArticles) {%>
+                <% for (int i=10 ; i<15 ; i++) {
+            			ArticleBean lt = latests.get(i);
+            	%>
                 <tr>
                     <td></td>
-                    <td><a href="/Farmstory1/board/view.jsp?no=<%= article.getNo()%>"><%= article.getTitle() %></a></td>
-                    <td><%= article.getRdate() %></td>
+                    <td><a href="/Farmstory1/board/view.jsp??group=croptalk&cate=story&no=<%= lt.getNo()%>&pg=1"><%= lt.getTitle() %></a></td>
+                    <td><%= lt.getRdate() %></td>
                 </tr>
                 <% } %>
             </table>
@@ -79,10 +123,10 @@
 
     <div class="info">
         <div>
-            <img src="/Farmstory1/img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
+            <img src="./img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
             <div class="tel">
-                <img src="/Farmstory1/img/main_sub2_cs_img.png" alt="">
-                <img src="/Farmstory1/img/main_sub2_cs_txt.png" alt="1666-777">
+                <img src="./img/main_sub2_cs_img.png" alt="">
+                <img src="./img/main_sub2_cs_txt.png" alt="1666-777">
                 <p class="time">
                     평일: AM 09:00 ~ PM 06:00<br>
                     점심: PM 12:00 ~ PM 01:00<br>
@@ -90,13 +134,13 @@
                 </p>
             </div>
             <div class="btns">
-                <a href="/Farmstory1/board/list.jsp?group=community&cate=qna"><img src="/Farmstory1/img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
-                <a href="/Farmstory1/board/list.jsp?group=community&cate=faq"><img src="/Farmstory1/img/main_sub2_cs_bt2.png" alt="자주묻는질문"></a>
-                <a href="#"><img src="/Farmstory1/img/main_sub2_cs_bt3.png" alt="배송조회"></a>
+                <a href="/Farmstory1/board/list.jsp?group=community&cate=qna"><img src="./img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
+                <a href="/Farmstory1/board/list.jsp?group=community&cate=faq"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"></a>
+                <a href="#"><img src="./img/main_sub2_cs_bt3.png" alt="배송조회"></a>
             </div>
         </div>
         <div>
-            <img src="/Farmstory1/img/main_sub2_account_tit.png" class="tit" alt="계좌안내"/>
+            <img src="./img/main_sub2_account_tit.png" class="tit" alt="계좌안내"/>
             <p class="account">
                 기업은행 123-456789-01-01-012<br />
                 국민은행 01-1234-56789<br />
@@ -106,8 +150,26 @@
             </p>
         </div>
         <div>
-            
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">공지사항</a></li>
+                    <li><a href="#tabs-2">1:1 고객문의</a></li>
+                    <li><a href="#tabs-3">자주묻는 질문</a></li>
+                </ul>
+                <div id="tabs-1">
+                	<ul class="txt">
+                    </ul>
+                </div>
+                <div id="tabs-2">
+                    <ul class="txt">
+                    </ul>
+                </div>
+                <div id="tabs-3">
+                    <ul class="txt">
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </div> 
 </main>
 <%@ include file="./_footer.jsp" %>

@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+  
     <title>팜스토리::메인</title>
     <link rel="stylesheet" href="/Farmstory1/css/init.css">
     <link rel="stylesheet" href="/Farmstory1/css/header.css">
@@ -17,13 +18,16 @@
    	<!-- 로그인 -->
     <link rel="stylesheet" href="/Farmstory1/user/css/style.css">
     <link rel="stylesheet" href="/Farmstory1/board/css/style.css">
-    
+    <!-- 탭 -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+ 	
     <!-- 라이브러리 -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>    
+    
+    
     
 </head>
 <body>
@@ -39,7 +43,7 @@
 			        <span class="nick"><%= sessUser.getNick() %></span>님
 	                <a href="/Farmstory1/user/proc/logout.jsp" class="logout">[로그아웃] |</a>
             <% } %>
-            	<a href="#">고객센터</a>
+            	<a href="/Farmstory1/board/list.jsp?group=community&cate=qna">고객센터</a>
             </p>
             
             <img src="/Farmstory1/img/head_txt_img.png" alt="3만원 이상 무료배송"/>

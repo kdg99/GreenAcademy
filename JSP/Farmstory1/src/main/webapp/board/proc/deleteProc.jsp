@@ -4,6 +4,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String no = request.getParameter("no");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
 	
 	ArticleDAO dao = ArticleDAO.getInstance();
 	
@@ -22,6 +24,6 @@
 	}
 	
 	
-	response.sendRedirect("/Farmstory1/board/list.jsp");
+	response.sendRedirect("/Farmstory1/board/list.jsp?group="+group+"&cate="+cate);
 	
 %>

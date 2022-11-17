@@ -1,50 +1,43 @@
+<%@page import="kr.co.farmstory1.dao.ArticleDAO"%>
+<%@page import="kr.co.farmstory1.bean.ArticleBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>글수정</title>    
-    <link rel="stylesheet" href="./css/style.css"/>
-</head>
-<body>
-    <div id="wrapper">
-        <header>
-            <h3>Board System v1.0</h3>
-            <p>
-                <span class="nick">길동이</span>님 반갑습니다.
-                <a href="#" class="logout">[로그아웃]</a>
-            </p>
-        </header>
+<%@ include file="../_header.jsp" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	String no = request.getParameter("no");
+	String pg = request.getParameter("pg");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
+	
+	ArticleBean article = ArticleDAO.getInstance().selectArticle(no);
+	
+%>
+<main id="board" class="modify">
+    <form action="/Farmstory1/board/proc/modifyProc.jsp" method="POST">
+    	<input type="hidden" name="no" value="<%= no %>" />
+    	<input type="hidden" name="pg" value="<%= pg %>" />
+    	<input type="hidden" name="group" value="<%= group %>" />
+    	<input type="hidden" name="cate" value="<%= cate %>" />
+        <table border="0">
+            <caption>글수정</caption>
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name="title" placeholder="제목을 입력하세요." value="<%=article.getTitle() %>"/></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td><textarea name="content"><%=article.getContent() %></textarea></td>
+            </tr>
+            <tr>
+                <th>첨부</th>
+                <td><input type="file" name="file"/></td>
+            </tr>
 
-        <main id="board" class="modify">
-            
-            <form action="#">
-                <table border="0">
-                    <caption>글수정</caption>
-                    <tr>
-                        <th>제목</th>
-                        <td><input type="text" name="title" placeholder="제목을 입력하세요."/></td>
-                    </tr>
-                    <tr>
-                        <th>내용</th>
-                        <td><textarea name="content"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>파일</th>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
-                </table>
-
-                <div>
-                    <a href="./view.html" class="btn btnCancel">취소</a>
-                    <input type="submit" value="수정완료" class="btn btnComplete"/>
-                </div>
-            </form>
-        </main>
-
-        <footer>
-            <p>ⓒCopyleft by chhak.or.kr</p>
-        </footer>    
-    </div>
-</body>
-</html>
+        </table>
+        <div>
+            <a href="/JBoard1/view.jsp" class="btn btnCancel">취소</a>
+            <input type="submit" class="btn btnComplete" value="수정완료"/>
+        </div>
+    </form>
+</main>
+<%@ include file="../_footer.jsp" %>

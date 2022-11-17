@@ -19,6 +19,7 @@
 	int pageGroupStart;
 	int pageGroupEnd;
 	int articleNum; //글번호
+	int amount = 10; // 한 페이지에 몇 개 보여줄지
 	
 	if (pg != null){
 		currentPage = Integer.parseInt(pg);
@@ -43,7 +44,7 @@
 		pageGroupEnd = lastPageNum;
 	}
 	//글 목록 가져오기
-	List<ArticleBean> articles = dao.selectArticles(cate, start);	
+	List<ArticleBean> articles = dao.selectArticles(cate, start, amount);	
 	
 	
 %>
@@ -62,7 +63,7 @@
         <% for(ArticleBean article : articles) {%>
         <tr>
             <td><%= articleNum-- %></td>
-            <td><a href="/Farmstory1/board/view.jsp?no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %></a></td>
+            <td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %></a></td>
             <td><%= article.getNick() %></td>
             <td><%= article.getRdate() %></td>
             <td><%= article.getHit() %></td>

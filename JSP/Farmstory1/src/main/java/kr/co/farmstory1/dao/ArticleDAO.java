@@ -174,7 +174,7 @@ public class ArticleDAO {
 		return article;
 	}
 	
-	public List<ArticleBean> selectArticles(String cate, int start) {
+	public List<ArticleBean> selectArticles(String cate, int start, int amount) {
 		logger.debug("selectArticles start...");
 		List<ArticleBean> articles = null;
 		
@@ -186,6 +186,7 @@ public class ArticleDAO {
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
 			psmt.setString(1, cate);
 			psmt.setInt(2, start);
+			psmt.setInt(3, amount);
 			ResultSet rs = psmt.executeQuery();
 			
 			while(rs.next()){
@@ -217,6 +218,74 @@ public class ArticleDAO {
 		return articles;
 		
 	}//select articles-end
+	
+	public List<ArticleBean> selectLatest() {
+		logger.debug("selectLatest start...");
+		List<ArticleBean> latests = null;
+		
+		try{
+			Connection conn = DBCP.getConnection();
+			
+			//게시글가져오기
+			latests = new ArrayList<>();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_LATESTS);
+			
+			while(rs.next()){
+				ArticleBean article = new ArticleBean();
+				article.setNo(rs.getInt(1));
+				article.setTitle(rs.getString(2));
+				article.setRdate(rs.getString(3).substring(2,10));
+				
+				latests.add(article);
+			}
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		logger.debug("selectLatest end...");
+		return latests;
+		
+	}//select latest-end
+	
+	public List<ArticleBean> selectLatest(String cate) {
+		
+		logger.debug("selectLatest start...");
+		List<ArticleBean> latests = new ArrayList<>();
+		
+		try{
+			Connection conn = DBCP.getConnection();
+			
+			//게시글가져오기
+			latests = new ArrayList<>();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_LATEST);
+			psmt.setString(1, cate);
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()){
+				ArticleBean article = new ArticleBean();
+				article.setNo(rs.getInt(1));
+				article.setTitle(rs.getString(2));
+				article.setRdate(rs.getString(3).substring(2,10));
+				
+				latests.add(article);
+			}
+			
+			rs.close();
+			psmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		logger.debug("selectLatest end...");
+		return latests;
+		
+	}
 	
 	//게시글 수정
 	public void updateArticle(String no, String title, String content) {

@@ -4,6 +4,7 @@
 <%
 	String group 	= request.getParameter("group");
 	String cate		= request.getParameter("cate");
+
 %>
 <main id="board" class="write">
     <form action="/Farmstory1/board/proc/writeProc.jsp" method="post" enctype="multipart/form-data">

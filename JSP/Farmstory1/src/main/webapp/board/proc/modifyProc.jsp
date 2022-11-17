@@ -7,9 +7,11 @@
 	String pg = request.getParameter("pg");
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
 
 	ArticleDAO.getInstance().updateArticle(no, title, content);
 	
-	response.sendRedirect("/JBoard1/view.jsp?no="+no+"&pg="+pg);
+	response.sendRedirect("/Farmstory1/board/view.jsp?group="+group+"&cate="+cate+"&no="+no+"&pg="+pg);
 
 %>
