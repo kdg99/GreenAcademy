@@ -8,7 +8,7 @@
 	<body>
 		<h3>student 수정하기</h3>
 		
-		<a href="/Ch09/user1//list.jsp">student 목록</a>
+		<a href="/Ch09/user1/list.jsp">student 목록</a>
 		
 		<form action="/Ch09/user1/modify.do" method="post">
 			<table border="1">
