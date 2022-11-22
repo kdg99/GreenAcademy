@@ -17,6 +17,10 @@ let isNickOk = false;
 let isEmailOk = true;
 let isHpOk = false;
 
+//이메일
+let isEmailAuthOk = false;
+let receivedCode = 0;
+
 $(function(){
 	
 	//
@@ -95,10 +99,62 @@ $(function(){
 		isNickOk = false;
 	});
 	
-	/*
-		이메일 추가할 것
+	/* 이메일인증 */
+	$('#btnEmail').click(function(){
+		let email = $('input[name=email]').val();
 		
-	*/
+		if(email == ''){
+			alert('이메일을 입력해주세요.');
+			return;
+		}
+		
+		if(isEmailAuthOk){ 
+			return;
+		}
+		
+		$('.emailResult').text('인증코드 전송 중입니다. 잠시만 기다리세요...');
+		
+		setTimeout(function(){
+			$.ajax({
+				url: '/JBoard2/user/emailAuth.do',
+				method: 'GET',
+				data: {"email": email},
+				dataType: 'json',
+				success: function(data){
+					if(data.status > 0){
+						//메일전송 성공
+						$('.emailResult').text('인증코드를 입력해주세요.');
+						$('.auth').show();
+						$('input[name=auth]').removeAttr("disabled")
+						receivedCode = data.code;
+					}else{
+						//메일전송 실패
+						$('.emailResult').text('다시 시도해주세요');
+						alert('메일전송이 실패 했습니다. \n다시 시도 하시기 바랍니다.');
+					}
+				}
+			});
+		}, 1000);
+	});
+		
+	//이메일 인증 확인
+	$('#btnEmailConfirm').click(function(){
+		let code = $('input[name=auth]').val();
+		
+		if(code == ''){
+			alert('이메일 확인 후 코드를 입력해주세요.');
+			return;
+		}
+		
+		if(code == receivedCode){
+			isEmailAuthOk = true;
+			$('input[name=email]').attr('readonly', true);
+			$('.emailResult').text('인증완료 되었습니다.');
+			$('.auth').hide();
+			$('input[name=auth]').hide();
+			$('#btnEmailConfirm').hide();
+		}
+	});
 	
 	
 	//
@@ -142,13 +198,37 @@ $(function(){
 			alert('이메일을 확인 하십시오.');
 			return false;
 		}
+		//이메일 인증코드 검증
+		if(!isEmailAuthOk){
+			alert('이메일을 인증 하십시오.');
+			return false;
+		}
 		//휴대폰 검증
 		if(!isHpOk){
 			alert('휴대폰을 확인 하십시오.');
 			return false;
 		}
 		//최종 전송
-		console.log('이게나오면안댐');
+		return true;
+	});
+	
+	//아이디 찾기 버튼
+	$('.btnNext').click(function(){
+		//이메일 인증코드 검증
+		if(!isEmailAuthOk){
+			alert('이메일을 인증 하십시오.');
+			return false;
+		}
+		let findEmail =  $('input[name=email]').val();
+		let findName =  $('input[name=name]').val();
+		$.ajax({
+			url: '/JBoard2/user/findIdResult.do',
+			method: 'POST',
+			data: {"email": findEmail, "name": findName},
+			dataType: 'json',
+			success: function(data){
+			}
+		});
 		return true;
 	});
 });

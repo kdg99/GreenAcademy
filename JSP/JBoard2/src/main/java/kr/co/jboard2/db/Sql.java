@@ -14,6 +14,7 @@ public class Sql {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
+	public static final String SELECT_ID 		= "select * from `board_user` where `name`=? and `email`=?";
 	public static final String SELECT_USER 		= "select * from `board_user` where `uid`=? and `pass`=SHA2(?,256)";
 	public static final String SELECT_COUNT_UID	= "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";

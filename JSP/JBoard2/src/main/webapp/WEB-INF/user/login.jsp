@@ -7,6 +7,8 @@
 	let success = <%= success %>
 	if (success == '100'){
 		alert('아이디/비밀번호가 틀렸습니다.');
+	} else if(success == '201'){
+		alert('로그아웃 되었습니다.');
 	}
 </script>
         <main id="user">

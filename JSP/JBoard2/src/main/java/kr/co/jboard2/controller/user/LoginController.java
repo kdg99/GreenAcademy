@@ -30,19 +30,17 @@ public class LoginController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uid = req.getParameter("uid");
 		String pass = req.getParameter("pass");
-		UserVO user = new UserVO();
-		user.setUid(uid);
-		user.setPass(pass);
 		
-		UserVO login = null;
-		login = UserDAO.getInstance().selectUser(uid, pass);
+		UserVO login = UserDAO.getInstance().selectUser(uid, pass);
 		
 		if(login != null){
+			//회원 맞으면
 			HttpSession session = req.getSession();
-			session.setAttribute("sessUser", user);
-			resp.sendRedirect("/WEB-INF/list.do");
+			session.setAttribute("sessUser", login);
+			resp.sendRedirect("/JBoard2/list.do");
 		}else {
-			resp.sendRedirect("/JBoard2/WEB-INF/user/login.jsp?success=100");		
+			//회원 아니면
+			resp.sendRedirect("/JBoard2/user/login.do?success=100");		
 		}
 	}
 }
