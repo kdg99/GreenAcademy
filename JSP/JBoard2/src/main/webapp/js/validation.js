@@ -12,6 +12,7 @@ let regHp 	= /^\d{3}-\d{3,4}-\d{4}$/;
 // 폼 데이터 검증 결과 상태변수
 let isUidOk = false;
 let isPassOk = false;
+let isPassMatch = false;
 let isNameOk = true;
 let isNickOk = false;
 let isEmailOk = true;
@@ -212,23 +213,44 @@ $(function(){
 		return true;
 	});
 	
-	//아이디 찾기 버튼
-	$('.btnNext').click(function(){
-		//이메일 인증코드 검증
-		if(!isEmailAuthOk){
-			alert('이메일을 인증 하십시오.');
-			return false;
+	//비밀번호 변경
+	$('.btnNext3').click(function(e){
+		e.preventDefault();
+		
+		let uid = $('.uid').text();
+		let pass1 = $('input[name=pass1]').val();
+		let pass2 = $('input[name=pass2]').val();
+		
+		let jsonData = {
+			"pass":pass2, 
+			 "uid":uid
 		}
-		let findEmail =  $('input[name=email]').val();
-		let findName =  $('input[name=name]').val();
+		
+		if(pass1 != pass2){
+			alert('비밀번호가 일치하지 않습니다.');
+			return;
+		}
+		if(!pass2.match(regPass)){
+			alert('8~20글자의 영어+숫자+특수문자 조합을 사용하세요');
+			return;
+		}
+		
+		//성공시
 		$.ajax({
-			url: '/JBoard2/user/findIdResult.do',
+			   url: '/JBoard2/user/findPwChange.do',
 			method: 'POST',
-			data: {"email": findEmail, "name": findName},
-			dataType: 'json',
+			  data: jsonData,
+		  dataType: 'json',
 			success: function(data){
+				if(data.result > 0){
+					alert('새로운 비밀번호로 로그인 하세요.');
+					location.href="/JBoard2/user/login.do";
+				}
 			}
 		});
-		return true;
+		
 	});
+		
+	
+
 });

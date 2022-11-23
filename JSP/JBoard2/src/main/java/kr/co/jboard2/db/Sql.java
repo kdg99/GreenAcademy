@@ -15,10 +15,13 @@ public class Sql {
 												+ "`rdate`=NOW()";
 	
 	public static final String SELECT_ID 		= "select * from `board_user` where `name`=? and `email`=?";
+	public static final String SELECT_PASS 		= "select count(`uid`) from `board_user` where `uid`=? and `email`=?";
 	public static final String SELECT_USER 		= "select * from `board_user` where `uid`=? and `pass`=SHA2(?,256)";
 	public static final String SELECT_COUNT_UID	= "SELECT COUNT(`uid`) FROM `board_user` WHERE `uid`=?"; 
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";
 	public static final String SELECT_TERMS		= "select * from `board_terms`";
+	
+	public static final String UPDATE_USER_PASSWORD		= "update `board_user` set `pass`=SHA2(?,256) where `uid`=?";
 	
 
 	

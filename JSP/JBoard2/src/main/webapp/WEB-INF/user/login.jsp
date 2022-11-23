@@ -2,6 +2,7 @@
 <jsp:include page="_header.jsp"/>
 <%
 	String success = request.getParameter("success");
+	String uid = request.getParameter("uid");
 %>
 <script>
 	let success = <%= success %>
@@ -17,7 +18,7 @@
                     <table border="0">
                         <tr>
                             <td><img src="../img/login_ico_id.png" alt="아이디"/></td>
-                            <td><input type="text" name="uid" placeholder="아이디 입력"/></td>
+                            <td><input type="text" name="uid" <%if(uid != null) {%>value=<%= uid %><% } %> placeholder="아이디 입력"/></td>
                         </tr>
                         <tr>
                             <td><img src="../img/login_ico_pw.png" alt="비밀번호"/></td>

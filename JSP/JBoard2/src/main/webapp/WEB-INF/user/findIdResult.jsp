@@ -1,5 +1,7 @@
+<%@page import="kr.co.jboard2.vo.UserVO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="_header.jsp"/>
+
 <main id="user">
     <section class="find findIdResult">
         <form action="#">
@@ -7,7 +9,7 @@
                 <caption>아이디 찾기 결과</caption>
                 <tr>
                     <td>이름</td>
-                    <td>${ findUser.name }</td>
+                    <td>${ sessionScope.findUser.getName()}</td>
                 </tr>
                 <tr>
                     <td>아이디</td>
@@ -29,8 +31,8 @@
         </p>
 
         <div>
-            <a href="/JBoard2/user/login.do" class="btn btnCancel">로그인</a>
-            <a href="/JBoard2/user/findPw.do" class="btn btnNext">비밀번호 찾기</a>
+            <a href="/JBoard2/user/login.do?uid=${ findUser.uid }" class="btn btnCancel">로그인</a>
+            <a href="/JBoard2/user/findPw.do?uid=${ findUser.uid }" class="btn btnNext">비밀번호 찾기</a>
         </div>
     </section>
 </main>

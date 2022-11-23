@@ -1,17 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="_header.jsp"/>
-<script src="/JBoard2/js/validation.js"></script>
-<%
-	String success = "";
-%>
-<script>
-	let success = <%= success %>
-	if (success == '201'){
-		alert('일치하는 정보가 없습니다');
-	} else if(success == '201'){
-		//
-	}
-</script>
+<script src="/JBoard2/js/emailAuth.js"></script>
+
 <main id="user">
     <section class="find findId">
         <form action="/JBoard2/user/findIdResult.do" method="POST">
