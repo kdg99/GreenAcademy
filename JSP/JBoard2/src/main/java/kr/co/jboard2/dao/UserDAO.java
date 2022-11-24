@@ -155,6 +155,36 @@ public class UserDAO extends DBHelper{
 		}
 		return result;
 	}
+	//
+	public UserVO selectUserBySessId(String sessId) {
+		UserVO user = null; 
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_USER_BY_SESSID);
+			psmt.setString(1, sessId);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserVO();
+				user.setUid(rs.getString(1));
+				user.setPass(rs.getString(2));
+				user.setName(rs.getString(3));
+				user.setNick(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setHp(rs.getString(6));
+				user.setGrade(rs.getInt(7));
+				user.setZip(rs.getString(8));
+				user.setAddr1(rs.getString(9));
+				user.setAddr2(rs.getString(10));
+				user.setRegip(rs.getString(11));
+				user.setRdate(rs.getString(12));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return user;
+	}
 	
 	//
 	public UserVO selectUser(String uid, String pass) {
@@ -186,13 +216,46 @@ public class UserDAO extends DBHelper{
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		logger.debug("email : "+ user.getEmail());
 		return user;
 	}
 	//
 	
 	public void selectUsers() {}
 	public void updateUser() {}
+	
+	//
+	public void updateUserForSession(String sessId, String uid) {
+		
+		try {
+			logger.info("updateUserForSession start...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_FOR_SESSION);
+			psmt.setString(1, sessId);
+			psmt.setString(2, uid);
+			psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	//
+	public void updateUserForSessionOut(String uid) {
+		try {
+			logger.info("updateUserForSessionOut start...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_FOR_SESSION_OUT);
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.debug(uid);
+	}
 	
 	//
 	public int updateUserPassword(String uid, String pass) {
