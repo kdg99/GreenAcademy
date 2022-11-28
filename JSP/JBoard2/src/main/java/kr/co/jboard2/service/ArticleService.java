@@ -29,11 +29,19 @@ public enum ArticleService {
 		return dao.selectCountTotal();
 	}
 	
+	public int selectCountTotalForSearch(String search) {
+		return dao.selectCountTotalForSearch(search);
+	}
+	
 	public ArticleVO selectArticle(String no) {
 		return dao.selectArticle(no);
 	}
 	public List<ArticleVO> selectArticles(int start) {
 		return dao.selectArticles(start);
+	}
+	
+	public List<ArticleVO> selectArticleByKeyword(String keyword, int start) {
+		return dao.selectArticleByKeyword(keyword, start);
 	}
 	
 	

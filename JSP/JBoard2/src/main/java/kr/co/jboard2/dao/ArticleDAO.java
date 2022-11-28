@@ -204,6 +204,41 @@ public class ArticleDAO extends DBHelper{
 		
 	}//select articles-end
 	
+	public List<ArticleVO> selectArticleByKeyword(String keyword, int start) {
+		List<ArticleVO> articles = new ArrayList<>();
+		try {
+			logger.info("selectArticleByKeyword start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_BY_KEYWORD);
+			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(2, "%"+keyword+"%");
+			psmt.setInt(3, start);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleVO article = new ArticleVO();
+				article.setNo(rs.getInt(1));
+				article.setParent(rs.getInt(2));
+				article.setComment(rs.getInt(3));
+				article.setCate(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setContent(rs.getString(6));
+				article.setFile(rs.getInt(7));
+				article.setHit(rs.getInt(8));
+				article.setUid(rs.getString(9));
+				article.setRegip(rs.getString(10));
+				article.setRdate(rs.getString(11));
+				article.setNick(rs.getString(12));
+				
+				articles.add(article);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
+	}
+	
 	//게시글 수정
 	public void updateArticle(String no, String title, String content) {
 		logger.info("updateArticle start...");
@@ -292,6 +327,26 @@ public class ArticleDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 		
+		return total;
+	}
+	//검색 게시물 카운트
+	public int selectCountTotalForSearch(String keyword) {
+		logger.info("selectCountTotalForSearch start...");
+		int total = 0;
+		try{
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_FOR_SEARCH);
+			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(2, "%"+keyword+"%");
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				total = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
 		return total;
 	}
 	
