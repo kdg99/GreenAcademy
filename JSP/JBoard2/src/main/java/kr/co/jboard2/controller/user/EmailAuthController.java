@@ -38,7 +38,6 @@ public class EmailAuthController extends HttpServlet{
 		String sender = "gpaj123ehdm@gmail.com";
 		String password = "wqloionayekqqbel";
 		
-		//String receiver = "chie44911@gmail.com";
 		String title = "JBoard2 인증코드입니다.";
 		String content = "인증코드 6자리는 "+code+"입니다.";
 		
@@ -52,12 +51,10 @@ public class EmailAuthController extends HttpServlet{
 		
 		//미리 등록된 사용자 정보를 가지고 Gmail 서버 인증
 		Session session = Session.getInstance(props, new Authenticator() {
-			
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(sender, password);
 			}
-			
 		});
 		
 		//이메일 발송

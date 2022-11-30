@@ -100,7 +100,6 @@ public class UserDAO extends DBHelper{
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		logger.debug("result : "+ result);
 		return result;
 	}
 	//
@@ -219,9 +218,59 @@ public class UserDAO extends DBHelper{
 		return user;
 	}
 	//
+	public UserVO selectUserForChangeInfo(String uid) {
+		UserVO user = null;
+		try {
+			logger.info("selectUserForChangeInfo start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_USER_FOR_CHANGE_INFO);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserVO();
+				user.setUid(rs.getString(1));
+				user.setPass(rs.getString(2));
+				user.setName(rs.getString(3));
+				user.setNick(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setHp(rs.getString(6));
+				user.setGrade(rs.getInt(7));
+				user.setZip(rs.getString(8));
+				user.setAddr1(rs.getString(9));
+				user.setAddr2(rs.getString(10));
+				user.setRegip(rs.getString(11));
+				user.setRdate(rs.getString(12));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return user;
+	}
+	//
 	
 	public void selectUsers() {}
-	public void updateUser() {}
+	public void updateUser(UserVO user) {
+		try {
+			logger.info("updateUserInfo start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_INFO);
+			psmt.setString(1, user.getName());
+			psmt.setString(2, user.getNick());
+			psmt.setString(3, user.getEmail());
+			psmt.setString(4, user.getHp());
+			psmt.setString(5, user.getZip());
+			psmt.setString(6, user.getAddr1());
+			psmt.setString(7, user.getAddr2());
+			psmt.setString(8, user.getUid());
+			psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	//
 	public void updateUserForSession(String sessId, String uid) {
@@ -262,7 +311,6 @@ public class UserDAO extends DBHelper{
 		int result = 0;
 		try {
 			logger.info("updateUserPassword start...");
-			
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.UPDATE_USER_PASSWORD);
 			psmt.setString(1, pass);
@@ -273,7 +321,25 @@ public class UserDAO extends DBHelper{
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		
 		return result;
 	}
+	//
 	public void deleteUser() {}
+	//
+	public int closeAccount(String uid) {
+		int result = 0;
+		try {
+			logger.info("closeAccount start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.CLOSE_ACCOUNT);
+			psmt.setString(1, uid);
+			result = psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
 }

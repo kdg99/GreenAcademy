@@ -21,10 +21,16 @@ public class Sql {
 	public static final String SELECT_COUNT_NICK= "SELECT COUNT(`nick`) FROM `board_user` WHERE `nick`=?";
 	public static final String SELECT_TERMS		= "select * from `board_terms`";
 	
-	public static final String UPDATE_USER_PASSWORD		= "update `board_user` set `pass`=SHA2(?,256) where `uid`=?";
-	public static final String UPDATE_USER_FOR_SESSION	= "update `board_user` set `sessId`=?, `sessLimitDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) where `uid`=?";
+	public static final String UPDATE_USER_INFO			= "UPDATE `board_user` SET "
+														+ "`name`=?, `nick`=?, `email`=?, `hp`=?, "
+														+ "`zip`=?, `addr1`=?, `addr2`=? "
+														+ "WHERE `uid`=?";
+	public static final String UPDATE_USER_PASSWORD			= "update `board_user` set `pass`=SHA2(?,256) where `uid`=?";
+	public static final String UPDATE_USER_FOR_SESSION		= "update `board_user` set `sessId`=?, `sessLimitDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) where `uid`=?";
 	public static final String UPDATE_USER_FOR_SESSION_OUT	= "update `board_user` set `sessId`=null , `sessLimitDate` = null where `uid`=?";
-	public static final String SELECT_USER_BY_SESSID	= "SELECT * FROM `board_user` WHERE `sessId`=? AND `sessLimitDate` > NOW()";
+	public static final String SELECT_USER_BY_SESSID		= "SELECT * FROM `board_user` WHERE `sessId`=? AND `sessLimitDate` > NOW()";
+	public static final String SELECT_USER_FOR_CHANGE_INFO 	= "select * from `board_user` where `uid`=?";
+	public static final String CLOSE_ACCOUNT			 	= "update `board_user` set `grade`=0, `wdate`=NOW() where `uid`=?";
 	
 
 	

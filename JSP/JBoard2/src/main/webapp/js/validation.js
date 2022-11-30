@@ -12,7 +12,6 @@ let regHp 	= /^\d{3}-\d{3,4}-\d{4}$/;
 // 폼 데이터 검증 결과 상태변수
 let isUidOk = false;
 let isPassOk = false;
-let isPassMatch = false;
 let isNameOk = true;
 let isNickOk = false;
 let isEmailOk = true;
@@ -96,8 +95,9 @@ $(function(){
 	});
 	
 	/* 닉네임값이 수정됐는지 */
-	$('input[name=uid]').keydown(function(){
+	$('input[name=nick]').keydown(function(){
 		isNickOk = false;
+		$('.nickResult').text('');
 	});
 	
 	/* 이메일인증 */
@@ -199,7 +199,7 @@ $(function(){
 			alert('이메일을 확인 하십시오.');
 			return false;
 		}
-		//이메일 인증코드 검증
+		//이메일 인증코드 검증                  
 		if(!isEmailAuthOk){
 			alert('이메일을 인증 하십시오.');
 			return false;

@@ -24,7 +24,6 @@ public class FindPwController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		HttpSession sess = req.getSession();
 		sess.removeAttribute("findUser");
 		

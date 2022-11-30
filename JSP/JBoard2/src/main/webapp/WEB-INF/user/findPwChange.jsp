@@ -14,7 +14,7 @@
                     <td>새 비밀번호</td>
                     <td>
                         <input type="password" name="pass1" placeholder="새 비밀번호 입력"/>
-                    </td>cold blooded
+                    </td>
                 </tr>
                 <tr>
                     <td>새 비밀번호 확인</td>
