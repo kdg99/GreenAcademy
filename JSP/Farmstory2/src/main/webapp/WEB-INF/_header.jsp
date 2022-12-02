@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>팜스토리::처리</title>
+    <title>팜스토리::${ cate }</title>
     <link rel="stylesheet" href="/Farmstory2/css/style.css"/>
     <link rel="stylesheet" href="/Farmstory2/css/board.css"/>
     <link rel="stylesheet" href="/Farmstory2/css/user.css"/>

@@ -68,4 +68,76 @@ public enum ArticleService {
 		return dao.selectArticles(start, cate, amount);
 	}
 	
+	public List<ArticleVO> selectArticleByKeyword(String keyword, int start, String cate, int amount) {
+		return dao.selectArticleByKeyword(keyword, start, cate, amount);
+	}
+	
+	public int selectCountTotal(String cate) {
+		return dao.selectCountTotal(cate);
+	}
+	
+	public int selectCountTotalForSearch(String search, String cate) {
+		return dao.selectCountTotalForSearch(search, cate);
+	}
+	
+	//list-page
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		if(pg != null){
+			currentPage = Integer.parseInt(pg);	
+		}
+		return currentPage;
+	}
+	
+	public int getLastPageNum(int total) {
+		int lastPageNum = 0;
+		
+		if(total % 10 == 0){
+			lastPageNum = total / 10;
+		}else{
+			lastPageNum = total / 10 + 1;
+		}
+		return lastPageNum;
+	}
+	
+	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
+		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+		int pageGroupEnd = currentPageGroup * 10;
+		
+		if(pageGroupEnd > lastPageNum){
+			pageGroupEnd = lastPageNum;
+		}
+		int[] result = {pageGroupStart, pageGroupEnd};
+		return result;
+	}
+	
+	public int getPageStartNum(int total, int currentPage) {
+		int start = (currentPage - 1) * 10;
+		return total - start;
+	}
+	
+	public int getStartNum(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
+	
+	//comment
+	public void insertComment(String parent, String content, String uid, String regip) {
+		ArticleVO comment = new ArticleVO();
+		comment.setParent(parent);
+		comment.setContent(content);
+		comment.setUid(uid);
+		comment.setRegip(regip);
+		dao.insertComment(comment, parent);
+	}
+	
+	public List<ArticleVO> selectComments(String parent) {
+		return dao.selectComments(parent);
+	}
+	
+	public void deleteComment(String parent) {
+		dao.deleteComment(parent);
+	}
+	
+	
 }

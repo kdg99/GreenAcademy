@@ -7,6 +7,7 @@
         <form action="/Farmstory2/board/modify.do" method="POST">
         	<input type="hidden" name="group" value="${ group }" />
         	<input type="hidden" name="cate" value="${ cate }" />
+        	<input type="hidden" name="pg" value="${ pg }" />
         	<input type="hidden" name="no" value="${ article.no }" />
             <table border="0">
                 <caption>글수정</caption>
@@ -29,7 +30,7 @@
             </table>
             
             <div>
-                <a href="./view.do?group=${group}&cate=${cate}" class="btn btnCancel">취소</a>
+                <a href="./view.do?group=${group}&cate=${cate}&pg=${ pg }" class="btn btnCancel">취소</a>
                 <input type="submit" value="작성완료" class="btn btnComplete"/>
             </div>
         </form>

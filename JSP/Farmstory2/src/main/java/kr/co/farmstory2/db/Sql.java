@@ -63,16 +63,16 @@ public static final String SELECT_ARTICLES	= "select a.*, b.`nick` FROM `board_a
 public static final String SELECT_ARTICLE_BY_KEYWORD 	= "SELECT a.*, b.nick FROM `board_article` AS a "
 														+ "JOIN `board_user` AS b "
 														+ "ON a.uid = b.uid "
-														+ "WHERE `parent`=0 AND "
+														+ "WHERE `parent`=0 AND `cate`=? AND "
 														+ "(`title` LIKE ? OR `nick` LIKE ?) "
 														+ "ORDER BY `no` DESC "
-														+ "LIMIT ?, 10";
+														+ "LIMIT ?, ?";
 				
-public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`=0";
+public static final String SELECT_COUNT_TOTAL ="SELECT COUNT(`no`) FROM `board_article` WHERE `parent`=0 AND `cate`=?";
 public static final String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(`no`) FROM `board_article` AS a "
 						+ "JOIN `board_user` AS b "
 						+ "ON a.uid = b.uid "
-						+ "WHERE `parent`=0 AND "
+						+ "WHERE `parent`=0 AND `cate`=? AND "
 						+ "(`title` LIKE ? OR `nick` LIKE ?)";
 // view.jsp
 public static final String SELECT_ARTICLE	="SELECT a.*, b.`fno`, b.`oriName`, b.`download` "
@@ -107,6 +107,10 @@ public static final String SELECT_COMMENT_LATEST 	= "SELECT a.*, b.nick FROM `bo
 public static final String UPDATE_COMMENT 	= "UPDATE `board_article` SET "
 			+ "`content`=?, `rdate`=NOW() WHERE `no`=?";
 
+public static final String UPDATE_ARTICLE_COMMENT	= "UPDATE `board_article` SET "
+													+ "`comment` = (SELECT a.count FROM "
+													+ "(SELECT COUNT(`no`) AS count FROM `board_article` WHERE parent=?) a) "
+													+ "WHERE `no`=?";
 public static final String DELETE_COMMENT	= "DELETE FROM `board_article` WHERE `no`=?";
 public static final String DELETE_ARTICLE	= "DELETE FROM `board_article` WHERE `no`=? or `parent`=?";
 public static final String DELETE_FILE		= "DELETE FROM `board_file` WHERE `parent`=?";

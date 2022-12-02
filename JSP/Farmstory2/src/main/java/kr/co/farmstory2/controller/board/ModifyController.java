@@ -24,11 +24,13 @@ public class ModifyController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
+		String pg = req.getParameter("pg");
 		String no = req.getParameter("no");
 		
 		ArticleVO article = service.selectArticle(no);
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		req.setAttribute("pg", pg);
 		req.setAttribute("article", article);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/modify.jsp");
@@ -40,10 +42,11 @@ public class ModifyController extends HttpServlet{
 		String no = req.getParameter("no");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
+		String pg = req.getParameter("pg");
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
 		
 		service.updateArticle(no, title, content);
-		resp.sendRedirect("/Farmstory2/board/view.do?group="+group+"&cate="+cate+"&no="+no);
+		resp.sendRedirect("/Farmstory2/board/view.do?group="+group+"&cate="+cate+"&pg="+pg+"&no="+no);
 	}
 }

@@ -82,50 +82,7 @@ public class ArticleDAO extends DBHelper{
 		}
 	}
 	
-	//댓글등록
-	public ArticleVO insertComment(ArticleVO comment) {
-		
-		ArticleVO article = null;
-		
-		try{
-			logger.info("insertComment start...");
-			conn = getConnection();
-			//트랜잭션시작
-			conn.setAutoCommit(false);
-			
-			psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
-			stmt = conn.createStatement();
-			
-			psmt.setInt(1, comment.getParent());
-			psmt.setString(2, comment.getContent());
-			psmt.setString(3, comment.getUid());
-			psmt.setString(4, comment.getRegip());
-			
-			psmt.executeUpdate();
-			rs = stmt.executeQuery(Sql.SELECT_COMMENT_LATEST);
-			
-			//트랜잭션 작업 확정
-			conn.commit();
-			
-			if(rs.next()) {
-				article = new ArticleVO();
-				article.setNo(rs.getInt(1));
-				article.setParent(rs.getInt(2));
-				article.setContent(rs.getString(6));
-				article.setRdate(rs.getString(11).substring(2,10));
-				article.setNick(rs.getString(12));
-				
-			}
-			
-			close();
-			
-		}catch(Exception e){
-			logger.error(e.getMessage());
-		}
-		
-		return article;
-	}
-	
+	//
 	public ArticleVO selectArticle(String no) {
 		logger.info("selectArticle start...");
 		ArticleVO article = null;
@@ -168,7 +125,6 @@ public class ArticleDAO extends DBHelper{
 	public List<ArticleVO> selectArticles(int start, String cate, int amount) {
 		logger.info("selectArticles start..."+ cate + " start=" + start);
 		List<ArticleVO> articles = null;
-		
 		try{
 			conn = getConnection();
 			//게시글가져오기
@@ -201,20 +157,22 @@ public class ArticleDAO extends DBHelper{
 		}catch(Exception e){
 			logger.error(e.getMessage());
 		}
-		
+		logger.info("selectArticles end... total=" + articles.size());
 		return articles;
 		
 	}//select articles-end
 	
-	public List<ArticleVO> selectArticleByKeyword(String keyword, int start) {
+	public List<ArticleVO> selectArticleByKeyword(String keyword, int start, String cate, int amount) {
 		List<ArticleVO> articles = new ArrayList<>();
 		try {
 			logger.info("selectArticleByKeyword start...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_BY_KEYWORD);
-			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(1, cate);
 			psmt.setString(2, "%"+keyword+"%");
-			psmt.setInt(3, start);
+			psmt.setString(3, "%"+keyword+"%");
+			psmt.setInt(4, start);
+			psmt.setInt(5, amount);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -309,37 +267,36 @@ public class ArticleDAO extends DBHelper{
 	}
 	
 	// 전체 게시물 카운트
-	public int selectCountTotal() {
+	public int selectCountTotal(String cate) {
 		logger.info("selectCountTotal start...");
 		int total = 0;
 		
 		try{
 			conn = getConnection();
 			
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL);
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate);
+			rs = psmt.executeQuery();
 			
 			if(rs.next()){
 				total = rs.getInt(1);
 			}
-			
 			close();
-			
 		}catch(Exception e){
 			logger.error(e.getMessage());
 		}
-		
 		return total;
 	}
 	//검색 게시물 카운트
-	public int selectCountTotalForSearch(String keyword) {
+	public int selectCountTotalForSearch(String keyword, String cate) {
 		logger.info("selectCountTotalForSearch start...");
 		int total = 0;
 		try{
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_FOR_SEARCH);
-			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(1, cate);
 			psmt.setString(2, "%"+keyword+"%");
+			psmt.setString(3, "%"+keyword+"%");
 			rs = psmt.executeQuery();
 			
 			if(rs.next()){
@@ -413,16 +370,12 @@ public class ArticleDAO extends DBHelper{
 				
 				comments.add(comment);
 			}
-			
 			close();
-			
 		}catch(Exception e){
 			logger.error(e.getMessage());
 		}
-		
 		return comments;
-		
-	}//select articles-end
+	}
 	
 	//조회수증가
 	public void updateArticleHit(String no) {
@@ -456,44 +409,92 @@ public class ArticleDAO extends DBHelper{
 		}
 	}
 	
-	// 댓글 수정
-	public int updateComment(String no, String content) {
-		logger.info("updateComment start...");
-		int result = 0;
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
-			psmt.setString(1, content);
-			psmt.setString(2, no);
-			result = psmt.executeUpdate();
-			
-			close();
-			
-		} catch(Exception e) {
-			logger.error(e.getMessage());
-		}
-		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-	}
 	
-	// 댓글 삭제
-	public int deleteComment(String no) {
-		logger.info("deleteComment start...");
-		int result = 0;
-		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
-			psmt.setString(1, no);
-			result = psmt.executeUpdate();
-			
-			close();
-			
-		} catch(Exception e) {
-			logger.error(e.getMessage());
-		}
-		return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-	}
 
 	
-	
+	//댓글
+	//댓글등록
+		public ArticleVO insertComment(ArticleVO comment, String parent) {
+			ArticleVO article = null;
+			try{
+				logger.info("insertComment start...");
+				conn = getConnection();
+				//트랜잭션시작
+				conn.setAutoCommit(false);
+				
+				psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+				PreparedStatement psmt2 = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT);
+				stmt = conn.createStatement();
+				
+				psmt.setInt(1, comment.getParent());
+				psmt.setString(2, comment.getContent());
+				psmt.setString(3, comment.getUid());
+				psmt.setString(4, comment.getRegip());
+				psmt2.setString(1, parent);
+				psmt2.setString(2, parent);
+				
+				psmt.executeUpdate();
+				psmt2.executeUpdate();
+				rs = stmt.executeQuery(Sql.SELECT_COMMENT_LATEST);
+				
+				//트랜잭션 작업 확정
+				conn.commit();
+				
+				if(rs.next()) {
+					article = new ArticleVO();
+					article.setNo(rs.getInt(1));
+					article.setParent(rs.getInt(2));
+					article.setContent(rs.getString(6));
+					article.setRdate(rs.getString(11).substring(2,10));
+					article.setNick(rs.getString(12));
+				}
+				psmt2.close();
+				close();
+			}catch(Exception e){
+				logger.error(e.getMessage());
+			}
+			return article;
+		}
+		
+		// 댓글 수정
+		public int updateComment(String no, String content) {
+			logger.info("updateComment start...");
+			int result = 0;
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
+				psmt.setString(1, content);
+				psmt.setString(2, no);
+				result = psmt.executeUpdate();
+				
+				close();
+				
+			} catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+		}
+		
+		// 댓글 삭제
+		public int deleteComment(String parent) {
+			logger.info("deleteComment start...");
+			int result = 0;
+			try {
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+				PreparedStatement psmt2 = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT);
+				psmt.setString(1, parent);
+				psmt2.setString(1, parent);
+				psmt2.setString(2, parent);
+				result = psmt.executeUpdate();
+				
+				psmt2.close();
+				close();
+				
+			} catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			return result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+		}
 	
 }

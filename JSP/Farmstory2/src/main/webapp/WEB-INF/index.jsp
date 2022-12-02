@@ -28,39 +28,60 @@
             <a href="/Farmstory2/board/list.do?group=croptalk&cate=grow"><img src="/Farmstory2/img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="/Farmstory2/img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
-                <c:forEach var="article" items="${ growList }">                
-	            <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=grow&no=${ article.no }">${article.title}</a></td>
-                    <td>${ article.rdate }</td>
-                </tr>
-	            </c:forEach>
+            	<c:choose>
+            		<c:when test="${ empty growList }">
+            			<td><p>최근 게시글이 없습니다.</p></td>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach var="article" items="${ growList }">                
+			            <tr>
+		                    <td></td>
+		                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=grow&no=${ article.no }">${article.title}</a></td>
+		                    <td>${ article.rdate }</td>
+		                </tr>
+			            </c:forEach>
+            		</c:otherwise>
+            	</c:choose>
             </table>
         </div>
         <div>
             <a href="/Farmstory2/board/list.do?group=croptalk&cate=school"><img src="/Farmstory2/img/main_latest2_tit.png" alt="귀농학교"/></a>
             <img src="/Farmstory2/img/main_latest2_img.jpg" alt="이미지"/>
             <table border="0">
-                <c:forEach var="article" items="${ schoolList }">                
-	            <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=school&no=${ article.no }">${article.title}</a></td>
-                    <td>${ article.rdate }</td>
-                </tr>
-	            </c:forEach>
+	            <c:choose>
+            		<c:when test="${ empty schoolList }">
+            			<td><p>최근 게시글이 없습니다.</p></td>
+            		</c:when>
+            		<c:otherwise>
+		                <c:forEach var="article" items="${ schoolList }">                
+			            <tr>
+		                    <td>></td>
+		                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=school&no=${ article.no }">${article.title}</a></td>
+		                    <td>${ article.rdate }</td>
+		                </tr>
+			            </c:forEach>
+			        </c:otherwise>
+            	</c:choose>
             </table>
         </div>
         <div>
             <a href="/Farmstory2/board/list.do?group=croptalk&cate=story"><img src="/Farmstory2/img/main_latest3_tit.png" alt="농작물 이야기"/></a>
             <img src="/Farmstory2/img/main_latest3_img.jpg" alt="이미지"/>
             <table border="0">
-                <c:forEach var="article" items="${ storyList }">                
-	            <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=story&no=${ article.no }">${article.title}</a></td>
-                    <td>${ article.rdate }</td>
-                </tr>
-	            </c:forEach>
+            	<c:choose>
+            		<c:when test="${ empty storyList }">
+            			<td><p>최근 게시글이 없습니다.</p></td>
+            		</c:when>
+            		<c:otherwise>
+		                <c:forEach var="article" items="${ storyList }">                
+			            <tr>
+		                    <td>></td>
+		                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=story&no=${ article.no }">${article.title}</a></td>
+		                    <td>${ article.rdate }</td>
+		                </tr>
+			            </c:forEach>
+		            </c:otherwise>
+           		</c:choose>
             </table>
         </div>
         
@@ -103,23 +124,44 @@
                 </ul>
                 <div id="tabs-1">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
+		               	<c:choose>
+		            		<c:when test="${ empty noticeList }">
+		            			<li><a>· 최근 게시글이 없습니다.</a></li>
+		            		</c:when>
+		            		<c:otherwise>
+				                <c:forEach var="article" items="${ noticeList }">                
+					            	<li><a href="/Farmstory2/board/view.do?group=community&cate=notice&no=${ article.no }">${ article.title }</a></li>
+					            </c:forEach>
+				            </c:otherwise>
+		           		</c:choose>
                     </ul>
                 </div>
                 <div id="tabs-2">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
+                        <c:choose>
+		            		<c:when test="${ empty qnaList }">
+		            			<li><a>· 최근 게시글이 없습니다.</a></li>
+		            		</c:when>
+		            		<c:otherwise>
+				                <c:forEach var="article" items="${ qnaList }">                
+					            	<li><a href="/Farmstory2/board/view.do?group=community&cate=qna&no=${ article.no }">${ article.title }</a></li>
+					            </c:forEach>
+				            </c:otherwise>
+		           		</c:choose>
                     </ul>
                 </div>
                 <div id="tabs-3">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
+                        <c:choose>
+		            		<c:when test="${ empty faqList }">
+		            			<li><a>· 최근 게시글이 없습니다.</a></li>
+		            		</c:when>
+		            		<c:otherwise>
+				                <c:forEach var="article" items="${ faqList }">                
+					            	<li><a href="/Farmstory2/board/view.do?group=community&cate=faq&no=${ article.no }">${ article.title }</a></li>
+					            </c:forEach>
+				            </c:otherwise>
+		           		</c:choose>
                     </ul>
                 </div>
             </div>

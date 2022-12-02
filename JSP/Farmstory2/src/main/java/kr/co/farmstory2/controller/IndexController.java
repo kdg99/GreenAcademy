@@ -27,10 +27,16 @@ public class IndexController extends HttpServlet{
 		List<ArticleVO> growList = service.selectArticles(0, "grow", 5);
 		List<ArticleVO> schoolList = service.selectArticles(0, "school", 5);
 		List<ArticleVO> storyList = service.selectArticles(0, "story", 5);
+		List<ArticleVO> noticeList = service.selectArticles(0, "notice", 3);
+		List<ArticleVO> qnaList = service.selectArticles(0, "qna", 3);
+		List<ArticleVO> faqList = service.selectArticles(0, "faq", 3);
 		
 		req.setAttribute("growList", growList);
 		req.setAttribute("schoolList", schoolList);
 		req.setAttribute("storyList", storyList);
+		req.setAttribute("noticeList", noticeList);
+		req.setAttribute("qnaList", qnaList);
+		req.setAttribute("faqList", faqList);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
 		dispatcher.forward(req, resp);
