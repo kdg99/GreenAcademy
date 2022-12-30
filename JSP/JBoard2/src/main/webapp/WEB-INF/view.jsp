@@ -10,7 +10,7 @@
             </tr>
             <tr>
                 <th>파일</th>
-                <td><a href="#">2020년 상반기 매출자료.xls</a>&nbsp;<span>7</span>회 다운로드</td>
+                <td><a href="/JBoard2/user/download.do?fno=${ article.fno }">${ article.oriName }</a><span> ${ article.download }</span>회 다운로드</td>
             </tr>
             <tr>
                 <th>내용</th>
@@ -29,7 +29,7 @@
         <!-- 댓글목록 -->
         <section class="commentList">
             <h3>댓글목록</h3>                   
-
+		<!-- 
             <article>
                 <span class="nick">길동이</span>
                 <span class="date">20-05-20</span>
@@ -38,7 +38,8 @@
                     <a href="#" class="remove">삭제</a>
                     <a href="#" class="modify">수정</a>
                 </div>
-            </article>
+            </article> 
+        -->
 
             <p class="empty">등록된 댓글이 없습니다.</p>
 
