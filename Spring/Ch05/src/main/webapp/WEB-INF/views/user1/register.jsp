@@ -10,7 +10,7 @@
 		<a href="/Ch05/">user1 메인</a>
 		<a href="/Ch05/user1/list">user1 목록</a>
 			
-		<form action="#">
+		<form action="/Ch05/user1/register" method="POST">
 			<table border="1">
 				<tr>
 					<td>아이디</td>

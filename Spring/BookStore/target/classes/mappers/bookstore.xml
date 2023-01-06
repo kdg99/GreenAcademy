@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookstore">
+
+	<!-- book -->
+	<insert id="insertBook">
+		INSERT INTO `book` SET `bookName`=#{bookName}, `publisher`=#{publisher}, `price`=#{price};
+	</insert>
+	
+	<select id="selectBook" resultType="kr.co.bookstore.vo.BookVO">
+		SELECT * FROM `book` WHERE `bookId`=#{bookId};
+	</select>
+	
+	<select id="selectBooks" resultType="kr.co.bookstore.vo.BookVO">
+		SELECT * FROM `book`;
+	</select>
+	
+	<update id="updateBook">
+		UPDATE `book` SET `bookName`=#{bookName}, `publisher`=#{publisher}, `price`=#{price} WHERE `bookId`=#{bookId};
+	</update>
+	
+	<delete id="deleteBook">
+		DELETE FROM `book` WHERE `bookId`=#{bookId};
+	</delete>
+	
+	
+	<!-- cust -->
+	<insert id="insertCust">
+		INSERT INTO `customer` SET `custName`=#{custName}, `custAddr`=#{custAddr}, `custHp`=#{custHp};
+	</insert>
+	
+	<select id="selectCust" resultType="kr.co.bookstore.vo.CustVO">
+		SELECT * FROM `customer` WHERE `custId`=#{custId};
+	</select>
+	
+	<select id="selectCusts" resultType="kr.co.bookstore.vo.CustVO">
+		SELECT * FROM `customer`;
+	</select>
+	
+	<update id="updateCust">
+		UPDATE `customer` SET `custName`=#{custName}, `custAddr`=#{custAddr}, `custHp`=#{custHp} WHERE `custId`=#{custId};
+	</update>
+	
+	<delete id="deleteCust">
+		DELETE FROM `customer` WHERE `custId`=#{custId};
+	</delete>
+
+</mapper>
