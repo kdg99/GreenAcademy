@@ -1,8 +1,24 @@
-import math
+global a
+global b
+a = 0
+b = 0
+
+def fibonacci(n):
+    if n==0:
+        global a
+        a += 1
+        return 0
+    elif n==1:
+        global b
+        b += 1
+        return 1
+    else:
+        return (fibonacci(n-1) + fibonacci(n-2))
 
 test = int(input())
-
 for i in range(test):
-    x1,y1,r1,x2,y2,r2 = map(int, input().split())
-    farx = math.sqrt((x1-x2)**2+(y1-y2)**2)
-      
+    num = int(input())
+    fibonacci(num)
+    print(a, ' ', b)
+
+#https://www.acmicpc.net/board/view/24540
