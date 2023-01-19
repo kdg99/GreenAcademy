@@ -1,7 +1,7 @@
 package kr.co.sboard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.co.sboard.dao.UserDAO;
@@ -16,13 +16,13 @@ public class UserService {
 	private UserDAO dao;
 	@Autowired
 	private UserRepo repo;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public int insertUser(UserVO vo) {
-		String pass = vo.getPass2();
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		vo.setPass(encoder.encode(pass));
-
+		vo.setPass(passwordEncoder.encode(vo.getPass2()));
 		int result = dao.insertUser(vo);
+		
 		return result;
 	}
 	public void selectUser() {}

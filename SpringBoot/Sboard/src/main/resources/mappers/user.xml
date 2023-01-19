@@ -12,7 +12,7 @@
 			`nick`=#{nick},
 			`email`=#{email},
 			`hp`=#{hp},
-			`grade`=#{grade},
+			`grade`=3,
 			`zip`=#{zip},
 			`addr1`=#{addr1},
 			`addr2`=#{addr2},

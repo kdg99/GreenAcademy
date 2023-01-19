@@ -1,14 +1,21 @@
 package kr.co.sboard.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.Data;
+
+@Data
 public class ArticleVO {
-	private String as;
+	private int no;
+	private int parent;
+	private int comment;
+	private String cate;
+	private String title;
+	private String content;
+	private MultipartFile fname;
+	private int file;
+	private int hit;
+	private String uid;
+	private String regip;
+	private String rdate;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>글목록</title>    
@@ -10,7 +11,7 @@
         <header>
             <h3>Board System v1.0</h3>
             <p>
-                <span class="nick">길동이</span>님 반갑습니다.
+                <span class="nick" sec:authentication="principal.user.nick">길동이</span>님 반갑습니다.
                 <a th:href="@{/user/logout}" class="logout">[로그아웃]</a>
             </p>
         </header>
@@ -32,7 +33,14 @@
                     <td>길동이</td>
                     <td>20-05-12</td>
                     <td>12</td>
-                </tr>               
+                </tr>
+                <tr th:each="article:${articles}">
+					<td>[[${article.no}]]</td>
+					<td><a th:href="@{/view(no=${article.no})}">[[${article.title}]]</a></td>
+					<td>[[${article.uid}]]</td>
+					<td>[[${article.rdate}]]</td>			
+					<td>[[${article.hit}]]</td>			
+				</tr>        
                 
             </table>
 

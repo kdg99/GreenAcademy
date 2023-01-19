@@ -18,24 +18,26 @@
         <main id="board" class="modify">
             
             <form th:action="@{/modify}" method="post">
+            	<input type="hidden" name="no" th:value="${article.no}">
                 <table border="0">
                     <caption>글수정</caption>
                     <tr>
                         <th>제목</th>
-                        <td><input type="text" name="title" placeholder="제목을 입력하세요."/></td>
+                        <td><input type="text" name="title" placeholder="제목을 입력하세요." th:value="${article.title}"/></td>
                     </tr>
                     <tr>
                         <th>내용</th>
-                        <td><textarea name="content"></textarea></td>
+                        <td><textarea name="content">[[${article.content}]]</textarea></td>
                     </tr>
-                    <tr>
-                        <th>파일</th>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
+					<tr>
+	                    <th>파일</th>
+	                    <td th:if="${file != null}"><a th:href="@{#}">[[${file.oriName}]]</a></td>
+	                    <td th:unless="${file != null}"><a th:href="@{#}">첨부된 파일이 없습니다.</td>
+	                </tr>
                 </table>
 
                 <div>
-                    <a th:href="@{/view}" class="btn btnCancel">취소</a>
+                    <a th:href="@{/view(no=${article.no})}" class="btn btnCancel">취소</a>
                     <input type="submit" value="수정완료" class="btn btnComplete"/>
                 </div>
             </form>
