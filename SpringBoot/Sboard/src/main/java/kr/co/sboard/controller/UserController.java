@@ -22,32 +22,33 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@GetMapping("/user/login")
+	@GetMapping("user/login")
 	public String login() {
-		return "/user/login";
+		return "user/login";
 	}
 	
-	@GetMapping("/user/register")
+	@GetMapping("user/register")
 	public String register() {
-		return "/user/register";
+		return "user/register";
 	}
-	@PostMapping("/user/register")
+	@PostMapping("user/register")
 	public String register(UserVO vo, HttpServletRequest req) {
 		vo.setRegip(req.getRemoteAddr());
 		int result = 200+service.insertUser(vo);
 		return "redirect:/user/login?success="+result;
 	}
 	
-	@GetMapping("/user/terms")
+	@GetMapping("user/terms")
 	public String terms(Model model) {
 		TermsVO terms = service.selectTerms();
 		model.addAttribute("terms", terms);
 		
-		return "/user/terms";
+		return "user/terms";
 	}
 	
+	//기능
 	@ResponseBody
-	@GetMapping("/user/checkUid")
+	@GetMapping("user/checkUid")
 	public Map<String, Integer> checkUid(String uid) {
 		int result = service.countUser(uid);
 		Map<String, Integer> map = new HashMap<>();

@@ -8,18 +8,55 @@
 		INSERT INTO `board_article` set
 			`title`=#{title},
 			`content`=#{content},
-			`file`=#{file},
+			<if test="fname.isEmpty() == true">
+				`file`=0,
+			</if>
+			<if test="fname.isEmpty() == false">
+				`file`=1,
+			</if>
 			`uid`=#{uid},
 			`regip`=#{regip},
 			`rdate`=NOW();
 	</insert>
 	
-	<select id="selectArticle" resultType="kr.co.sboard.vo.ArticleVO">
-		SELECT * FROM `board_article` WHERE `no`=#{no};
+	<!-- 사용자 정의 resultMap -->
+	<resultMap id="selectArticleResultMap" type="kr.co.sboard.vo.ArticleVO">
+		<id column="no" property="no"/>
+		<result column="parent" property="parent"/>	
+		<result column="comment" property="comment"/>	
+		<!-- <result column="cate" property="cate"/>	 -->
+		<result column="title" property="title"/>	
+		<result column="content" property="content"/>	
+		<result column="file" property="file"/>	
+		<!-- <result column="hit" property="hit"/>  -->	
+		<result column="uid" property="uid"/>	
+		<result column="regip" property="regip"/>	
+		<result column="rdate" property="rdate"/>
+		
+		<association property="fileVO" javaType="kr.co.sboard.vo.FileVO">
+			<id column="fno" property="fno" />
+			<result column="parent" property="parent"/>
+			<result column="newName" property="newName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="download" property="download"/>
+			<result column="rdate" property="rdate"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectArticle" resultMap="selectArticleResultMap">
+		SELECT * FROM `board_article` as a
+		left join `board_file` as b 
+		on a.no = b.parent 
+		WHERE `no`=#{no};
 	</select>
 	
 	<select id="selectArticles" resultType="kr.co.sboard.vo.ArticleVO">
-		SELECT * FROM `board_article`;
+		select a.*, b.`nick` from `board_article` as a 
+		join `board_user` as b
+		on a.uid = b.uid
+		where `parent`=0
+		order by `no` desc 
+		limit #{start}, 10;	
 	</select>
 	
 	<update id="updateArticle">
@@ -30,6 +67,7 @@
 		DELETE FROM `board_article` WHERE `no`=#{no};
 	</delete>
 	
+	<!-- File -->
 	<insert id="insertFile">
 		INSERT INTO `board_file` set
 			`parent`=#{parent},
@@ -39,7 +77,16 @@
 	</insert>
 	
 	<select id="selectFile" resultType="kr.co.sboard.vo.FileVO">
-		SELECT * FROM `board_file` WHERE `parent`=#{parent};
+		SELECT * FROM `board_file` WHERE `fno`=#{fno};
+	</select>
+	
+	<update id="updateFileDownload">
+		UPDATE `board_file` set `download`=`download` + 1 where `fno`=#{fno};
+	</update>
+	
+	<!-- 페이징 -->
+	<select id="selectCountTotal" resultType="int">
+		select count(`no`) from `board_article` where `parent`=0;
 	</select>
 
 </mapper>
