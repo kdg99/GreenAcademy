@@ -1,0 +1,36 @@
+<th:block th:include="@{_header.html}"/>
+<th:block th:include="@{board/_community.html}"/>
+        <main id="board" class="modify">
+            
+            <form th:action="@{/board/modify}" method="post">
+            	<input type="hidden" name="no" th:value="${article.no}">
+                <table border="0">
+                    <caption>글수정</caption>
+                    <tr>
+                        <th>제목</th>
+                        <td><input type="text" name="title" placeholder="제목을 입력하세요." th:value="${article.title}"/></td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td><textarea name="content">[[${article.content}]]</textarea></td>
+                    </tr>
+					<tr>
+	                    <th>파일</th>
+	                    <td th:if="${article.file == 1}"><a th:href="@{#}">[[${article.fileVO.oriName}]]</a></td>
+	                    <td th:unless="${article.file == 1}"><a th:href="@{#}">첨부된 파일이 없습니다.</td>
+	                </tr>
+                </table>
+
+                <div>
+                    <a th:href="@{/board/view(group=${group}, no=${article.no})}" class="btn btnCancel">취소</a>
+                    <input type="submit" value="수정완료" class="btn btnComplete"/>
+                </div>
+            </form>
+        </main>
+
+<!-- 내용 끝 -->
+</article>
+</section>
+</div>
+
+<th:block th:include="@{_footer.html}"/>
