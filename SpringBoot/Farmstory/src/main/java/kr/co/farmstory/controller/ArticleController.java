@@ -20,29 +20,32 @@ public class ArticleController {
     @Autowired
     private ArticleService service;
     @GetMapping("board/list")
-    public String list(Model model, String group, String pg){
+    public String list(Model model, String group, String cate, String pg){
         //페이징
         int currentPage = service.getCurrentPage(pg);
         int start = service.getLimitStart(currentPage);
-        int total = service.selectCountTotal();
+        int total = service.selectCountTotal(cate);
         int lastPageNum = service.getLastPageNum(total);
         int pageStartNum = service.getPageStartNum(total, start);
         int groups[] = service.getPageGroup(currentPage, lastPageNum);
 
-        List<ArticleVO> articles = service.selectArticles(start);
+        List<ArticleVO> articles = service.selectArticles(start, cate, 10);
         model.addAttribute("articles", articles);
         model.addAttribute("curretPage", currentPage);
         model.addAttribute("lastPageNum", lastPageNum);
         model.addAttribute("pageStartNum", pageStartNum);
         model.addAttribute("groups", groups);
         model.addAttribute("group", group);
+        model.addAttribute("cate", cate);
         return "board/list";
     }
 
     @GetMapping("board/view")
-    public String view(Model model, String group, int no) {
+    public String view(Model model, String group, String cate, int no) {
         ArticleVO article = service.selectArticle(no);
+        service.updateArticleHit(no);
         model.addAttribute("group", group);
+        model.addAttribute("cate", cate);
         model.addAttribute("article", article);
         return "board/view";
     }
@@ -59,37 +62,39 @@ public class ArticleController {
     }
 
     @GetMapping("board/modify")
-    public String modify(Model model, String group, int no) {
+    public String modify(Model model, String group, String cate, int no) {
         ArticleVO article = service.selectArticle(no);
         model.addAttribute("group", group);
+        model.addAttribute("cate", cate);
         model.addAttribute("article", article);
         return "board/modify";
     }
 
     @PostMapping("board/modify")
-    public String modify(int no, String group, ArticleVO vo) {
+    public String modify(int no, String group, String cate, ArticleVO vo) {
         vo.setNo(no);
         service.updateArticle(vo);
-        return "redirect:/board/view?group="+group+"&no="+no;
+        return "redirect:/board/view?group="+group+"&cate="+cate+"&no="+no;
     }
 
     @GetMapping("board/write")
-    public String write(Model model, String group){
+    public String write(Model model, String group, String cate){
         model.addAttribute("group", group);
+        model.addAttribute("cate", cate);
         return "board/write";
     }
 
     @PostMapping("board/write")
-    public String write(ArticleVO vo, HttpServletRequest req, String group) {
+    public String write(ArticleVO vo, HttpServletRequest req, String group, String cate) {
         vo.setRegip(req.getRemoteAddr());
         service.insertArticle(vo);
-        return "redirect:/board/list?group="+group;
+        return "redirect:/board/list?group="+group+"&cate="+cate;
     }
 
     @GetMapping("board/delete")
-    public String delete(int no, String group) {
+    public String delete(int no, String group, String cate) {
         service.deleteArticle(no);
-        return "redirect:/board/list?group="+group;
+        return "redirect:/board/list?group="+group+"&cate="+cate;
     }
 
 }

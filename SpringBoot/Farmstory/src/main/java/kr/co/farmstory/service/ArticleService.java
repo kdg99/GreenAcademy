@@ -45,8 +45,8 @@ public class ArticleService {
     public ArticleVO selectArticle(int no) {
         return dao.selectArticle(no);
     }
-    public List<ArticleVO> selectArticles(int start){
-        return dao.selectArticles(start);
+    public List<ArticleVO> selectArticles(int start, String cate, int amount){
+        return dao.selectArticles(start, cate, amount);
     }
     public int updateArticle(ArticleVO vo) {
         return dao.updateArticle(vo);
@@ -115,6 +115,11 @@ public class ArticleService {
         return fvo;
     }
 
+    //조회수
+    public int updateArticleHit(int no) {
+        return dao.updateArticleHit(no);
+    }
+
     //페이징
     //현재 페이지 번호
     public int getCurrentPage(String pg) {
@@ -129,8 +134,8 @@ public class ArticleService {
         return (currentPage - 1) * 10;
     }
     //게시글 개수 구하기
-    public int selectCountTotal() {
-        return dao.selectCountTotal();
+    public int selectCountTotal(String cate) {
+        return dao.selectCountTotal(cate);
     }
     //마지막 페이지 번호
     public int getLastPageNum(int total) {

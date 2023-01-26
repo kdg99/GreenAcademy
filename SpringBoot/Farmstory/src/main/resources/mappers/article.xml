@@ -8,6 +8,7 @@
 		INSERT INTO `board_article` set
 			`title`=#{title},
 			`content`=#{content},
+			`cate`=#{cate},
 			<if test="fname.isEmpty() == true">
 				`file`=0,
 			</if>
@@ -54,9 +55,9 @@
 		select a.*, b.`nick` from `board_article` as a 
 		join `board_user` as b
 		on a.uid = b.uid
-		where `parent`=0
+		where `parent`=0 and `cate`=#{cate}
 		order by `no` desc 
-		limit #{start}, 10;	
+		limit #{start}, #{amount};
 	</select>
 	
 	<update id="updateArticle">
@@ -66,6 +67,11 @@
 	<delete id="deleteArticle">
 		DELETE FROM `board_article` WHERE `no`=#{no};
 	</delete>
+
+	<!-- 조회수 -->
+	<update id="updateArticleHit">
+		UPDATE `board_article` SET `hit`=`hit` + 1 WHERE `no`=#{no};
+	</update>
 	
 	<!-- File -->
 	<insert id="insertFile">
@@ -86,7 +92,7 @@
 	
 	<!-- 페이징 -->
 	<select id="selectCountTotal" resultType="int">
-		select count(`no`) from `board_article` where `parent`=0;
+		select count(`no`) from `board_article` where `parent`=0 and `cate`=#{cate};
 	</select>
 
 </mapper>

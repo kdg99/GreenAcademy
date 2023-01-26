@@ -12,9 +12,12 @@ import org.springframework.stereotype.Repository;
 public interface ArticleDAO {
     public int insertArticle(ArticleVO vo);
     public ArticleVO selectArticle(int no);
-    public List<ArticleVO> selectArticles(int start);
+    public List<ArticleVO> selectArticles(int start, String cate, int amount);
     public int updateArticle(ArticleVO vo);
     public int deleteArticle(int no);
+
+    //조회수
+    public int updateArticleHit(int no);
 
     //파일
     public int insertFile(FileVO vo);
@@ -22,6 +25,6 @@ public interface ArticleDAO {
     public int updateFileDownload(int fno);
 
     //페이징
-    public int selectCountTotal();
+    public int selectCountTotal(String cate);
 
 }

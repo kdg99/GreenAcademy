@@ -6,6 +6,7 @@
             <form th:action="@{/board/write}" method="post" enctype="multipart/form-data">
             	<input type="hidden" name="uid" th:value="gpaj123">
                 <input type="hidden" name="group" th:value="${group}">
+                <input type="hidden" name="cate" th:value="${cate}">
                 <table border="0">
                     <caption>글쓰기</caption>
                     <tr>
@@ -23,7 +24,7 @@
                 </table>
 
                 <div>
-                    <a th:href="@{/board/list(group=${group})}" class="btn btnCancel">취소</a>
+                    <a th:href="@{/board/list(group=${group}, cate=${cate})}" class="btn btnCancel">취소</a>
                     <input type="submit" value="작성완료" class="btn btnComplete"/>
                 </div>
             </form>

@@ -201,8 +201,12 @@ main > .latest > div > img {
 main > .latest table {
     position: absolute;
     right: 10px;
-    bottom: 16px;
+    top: 70px;
     color: #6a6a6a;
+}
+main > .latest table tr > td > p{
+	margin-top: 2px;
+	margin-right: 70px;
 }
 main > .latest table tr > td > a{
     display: block;
