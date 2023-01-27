@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -41,12 +42,17 @@ public class ArticleController {
     }
 
     @GetMapping("board/view")
-    public String view(Model model, String group, String cate, int no) {
+    public String view(Model model, String group, String cate, int no, Principal principal) {
         ArticleVO article = service.selectArticle(no);
+        List<ArticleVO> comments = service.selectComments(no, 0, 10);
         service.updateArticleHit(no);
         model.addAttribute("group", group);
         model.addAttribute("cate", cate);
         model.addAttribute("article", article);
+        model.addAttribute("comments", comments);
+        if(principal != null) {
+            model.addAttribute("uid", principal.getName());
+        }
         return "board/view";
     }
 
@@ -95,6 +101,20 @@ public class ArticleController {
     public String delete(int no, String group, String cate) {
         service.deleteArticle(no);
         return "redirect:/board/list?group="+group+"&cate="+cate;
+    }
+
+    //댓글
+    @GetMapping("board/addComment")
+    public String addComment(HttpServletRequest req, ArticleVO vo, String group){
+        vo.setRegip(req.getRemoteAddr());
+        service.insertComment(vo);
+        return "redirect:/board/view?group="+group+"&cate="+vo.getCate()+"&no="+vo.getParent();
+    }
+    @GetMapping("board/deleteComment")
+    public String deleteComment(int cno, String group, String cate, int no){
+        service.deleteArticle(cno);
+        service.decreaseArticleComment(no);
+        return "redirect:/board/view?group"+group+"&cate="+cate+"&no="+no;
     }
 
 }

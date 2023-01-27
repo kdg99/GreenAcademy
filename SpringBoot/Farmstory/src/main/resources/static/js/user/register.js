@@ -7,10 +7,11 @@ let regPass 	= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$
 let regName		= /^[가-힣a-zA-Z]{2,18}$/;
 let regHp 		= /^0+\d{2}-\d{3,4}-\d{4}$/;
 // 폼 데이터 검증 결과 상태변수
-let checkUid = false;
-let checkPass = false;
-let checkName = false;
-let checkHp = false;
+let checkUid    = false;
+let checkPass   = false;
+let checkName   = false;
+let checkHp     = false;
+let checkEmail  = false;
 $(function(){
 	
 	//ID
@@ -25,7 +26,7 @@ $(function(){
 		}
 		
 		$.ajax({
-			url:'/Sboard/user/checkUid',
+			url:'/Farmstory/user/checkUid',
 			method:'get',
 			data:{"uid": uid},
 			dataType:'json',
@@ -96,7 +97,7 @@ $(function(){
 	
 	//email
 	$('#btnSendEmail').click(function(){
-		let email = $('input[name=km_email]').val();
+		let email = $('input[name=email]').val();
 		if(email == ''){
 			$('.emailResult').text('이메일을 입력해주세요');
 			return;
@@ -105,15 +106,14 @@ $(function(){
 		$('.emailResult').text('인증코드 전송 중입니다. 잠시만 기다리세요...');
 		
 		$.ajax({
-			url: '/Kmarket1/member/emailAuth.do',
+			url: '/Farmstory/user/emailAuth',
 			method: 'GET',
 			data: {"email": email},
 			dataType: 'json',
 			success: function(data){
 				if(data.status > 0){
 					//메일전송 성공
-					$('.mailFirst').hide();
-					$('.mailSecond').show();
+					$('.auth').show();
 					$('.emailResult').text('인증코드를 입력해주세요.');
 					receivedCode = data.code;
 				}else{
@@ -125,17 +125,16 @@ $(function(){
 	});
 	
 	//email code check
-	$('#btnCheckEmail').click(function(){
-		let code = $('input[name=km_email_code]').val();
+	$('#btnEmailConfirm').click(function(){
+		let code = $('input[name=code]').val();
 		if(code == ''){
 			alert('이메일 확인 후 코드를 입력해주세요.');
 			return;
 		}
 
 		if(code == receivedCode){
-			$('.mailFirst').show();
-			$('.mailSecond').hide();
-			$('input[name=km_email]').attr('readonly', true);
+			$('.auth').hide();
+			$('input[name=email]').attr('readonly', true);
 			$('.emailResult').css('color','green').text('인증완료 되었습니다.');
 			checkEmail = true;
 		}

@@ -1,6 +1,6 @@
 
 <th:block th:include="@{_header.html}"/>
-
+<script th:src="@{/js/track.js}" defer></script>
 <main>
     <div class="slider">
         <ul>
@@ -75,7 +75,10 @@
             <div class="btns">
                 <a th:href="@{/board/list(group=_community, cate=qna)}"><img th:src="@{/img/main_sub2_cs_bt1.png}" alt="1:1 고객문의"></a>
                 <a th:href="@{/board/list(group=_community, cate=faq)}"><img th:src="@{/img/main_sub2_cs_bt2.png}" alt="자주묻는질문"></a>
-                <a href="https://tracker.delivery/#/:carrier_id/:track_id" target="_blank"><img th:src="@{/img/main_sub2_cs_bt3.png}" alt="배송조회"></a>
+                <a href="#" id="track"><img th:src="@{/img/main_sub2_cs_bt3.png}" alt="배송조회"></a>
+                <form id="myForm" name="myForm">
+                    <input type="hidden" name="ex" value="ex" />
+                </form>
             </div>
         </div>
         <div>

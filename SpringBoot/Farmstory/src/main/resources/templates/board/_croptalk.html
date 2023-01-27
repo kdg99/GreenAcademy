@@ -14,7 +14,9 @@
         </aside>
         <article>
             <nav>
-                <img th:src="@{/img/sub_nav_tit_cate3_tit1.png}" alt="농작물이야기"/>
+                <img th:src="@{/img/sub_nav_tit_cate3_tit1.png}" alt="농작물이야기" th:if="${#strings.equals(cate, 'story')}"/>
+                <img th:src="@{/img/sub_nav_tit_cate3_tit2.png}" alt="텃밭가꾸기" th:if="${#strings.equals(cate, 'grow')}"/>
+                <img th:src="@{/img/sub_nav_tit_cate3_tit3.png}" alt="귀농학교" th:if="${#strings.equals(cate, 'school')}"/>
                 <p>
                     HOME > 농작물이야기 >
                     <em th:if="${#strings.equals(cate, 'story')}">농작물이야기</em>

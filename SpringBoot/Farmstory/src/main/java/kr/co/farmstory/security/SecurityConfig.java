@@ -19,7 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/board/write").hasAnyRole("3", "4", "5");
 		http.authorizeRequests().antMatchers("/board/modify").hasAnyRole("3", "4", "5");
-		
+		http.authorizeRequests().antMatchers("/board/addComment").hasAnyRole("3", "4", "5");
+		http.authorizeRequests().antMatchers("/board/deleteComment").hasAnyRole("3", "4", "5");
+
 		
 		//사이트 위조 방지 설정 -> 배포시 제거
 		http.csrf().disable();

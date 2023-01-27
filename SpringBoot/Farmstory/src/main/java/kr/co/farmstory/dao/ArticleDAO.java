@@ -27,4 +27,11 @@ public interface ArticleDAO {
     //페이징
     public int selectCountTotal(String cate);
 
+    //댓글
+    public void insertComment(ArticleVO vo);
+    public void deleteComments(int no);
+    public List<ArticleVO> selectComments(int no, int start, int amount);
+    public void increaseArticleComment(int no);
+    public void decreaseArticleComment(int no);
+
 }

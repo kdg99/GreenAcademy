@@ -52,8 +52,24 @@ public class ArticleService {
         return dao.updateArticle(vo);
     }
     public int deleteArticle(int no) {
-        return dao.deleteArticle(no);
+        dao.deleteComments(no);
+        dao.deleteArticle(no);
+        return 1;
     }
+
+    //댓글
+    public void insertComment(ArticleVO vo){
+        dao.insertComment(vo);
+        dao.increaseArticleComment(vo.getParent());
+    }
+    public void decreaseArticleComment(int no){
+        dao.decreaseArticleComment(no);
+    }
+
+    public List<ArticleVO> selectComments(int no, int start, int amount){
+        return dao.selectComments(no, start, amount);
+    }
+
 
     //파일
     public FileVO selectFile(int fno) {

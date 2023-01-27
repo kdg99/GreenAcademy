@@ -32,4 +32,9 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("popup/track")
+    public String track(){
+        return "popup/track";
+    }
+
 }

@@ -95,4 +95,34 @@
 		select count(`no`) from `board_article` where `parent`=0 and `cate`=#{cate};
 	</select>
 
+	<!-- 댓글 -->
+	<insert id="insertComment">
+		INSERT INTO `board_article` set
+			`parent` = #{parent},
+			`content` = #{content},
+			`uid` = #{uid},
+			`regip`=#{regip},
+			`rdate`=NOW();
+	</insert>
+	<!-- 게시글 삭제시 하위 댓글 일괄삭제 -->
+	<delete id="deleteComments">
+		DELETE FROM `board_article` WHERE `parent`=#{no};
+	</delete>
+
+	<select id="selectComments" resultType="kr.co.farmstory.vo.ArticleVO">
+		select a.*, b.`nick` from `board_article` as a
+		join `board_user` as b
+		on a.uid = b.uid
+		where `parent`=#{no}
+		order by `no` desc
+		limit #{start}, #{amount};
+	</select>
+
+	<update id="increaseArticleComment">
+		UPDATE `board_article` SET `comment`=`comment` + 1 WHERE `no`=#{no};
+	</update>
+	<update id="decreaseArticleComment">
+		UPDATE `board_article` SET `comment`=`comment` - 1 WHERE `no`=#{no};
+	</update>
+
 </mapper>

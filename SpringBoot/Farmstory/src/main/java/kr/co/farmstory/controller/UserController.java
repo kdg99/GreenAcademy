@@ -1,8 +1,11 @@
 package kr.co.farmstory.controller;
 
+import kr.co.farmstory.service.EmailService;
 import kr.co.farmstory.service.UserService;
 import kr.co.farmstory.vo.TermsVO;
 import kr.co.farmstory.vo.UserVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
+@RequiredArgsConstructor
 @Controller
 public class UserController {
 
     @Autowired
     private UserService service;
+    @Autowired
+    private final EmailService emailService;
 
     @GetMapping("user/login")
     public String login() {
@@ -53,6 +60,18 @@ public class UserController {
         map.put("result", result);
 
         return map;
+    }
+
+    //이메일
+    @ResponseBody
+    @GetMapping("user/emailAuth")
+    public Map<String, Integer> checkEmail(String email) throws Exception {
+        Map<String, Integer> data = new HashMap<>();
+        int code = emailService.sendSimpleMessage(email);
+        log.info("인증코드 : " + code);
+        data.put("status", 1);
+        data.put("code", code);
+        return data;
     }
 
 }
