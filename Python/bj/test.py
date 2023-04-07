@@ -1,24 +1,19 @@
-global a
-global b
-a = 0
-b = 0
+#입력
+a, b, c = int(input()), int(input()), int(input())
+n = a*b*c
 
-def fibonacci(n):
-    if n==0:
-        global a
-        a += 1
-        return 0
-    elif n==1:
-        global b
-        b += 1
-        return 1
-    else:
-        return (fibonacci(n-1) + fibonacci(n-2))
+#변환
+n_list = list(str(n))
 
-test = int(input())
-for i in range(test):
-    num = int(input())
-    fibonacci(num)
-    print(a, ' ', b)
 
-#https://www.acmicpc.net/board/view/24540
+#카운트
+r_list = [0 for i in range(10)]
+
+#비교후 증가
+for i in range(10):
+    for n in n_list:
+        if i == int(n):
+            r_list[i] += 1
+
+for r in r_list:
+    print(r)
