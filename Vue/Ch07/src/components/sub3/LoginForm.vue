@@ -21,10 +21,12 @@
 
 <script setup>
 import { reactive } from "vue";
+import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
 const router = useRouter();
+const store = useStore();
 
 const user = reactive({
     uid: "",
@@ -32,17 +34,15 @@ const user = reactive({
 });
 
 const loginProc = () => {
-    axios
-        .post("http://localhost:8181/Voard/user/login", user)
+    //dispatch에서 return받은 promise값이 성공이면 then, 실패면 catch
+    store
+        .dispatch("login", user)
         .then((response) => {
-            console.log(response);
-            const token = response.data.accessToken;
-
-            localStorage.setItem("accessToken", token);
+            //로그인 성공
             router.push("/jwt/loginSuccess");
         })
         .catch((error) => {
-            console.log(console.error());
+            alert("로그인 실패");
         });
 };
 </script>

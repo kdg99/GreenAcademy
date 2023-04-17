@@ -3,6 +3,27 @@
     <router-view></router-view>
 </template>
 
-<script setup></script>
+<script setup>
+import { onBeforeMount } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const store = useStore();
+const router = useRouter();
+
+onBeforeMount(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken != null) {
+        store
+            .dispatch("authUser", accessToken)
+            .then((response) => {
+                router.push("/jwt/loginSuccess");
+            })
+            .catch((error) => {
+                router.push("/jwt/loginForm");
+            });
+    }
+});
+</script>
 
 <style scoped></style>

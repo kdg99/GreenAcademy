@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.voard.jwt.JWTUtil;
+import kr.co.voard.repository.UserEntity;
 import kr.co.voard.security.MyUserDetails;
 import kr.co.voard.security.SecurityUserService;
 import kr.co.voard.vo.UserVO;
@@ -54,10 +55,31 @@ public class UserController {
 		String token = jwtUtil.generateToken(uid);
 		log.info("login...3" + token);
 		
+		
 		// 데이터 출력
+		UserEntity user = myUserDetails.getUser();
+		
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("accessToken", token);
+		resultMap.put("user", user);
 		
+		return resultMap;
+	}
+	
+	@CrossOrigin(origins = "*")
+	@ResponseBody
+	@GetMapping("user/authUser")
+	public Map<String, Object> authUser(Authentication authentication) {
+
+		UserEntity user = null;
+		//Security사용자 인증 객체
+		if(authentication != null) {
+			MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
+			user = myUserDetails.getUser();
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("user", user);
 		return resultMap;
 	}
 	

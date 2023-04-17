@@ -55,7 +55,7 @@
       </v-img>
       <v-card-text> This is content </v-card-text>
     </v-card>
-    <v-divider></v-divider>
+    k<v-divider></v-divider>
   </div>
 </template>
 
