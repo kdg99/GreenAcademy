@@ -19,6 +19,7 @@ const store = createStore({
         },
         authUser: function (context, token) {
             return axios
+                //서버단 Header에 값 저장
                 .get("http://localhost:8181/Voard/user/authUser", {
                     headers: { "X-AUTH-TOKEN": token },
                 })
