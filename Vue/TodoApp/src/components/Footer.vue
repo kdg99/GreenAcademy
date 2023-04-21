@@ -1,15 +1,15 @@
 <template>
     <footer>
-        <button>Clear All</button>
+        <button @click="btnClear">Clear All</button>
     </footer>
 </template>
 
-<script>
-export default {
-    name: "Footer",
-    setup() {
-        return {};
-    },
+<script setup>
+import { useStore } from "vuex";
+const store = useStore();
+
+const btnClear = () => {
+    store.dispatch("clearTodo");
 };
 </script>
 

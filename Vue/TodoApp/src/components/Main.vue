@@ -1,18 +1,29 @@
 <template>
     <main>
-        <ul></ul>
+        <ul>
+            <Item
+                @removeItem="removeItemHandler(index)"
+                v-for="(todo, index) in todos"
+                v-bind:data="todo"
+                v-bind:index="index"
+            />
+        </ul>
     </main>
 </template>
 
-<script>
+<script setup>
+//
 import Item from "./Item.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+const store = useStore();
+const todos = computed(() => {
+    return store.getters.getTodos;
+});
 
-export default {
-    name: "Main",
-    setup() {
-        return {};
-    },
-    components: { Item },
+//
+const removeItemHandler = (index) => {
+    store.dispatch("removeTodo", index);
 };
 </script>
 

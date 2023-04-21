@@ -5,33 +5,25 @@
                 type="text"
                 v-model="newTodo"
                 placeholder="할 일을 입력하세요."
+                id="inputtodo"
             />
             <button @:click="btnAddTodo">등록</button>
         </div>
     </header>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-    name: "Header",
-    setup(props, context) {
-        const newTodo = ref("");
+const emit = defineEmits(["addTodo"]);
+const newTodo = ref("");
+const btnAddTodo = () => {
+    if (newTodo.value !== "") {
+        const inputValue = newTodo.value && newTodo.value.trim();
+        emit("addTodo", inputValue); //상위 컴포넌트에 사용자 정의 이벤트 전달 addTodo라는 이벤트 발생
 
-        const btnAddTodo = () => {
-            if (newTodo.value !== "") {
-                const inputValue = newTodo.value && newTodo.value.trim();
-                context.emit("addTodo", inputValue); //상위 컴포넌트에 사용자 정의 이벤트 전달 addTodo라는 이벤트 발생
-
-                newTodo.value = "";
-            }
-        };
-
-        return {
-            btnAddTodo,
-            newTodo,
-        };
-    },
+        newTodo.value = "";
+        document.querySelector("#inputtodo").focus();
+    }
 };
 </script>
 
