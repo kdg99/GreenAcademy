@@ -5,7 +5,7 @@ const userStore = createStore({
     user: null,
   },
   mutations: {
-    SER_USER(state, user) {
+    SET_USER(state, user) {
       state.user = user;
     },
   },
@@ -15,7 +15,7 @@ const userStore = createStore({
     },
   },
   getters: {
-    getUser(state) {
+    user(state) {
       return state.user;
     },
   },

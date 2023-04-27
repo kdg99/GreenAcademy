@@ -9,31 +9,33 @@ import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
-@Configuration
+@Component
 public class JWTUtil {
-	
-	private final long TOKEN_VALIDATE_DAY = 1000* 60 * 60 * 1; //1시간
+
+	private final long TOKEN_VALIDATE_DAY = 1000 * 60 * 60 * 1; // 1시간 
 	private SecretKey secretKey;
 	
 	public JWTUtil(@Value("${jwt.secret}") String secret) {
 		this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
 	}
 	
+	
 	// JWT에서 클레임값 추출
 	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+		
 		Claims claims = Jwts.parserBuilder()
 							.setSigningKey(secretKey)
 							.build()
 							.parseClaimsJws(token)
 							.getBody();
-				
+		
 		return claimsResolver.apply(claims);
 	}
 	
@@ -50,14 +52,16 @@ public class JWTUtil {
 	
 	// HTTP 헤더에서 Token 추출
 	public String resolveToken(HttpServletRequest request) {
-		return request.getHeader("X-AUTH-TOKEN"); //임의로 이름 설정
+		return request.getHeader("X-AUTH-TOKEN");
 	}
 	
-	// JWT 토큰 발행
+	// JWT 생성
 	public String generateToken(String username) {
+		
 		Map<String, Object> claims = new HashMap<>();
+		
 		Date createDate = new Date();
-		Date expireDate = new Date(createDate.getTime()+TOKEN_VALIDATE_DAY);
+		Date expireDate = new Date(createDate.getTime() + TOKEN_VALIDATE_DAY);
 		
 		return Jwts.builder()
 					.setClaims(claims)
@@ -67,5 +71,4 @@ public class JWTUtil {
 					.signWith(secretKey, SignatureAlgorithm.HS256)
 					.compact();
 	}
-
 }

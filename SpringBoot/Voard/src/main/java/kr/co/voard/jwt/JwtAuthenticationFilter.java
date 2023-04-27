@@ -19,30 +19,41 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter{
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private SecurityUserService securityUserService;
+	
 	@Autowired
 	private JWTUtil jwtUtil;
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+
+		log.info("doFilterInternal...1");
+		
 		String token = jwtUtil.resolveToken(request);
-		log.info("filter1..."+ token);
+		log.info("doFilterInternal...2 : " + token);
 		
 		if(token != null && jwtUtil.validateToken(token)) {
-			log.info("filter2...");
+			log.info("doFilterInternal...3");
 			String uid = jwtUtil.getUsernameFromToken(token);
+			
 			MyUserDetails myUserDetails = securityUserService.loadUserByUsername(uid);
-			//Security 인증 처리
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(myUserDetails, null, myUserDetails.getAuthorities());
+			
+			// Security 인증처리
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(myUserDetails, 
+																										 null, 
+																										 myUserDetails.getAuthorities());
+			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
 		}
+		
 		
 		// 다음 필터로 이동
 		filterChain.doFilter(request, response);
 	}
-	
+
 }
