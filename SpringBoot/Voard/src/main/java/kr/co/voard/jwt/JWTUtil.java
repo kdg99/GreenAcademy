@@ -26,7 +26,6 @@ public class JWTUtil {
 		this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
 	}
 	
-	
 	// JWT에서 클레임값 추출
 	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
 		

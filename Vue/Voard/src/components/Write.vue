@@ -63,12 +63,11 @@ const btnWrite = () => {
   const user = userStore.getters.user;
   article.uid = user.uid;
   axios
-    .post("http://localhost:8080/Voard/write", article)
+    .post("/write", article)
     .then((response) => {
       console.log(response);
       if (response.data > 0) {
         dialog.value = true;
-        //router.push("/list");
       }
     })
     .catch((error) => {

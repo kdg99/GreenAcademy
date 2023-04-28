@@ -81,7 +81,7 @@ const pageHandler = () => {
 
 const getArticles = (pg) => {
   axios
-    .get("http://localhost:8080/Voard/list?pg=" + pg)
+    .get("/list?pg=" + pg)
     .then((response) => {
       console.log(response);
       const data = response.data;

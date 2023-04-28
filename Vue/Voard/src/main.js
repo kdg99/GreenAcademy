@@ -25,8 +25,8 @@ app.use(userStore);
 app.mount("#app");
 
 // axios 전역설정
-/*
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "http://localhost:8105/Voard/api"; //개발용
+//axios.defaults.baseURL = "http://kdg99.link:8105/Voard/api"; //배포용
 axios.interceptors.request.use(
   function (config) {
     const accessToken = localStorage.getItem("accessToken");
@@ -39,4 +39,3 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-*/

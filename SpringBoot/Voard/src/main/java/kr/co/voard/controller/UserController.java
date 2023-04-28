@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.voard.jwt.JWTUtil;
@@ -25,6 +26,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
+@RequestMapping("api/")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
@@ -41,22 +43,22 @@ public class UserController {
 	private UserService service;
 	
 	
-	@GetMapping("/user/terms")
+	@GetMapping("user/terms")
 	public TermsVO terms() {		
 		return service.selectTerms();
 	}
 	
-	@PostMapping("/user/register")
+	@PostMapping("user/register")
 	public void register(@RequestBody UserVO vo) {
 		service.insertUser(vo);
 	}
 	
-	@GetMapping("/user/countUid")
+	@GetMapping("user/countUid")
 	public int countUid(String uid) {
 		return service.countUid(uid);
 	}
 	
-	@PostMapping("/user/login")
+	@PostMapping("user/login")
 	public Map<String, Object> login(@RequestBody UserVO vo) {
 		log.info("vo : " + vo);
 		// 사용자 정보 객체생성
@@ -84,7 +86,7 @@ public class UserController {
 		return resultMap;		
 	}
 	
-	@GetMapping("/user/auth")
+	@GetMapping("user/auth")
 	public Map<String, Object> auth(Authentication authentication) {
 		
 		log.info("auth...1");
@@ -101,7 +103,7 @@ public class UserController {
 		return resultMap;	
 	}
 	
-	@GetMapping("/user/logout")
+	@GetMapping("user/logout")
 	public void logout() {
 		
 	}

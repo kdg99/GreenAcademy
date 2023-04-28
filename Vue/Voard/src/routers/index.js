@@ -10,6 +10,7 @@ import Modify from "../components/Modify.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: "/", name: "Index", component: Login },
     { path: "/user/login", name: "Login", component: Login },
     { path: "/user/terms", name: "Terms", component: Terms },
     { path: "/user/register", name: "Register", component: Register },
