@@ -24,7 +24,7 @@ const store = createStore({
                 content: todo,
             };
             axios
-                .post("http://52.78.87.169:8103/TodoAppBackend/todo", vo)
+                .post("http://kdg99.link:8103/TodoAppBackend/todo", vo)
                 .then((response) => {
                     console.log(response.data);
                     context.commit("ADD_TODO", response.data);
@@ -35,7 +35,7 @@ const store = createStore({
         },
         removeTodo(context, no) {
             axios
-                .delete(`http://52.78.87.169:8103/TodoAppBackend/todo/${no}`)
+                .delete(`http://kdg99.link:8103/TodoAppBackend/todo/${no}`)
                 .then((response) => {
                     console.log(response);
                     context.commit("SET_TODO", response.data);
@@ -47,7 +47,7 @@ const store = createStore({
         clearTodo(context) {
             context.commit("CLEAR_TODO");
             axios
-                .delete("http://52.78.87.169:8103/TodoAppBackend/clear")
+                .delete("http://kdg99.link:8103/TodoAppBackend/clear")
                 .then((response) => {
                     console.log(response);
                     context.commit("CLEAR_TODO");

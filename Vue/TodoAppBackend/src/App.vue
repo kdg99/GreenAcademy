@@ -17,7 +17,7 @@ const store = useStore();
 
 onBeforeMount(() => {
     axios
-        .get("http://52.78.87.169:8103/TodoAppBackend/todo")
+        .get("http://kdg99.link:8103/TodoAppBackend/todo")
         .then((response) => {
             console.log(response);
             store.dispatch("setTodo", response.data);
