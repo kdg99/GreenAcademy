@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>index</title>
+    </head>
+    <body>
+        <h3>Ch02 Express 실습</h3>
+
+        <h4>링크</h4>
+        <a href="/sub/hello">Hello</a>
+        <a href="/sub/welcome">Welcome</a>
+
+        <h4>데이터</h4>
+        <p>
+            tit1 : <%= tit1 %> <br />
+            tit2 : <%= tit2 %> <br />
+        </p>
+        <br />
+        <p>
+            uid : <%= user.uid %> <br />
+            name : <%= user.name %> <br />
+            hp : <%= user.hp %> <br />
+            age : <%= user.age %> <br />
+        </p>
+
+        <h4>조건문</h4>
+        <% if(result1){ %>
+        <p>result1은 True 입니다.</p>
+        <% } %>
+        <hr />
+
+        <% if(result2){ %>
+        <p>result2는 True 입니다.</p>
+        <% } else{ %>
+        <p>result2는 False 입니다.</p>
+        <% } %>
+
+        <h4>반복문</h4>
+        <table border="1">
+            <tr>
+                <td>아이디</td>
+                <td>이름</td>
+                <td>휴대폰</td>
+                <td>나이</td>
+            </tr>
+            <% for(const user of users){ %>
+            <tr>
+                <td><%= user.uid %></td>
+                <td><%= user.name %></td>
+                <td><%= user.hp %></td>
+                <td><%= user.age %></td>
+            </tr>
+            <% } %>
+        </table>
+    </body>
+</html>
